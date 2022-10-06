@@ -1,0 +1,60 @@
+{
+    "music": [
+        {
+            "id": 1,
+            "name": "viva la vida",
+            "singer": "coldplay",
+            "album_cover" : "vivalavida.jpeg"
+        },
+        {
+            "id": 2,
+            "name": "24k magic",
+            "singer": "bruno mars",
+            "album_cover": "24kmagic.png"
+        }
+    ],
+    "playlist": [
+        {
+            "id": 1,
+            "name": "dummy 1",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "Think",
+                    "singer": "양다일"
+                },
+                {
+                    "no" : 2,
+                    "name": "십이월 이십오일의 고백",
+                    "singer": "정승환"
+                },
+                {
+                    "no" : 3,
+                    "name": "못해",
+                    "singer": "김나영"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "dummy 2",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "주저하는 연인들을 위해",
+                    "singer": "잔나비"
+                },
+                {
+                    "no" : 2,
+                    "name": "11:11",
+                    "singer": "태연"
+                },
+                {
+                    "no" : 3,
+                    "name": "의연한 악수",
+                    "singer": "카더가드"
+                }
+            ]
+        }
+    ]
+}

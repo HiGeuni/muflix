@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './layouts/Header';
+import MusicList from './components/MusicList';
+import Playlist from './components/Playlist';
+import NewPlaylist from './components/NewPlaylist';
+import Padding from './layouts/Padding';
+import NewMusicForm from './components/NewMusic';
+import PlaylistDetail from './components/PlaylistDetail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header isLogin={true} />
+      <Padding />
+      <MusicList />
+      <Playlist />
+      {/* <NewPlaylist /> */}
+      {/* <NewMusicForm /> */}
+      
+      {/* <PlaylistDetail playlistId={2} /> */}
+    </>
   );
 }
 
