@@ -2,10 +2,7 @@
 
 import musicData from "../data.json";
 import styled from "styled-components";
-
-const SizedBox = styled.div`
-    padding-top: 80px;
-`
+import { Link } from "react-router-dom";
 
 const AddMusic = styled.div`
     display: flex;
@@ -18,18 +15,6 @@ const AddMusic = styled.div`
     // padding: 40px;
     width: 200px;
     height: 200px;
-`
-
-const Image = styled.img`
-    display: block;
-    width: 100px;
-    height: 100px;
-    // object-fit: cover;
-`
-
-const UnMarkedUl = styled.ul `
-    display: flex;
-    list-style: none;
 `
 
 const UnMarkedli = styled.li`
@@ -71,7 +56,9 @@ function MusicList(){
                         </Music>
                     </UnMarkedli>
                 ))}
-                <AddMusic> Add Music </AddMusic>
+                <Link to="/newMusicForm">
+                    <AddMusic> Add Music </AddMusic>
+                </Link>
             </MusiclistStyle>
         </>
     )

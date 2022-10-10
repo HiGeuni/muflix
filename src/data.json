@@ -11,6 +11,30 @@
             "name": "24k magic",
             "singer": "bruno mars",
             "album_cover": "24kmagic.png"
+        },
+        {
+            "id": 3,
+            "name": "viva la vida",
+            "singer": "coldplay",
+            "album_cover" : "vivalavida.jpeg"
+        },
+        {
+            "id": 4,
+            "name": "24k magic",
+            "singer": "bruno mars",
+            "album_cover": "24kmagic.png"
+        },
+        {
+            "id": 5,
+            "name": "viva la vida",
+            "singer": "coldplay",
+            "album_cover" : "vivalavida.jpeg"
+        },
+        {
+            "id": 6,
+            "name": "24k magic",
+            "singer": "bruno mars",
+            "album_cover": "24kmagic.png"
         }
     ],
     "playlist": [

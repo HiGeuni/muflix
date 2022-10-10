@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import data from "../data.json";
+import { json, useParams } from "react-router-dom";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -26,13 +27,15 @@ const PlaylistControl = styled.div`
     }
 `
 
-function PlaylistDetail({playlistId}){
+function PlaylistDetail(){
+    const params = useParams();
+    // console.log(this.props.match.params.id);
     // playlistId를 기준으로 filtering 후 포함 된 음악들을 보여주기
+    // playlistId = 1;
     const PlayListData = data.playlist.filter((dd) => {
-        return dd.id === playlistId;
+        return dd.id === parseInt(params["index"]);
     });
 
-    console.log(PlayListData[0].name);
     return (
         <>
             {PlayListData.map((d) => (

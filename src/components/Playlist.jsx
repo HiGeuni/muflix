@@ -1,6 +1,6 @@
 import playlistData from '../data.json';
 import styled from 'styled-components';
-import "./Style.scss";
+import { Link } from 'react-router-dom';
 
 const AddPlaylist = styled.div`
     display: flex;
@@ -14,6 +14,11 @@ const AddPlaylist = styled.div`
     width: 200px;
     height: 200px;
 `
+
+const StyledLink = styled(Link)`
+    display: flex;
+`
+
 
 const UnMarkedli = styled.li`
     display: flex;
@@ -42,16 +47,20 @@ function Playlist(){
             </h2>
             <PlaylistStyle>
                 { playlistData.playlist.map((s) => (
-                    <UnMarkedli key = {s.id}>
+                    <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
+                        <UnMarkedli key = {s.id}>
                             {s.name} <br />
                             {/* Musics: {s.musics.map((t) => {
                                 <li key = {t.no}>
                                     {t.name}
                                 </li>
                             })} */}
-                    </UnMarkedli>
+                        </UnMarkedli>
+                    </StyledLink>
                 ))}
-                <AddPlaylist> Add Playlist </AddPlaylist>
+                <Link to="/newPlaylistForm">
+                    <AddPlaylist> Add Playlist </AddPlaylist>
+                </Link>
             </PlaylistStyle>
         </>
     )
