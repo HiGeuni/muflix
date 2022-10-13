@@ -3,6 +3,10 @@
 import musicData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+
+import "../styles/slick-theme.css";
+import "../styles/slick.css";
 
 const AddMusic = styled.div`
     display: flex;
@@ -18,6 +22,8 @@ const AddMusic = styled.div`
 `
 
 const UnMarkedli = styled.li`
+    display: flex;
+    align-items: center;
     list-style: none;
 `
 
@@ -35,14 +41,18 @@ const Music = styled.div`
     }
 `
 
-const MusiclistStyle = styled.div`
-    display: fixed;
-`
 function MusicList(){
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 2
+      };
     return (
         <>
             <h2>Music List</h2>
-            <MusiclistStyle>
+            <Slider {...settings}>
                 { musicData.music.map((s) => (
                     <UnMarkedli key = {s.id}>
                         <Music>
@@ -59,7 +69,7 @@ function MusicList(){
                 <Link to="/newMusicForm">
                     <AddMusic> Add Music </AddMusic>
                 </Link>
-            </MusiclistStyle>
+            </Slider>
         </>
     )
 }
