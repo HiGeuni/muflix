@@ -17,6 +17,7 @@ const AddMusic = styled.div`
     margin-right: 1rem;
     background-color:#d2e7e8;
     // padding: 40px;
+    margin: auto;
     width: 200px;
     height: 200px;
 `
@@ -60,7 +61,7 @@ function MusicList(){
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 2
-      };
+    };
     return (
         <CustomDiv>
             <h2>Music List</h2>

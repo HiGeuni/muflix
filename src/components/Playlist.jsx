@@ -7,11 +7,12 @@ const AddPlaylist = styled.div`
     display: flex;
     align-items: center; // for vertical
     justify-content: center; // for horizontal
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    // margin-top: 1rem;
+    // margin-left: 1rem;
+    // margin-right: 1rem;
     background-color:#d2e7e8;
     // padding: 40px;
+    margin: auto;
     width: 200px;
     height: 200px;
 `
@@ -19,7 +20,6 @@ const AddPlaylist = styled.div`
 const StyledLink = styled(Link)`
     display: flex;
 `
-
 
 const UnMarkedli = styled.li`
     display: flex;
@@ -45,7 +45,7 @@ function Playlist(){
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 2
-      };
+    };
     const data = playlistData.playlist.map((s) => {
         return s.musics;
     })
