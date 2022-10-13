@@ -15,6 +15,7 @@ const AddPlaylist = styled.div`
     margin: auto;
     width: 200px;
     height: 200px;
+    margin : auto;
 `
 
 const StyledLink = styled(Link)`
