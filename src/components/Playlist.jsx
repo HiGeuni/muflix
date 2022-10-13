@@ -1,6 +1,7 @@
 import playlistData from '../data.json';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 
 const AddPlaylist = styled.div`
     display: flex;
@@ -26,26 +27,35 @@ const UnMarkedli = styled.li`
     justify-content: center; // for horizontal
     list-style: none;
     border: 2px solid;
-    margin: 1rem;
+    margin: auto;
     width: 200px;
     height: 200px;
 `
 
-const PlaylistStyle = styled.div`
-    display: fixed;
+const CustomDiv = styled.div`
+    // display: flex;
+    text-align: center;
+    justify-content: center;
 `
 
 function Playlist(){
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 2
+      };
     const data = playlistData.playlist.map((s) => {
         return s.musics;
     })
     console.log(data);
     return (
-        <>
+        <CustomDiv>
             <h2>
                 PlayList
             </h2>
-            <PlaylistStyle>
+            <Slider {...settings}>
                 { playlistData.playlist.map((s) => (
                     <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
                         <UnMarkedli key = {s.id}>
@@ -61,8 +71,8 @@ function Playlist(){
                 <Link to="/newPlaylistForm">
                     <AddPlaylist> Add Playlist </AddPlaylist>
                 </Link>
-            </PlaylistStyle>
-        </>
+            </Slider>
+        </CustomDiv>
     )
 }
 

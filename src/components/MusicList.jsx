@@ -33,12 +33,24 @@ const Music = styled.div`
     max-width: 1100px;
     height: 100%;
     margin: 1rem;
-    align-items: center;
-    justify-content: space-between;
     img {
+        display: block;
+        margin: auto;
         width: 200px;
         height: 200px;
     }
+`
+
+// const CenteredSlider = styled(Slider)`
+//     display: flex;
+//     text-align: center;
+//     justify-content : center;
+// `
+
+const CustomDiv = styled.div`
+    // display: flex;
+    text-align: center;
+    justify-content: center;
 `
 
 function MusicList(){
@@ -50,7 +62,7 @@ function MusicList(){
         slidesToScroll: 2
       };
     return (
-        <>
+        <CustomDiv>
             <h2>Music List</h2>
             <Slider {...settings}>
                 { musicData.music.map((s) => (
@@ -70,7 +82,7 @@ function MusicList(){
                     <AddMusic> Add Music </AddMusic>
                 </Link>
             </Slider>
-        </>
+        </CustomDiv>
     )
 }
 
