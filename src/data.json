@@ -4,37 +4,43 @@
             "id": 1,
             "name": "viva la vida",
             "singer": "coldplay",
-            "album_cover" : "vivalavida.jpeg"
+            "album_cover" : "https://images.squarespace-cdn.com/content/v1/5099306be4b0f629c2afcc25/1394041945918-OFEO83X3PTNZ2END8XYI/ke17ZwdGBToddI8pDm48kEU48WT-wucwRp3XFlCQDSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbvHAMoLgXluVzF2ehXBMnOuOmi5EXYdMsb-Ux5eFX1HB_rxXnGcBlRHfueBT1dxxQ/coldplay.jpg?format=2500w"
         },
         {
             "id": 2,
             "name": "24k magic",
             "singer": "bruno mars",
-            "album_cover": "24kmagic.png"
+            "album_cover": "https://media.pitchfork.com/photos/5929bfa95e6ef95969323435/1:1/w_320,c_limit/795b3f6e.jpg"
         },
         {
             "id": 3,
             "name": "viva la vida",
             "singer": "coldplay",
-            "album_cover" : "vivalavida.jpeg"
+            "album_cover" : "https://images.squarespace-cdn.com/content/v1/5099306be4b0f629c2afcc25/1394041945918-OFEO83X3PTNZ2END8XYI/ke17ZwdGBToddI8pDm48kEU48WT-wucwRp3XFlCQDSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbvHAMoLgXluVzF2ehXBMnOuOmi5EXYdMsb-Ux5eFX1HB_rxXnGcBlRHfueBT1dxxQ/coldplay.jpg?format=2500w"
         },
         {
             "id": 4,
             "name": "24k magic",
             "singer": "bruno mars",
-            "album_cover": "24kmagic.png"
+            "album_cover": "https://media.pitchfork.com/photos/5929bfa95e6ef95969323435/1:1/w_320,c_limit/795b3f6e.jpg"
         },
         {
             "id": 5,
             "name": "viva la vida",
             "singer": "coldplay",
-            "album_cover" : "vivalavida.jpeg"
+            "album_cover" : "https://images.squarespace-cdn.com/content/v1/5099306be4b0f629c2afcc25/1394041945918-OFEO83X3PTNZ2END8XYI/ke17ZwdGBToddI8pDm48kEU48WT-wucwRp3XFlCQDSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbvHAMoLgXluVzF2ehXBMnOuOmi5EXYdMsb-Ux5eFX1HB_rxXnGcBlRHfueBT1dxxQ/coldplay.jpg?format=2500w"
         },
         {
             "id": 6,
             "name": "24k magic",
             "singer": "bruno mars",
-            "album_cover": "24kmagic.png"
+            "album_cover": "https://media.pitchfork.com/photos/5929bfa95e6ef95969323435/1:1/w_320,c_limit/795b3f6e.jpg"
+        },
+        {
+            "id": 7,
+            "name": "viva la vida",
+            "singer": "coldplay",
+            "album_cover" : "https://images.squarespace-cdn.com/content/v1/5099306be4b0f629c2afcc25/1394041945918-OFEO83X3PTNZ2END8XYI/ke17ZwdGBToddI8pDm48kEU48WT-wucwRp3XFlCQDSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbvHAMoLgXluVzF2ehXBMnOuOmi5EXYdMsb-Ux5eFX1HB_rxXnGcBlRHfueBT1dxxQ/coldplay.jpg?format=2500w"
         }
     ],
     "playlist": [
@@ -77,6 +83,86 @@
                     "no" : 3,
                     "name": "의연한 악수",
                     "singer": "카더가드"
+                }
+            ]
+        },{
+            "id": 3,
+            "name": "dummy 3",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "Think",
+                    "singer": "양다일"
+                },
+                {
+                    "no" : 2,
+                    "name": "십이월 이십오일의 고백",
+                    "singer": "정승환"
+                },
+                {
+                    "no" : 3,
+                    "name": "못해",
+                    "singer": "김나영"
+                }
+            ]
+        },{
+            "id": 4,
+            "name": "dummy 4",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "Think",
+                    "singer": "양다일"
+                },
+                {
+                    "no" : 2,
+                    "name": "십이월 이십오일의 고백",
+                    "singer": "정승환"
+                },
+                {
+                    "no" : 3,
+                    "name": "못해",
+                    "singer": "김나영"
+                }
+            ]
+        },{
+            "id": 5,
+            "name": "dummy 5",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "Think",
+                    "singer": "양다일"
+                },
+                {
+                    "no" : 2,
+                    "name": "십이월 이십오일의 고백",
+                    "singer": "정승환"
+                },
+                {
+                    "no" : 3,
+                    "name": "못해",
+                    "singer": "김나영"
+                }
+            ]
+        },{
+            "id": 6,
+            "name": "dummy 6",
+            "musics" : [
+                {
+                    "no" : 1,
+                    "name": "Think",
+                    "singer": "양다일"
+                },
+                {
+                    "no" : 2,
+                    "name": "십이월 이십오일의 고백",
+                    "singer": "정승환"
+                },
+                {
+                    "no" : 3,
+                    "name": "못해",
+                    "singer": "김나영"
                 }
             ]
         }

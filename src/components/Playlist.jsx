@@ -3,38 +3,33 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
-const AddPlaylist = styled.div`
+const AddPlaylist = styled(Link)`
     display: flex;
+    margin: auto;
     align-items: center; // for vertical
     justify-content: center; // for horizontal
-    // margin-top: 1rem;
-    // margin-left: 1rem;
-    // margin-right: 1rem;
-    background-color:#d2e7e8;
-    // padding: 40px;
-    margin: auto;
+    background-color: #d2e7e8;
+    border: 2px solid;
     width: 200px;
     height: 200px;
-    margin : auto;
 `
 
 const StyledLink = styled(Link)`
-    display: flex;
+    display: block;
+    margin: auto;
+    align-items: center; // for vertical
+    justify-content: center; // for horizontal
+    border: 2px solid;
+    width: 200px;
+    height :200px;
 `
 
 const UnMarkedli = styled.li`
     display: flex;
-    align-items: center; // for vertical
-    justify-content: center; // for horizontal
     list-style: none;
-    border: 2px solid;
-    margin: auto;
-    width: 200px;
-    height: 200px;
 `
 
 const CustomDiv = styled.div`
-    // display: flex;
     text-align: center;
     justify-content: center;
 `
@@ -58,20 +53,15 @@ function Playlist(){
             </h2>
             <Slider {...settings}>
                 { playlistData.playlist.map((s) => (
-                    <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
                         <UnMarkedli key = {s.id}>
-                            {s.name} <br />
-                            {/* Musics: {s.musics.map((t) => {
-                                <li key = {t.no}>
-                                    {t.name}
-                                </li>
-                            })} */}
+                            <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
+                                {s.name}
+                            </StyledLink>
                         </UnMarkedli>
-                    </StyledLink>
                 ))}
-                <Link to="/newPlaylistForm">
-                    <AddPlaylist> Add Playlist </AddPlaylist>
-                </Link>
+                <AddPlaylist to="/newPlaylistForm">
+                    Add Playlist
+                </AddPlaylist>
             </Slider>
         </CustomDiv>
     )

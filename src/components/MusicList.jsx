@@ -13,11 +13,11 @@ const AddMusic = styled.div`
     align-items: center; // for vertical
     justify-content: center; // for horizontal
     margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     background-color:#d2e7e8;
     // padding: 40px;
-    margin: auto;
+    // margin: auto;
     width: 200px;
     height: 200px;
 `
@@ -70,7 +70,7 @@ function MusicList(){
                     <UnMarkedli key = {s.id}>
                         <Music>
                             <img
-                                src={`${process.env.PUBLIC_URL}/album_cover/${s.album_cover}`}
+                                src={s.album_cover}
                                 className="Album-Cover"
                                 alt="Album"
                             /> <br />
