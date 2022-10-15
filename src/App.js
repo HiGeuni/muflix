@@ -1,4 +1,5 @@
 import './App.css';
+import React, {useRef, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from './layouts/Header';
 import MusicList from './components/MusicList';
@@ -7,7 +8,9 @@ import NewPlayListForm from './components/NewPlaylist';
 import Padding from './layouts/Padding';
 import NewMusicForm from './components/NewMusic';
 import PlaylistDetail from './components/PlaylistDetail';
+import SignInForm from './components/Signin';
 
+// isLogin은 상태 관리하기
 function App() {
   return (
     <>
@@ -28,12 +31,7 @@ function App() {
           element = {<PlaylistDetail />}
         />
       </Routes>
-      {/* <MusicList /> */}
-      {/* <Playlist /> */}
-      {/* <NewPlaylist /> */}
-      {/* <NewMusicForm /> */}
-      
-      {/* <PlaylistDetail playlistId={2} /> */}
+      <SignInForm />
     </>
   );
 }
