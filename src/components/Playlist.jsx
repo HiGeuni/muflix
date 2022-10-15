@@ -20,6 +20,9 @@ const AddPlaylist = styled.div`
 
 const StyledLink = styled(Link)`
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width:200px;
 `
 
 const UnMarkedli = styled.li`
@@ -28,7 +31,8 @@ const UnMarkedli = styled.li`
     justify-content: center; // for horizontal
     list-style: none;
     border: 2px solid;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 200px;
     height: 200px;
 `
@@ -37,6 +41,11 @@ const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
     justify-content: center;
+    h2{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    padding-bottom: 2rem;
 `
 
 function Playlist(){
