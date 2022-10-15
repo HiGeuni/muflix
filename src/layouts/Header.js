@@ -12,7 +12,8 @@ function Header({isLogin}){
         <header className="header">
             <div className="contents">
                 <Link to="/">
-                    <b>Logo</b>
+                    <img className="logo" 
+                    src="https://cdn.discordapp.com/attachments/874897301292875836/1030724425194156092/mufilx.png" />
                 </Link>
                 <nav className="navigation">
                     <a>{isLogin ? "Logout" : "Login"}</a>

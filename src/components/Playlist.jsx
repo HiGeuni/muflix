@@ -28,12 +28,25 @@ const StyledLink = styled(Link)`
 const UnMarkedli = styled.li`
     display: flex;
     list-style: none;
+<<<<<<< HEAD
+    border: 2px solid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 200px;
+=======
+>>>>>>> 217c24b532d8f65ef6d468ecab49a860e9a2b2c1
 `
 
 const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
     justify-content: center;
+    h2{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    padding-bottom: 2rem;
 `
 
 function Playlist(){
