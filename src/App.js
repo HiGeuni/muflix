@@ -32,6 +32,8 @@ function App() {
         />
       </Routes>
       <SignInForm />
+      <SignInForm />
+      <SignInForm />
     </>
   );
 }
