@@ -17,7 +17,10 @@ const AddMusic = styled.div`
     margin-right: auto;
     background-color:#d2e7e8;
     // padding: 40px;
+<<<<<<< HEAD
+=======
     // margin: auto;
+>>>>>>> 217c24b532d8f65ef6d468ecab49a860e9a2b2c1
     width: 200px;
     height: 200px;
 `
