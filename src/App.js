@@ -31,9 +31,6 @@ function App() {
           element = {<PlaylistDetail />}
         />
       </Routes>
-      <SignInForm />
-      <SignInForm />
-      <SignInForm />
     </>
   );
 }

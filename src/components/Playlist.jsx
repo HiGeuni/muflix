@@ -28,14 +28,11 @@ const StyledLink = styled(Link)`
 const UnMarkedli = styled.li`
     display: flex;
     list-style: none;
-<<<<<<< HEAD
-    border: 2px solid;
     margin-left: auto;
     margin-right: auto;
     width: 200px;
     height: 200px;
-=======
->>>>>>> 217c24b532d8f65ef6d468ecab49a860e9a2b2c1
+    padding-bottom: 20px;
 `
 
 const CustomDiv = styled.div`
@@ -50,6 +47,10 @@ const CustomDiv = styled.div`
 `
 
 function Playlist(){
+    
+    const data = playlistData.playlist.map((s) => {
+        return s.musics;
+    })
     const settings = {
         dots: true,
         infinite: false,
@@ -78,10 +79,6 @@ function Playlist(){
         }
       ]
     };
-    const data = playlistData.playlist.map((s) => {
-        return s.musics;
-    })
-    console.log(data);
     return (
         <CustomDiv>
             <h2>
