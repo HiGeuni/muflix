@@ -10,7 +10,6 @@ const CustomDiv = styled.div`
     width : 1024px;
     h1 {
         padding-top: 1rem;
-        padding-bottom: 1rem;
         font-weight: 530;
     }
     h3 {
@@ -29,16 +28,25 @@ const CustomDiv = styled.div`
         padding-top: 5px;
     }
     .info_button {
+        width: 764px;
         display: flex;
+        justify-content: space-between;
     }
     button{
-        justify-content: center;
+        display: inline-block;
     }
     justify-content: center;
     margin: auto;
+    padding-bottom: 500px;
 `
 
 function Profile(){
+    const dummy_user = {
+        "이름": "김 연수",
+        "전화번호": "010 4665 7922",
+        "계정" : "dustnrkfnfn@naver.com"
+    }
+    const key_list = ["이름","전화번호","계정"]
     return (
         <CustomDiv>
             <h1>계정</h1>
@@ -47,14 +55,14 @@ function Profile(){
                 <h3>계정 & 개인 정보</h3>
                 <section>
                     <div>
-                        <div className="info_button">
+                        { key_list.map((s) => (
+                            <div className="info_button">
                             <div className="account_info">
-                                이름
+                                {dummy_user[s]}
                             </div>
-                            <button>이름 변경</button>
+                            <button>{s} 변경</button>
                         </div>
-                        
-                        <div className="account_info">하위</div>
+                        ))}
                     </div>
                 </section>
             </header>
