@@ -9,12 +9,13 @@ import Padding from './layouts/Padding';
 import NewMusicForm from './components/NewMusic';
 import PlaylistDetail from './components/PlaylistDetail';
 import SignInForm from './components/Signin';
+import Profile from './components/Profile'
 
 // isLogin은 상태 관리하기
 function App() {
   return (
     <>
-      <Header isLogin={true} />
+      <Header isLogin={false} />
       <Padding />
       <Routes>
         <Route path="/" element={
