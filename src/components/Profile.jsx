@@ -47,7 +47,7 @@ const Bt_style = styled(Link)`
     margin-top: 5px;
     padding-top: 5px;
     text-decoration: none;
-    color: #ACACAC;
+    color: #0073e6;
 `
 
 function Profile(){
