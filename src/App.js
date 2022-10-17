@@ -9,13 +9,15 @@ import Padding from './layouts/Padding';
 import NewMusicForm from './components/NewMusic';
 import PlaylistDetail from './components/PlaylistDetail';
 import SignInForm from './components/Signin';
-import Profile from './components/Profile'
+import Profile from './components/Profile';
+import Signin from './components/Signin';
+import Signup from './components/Signup';
 
 // isLogin은 상태 관리하기
 function App() {
   return (
     <>
-      <Header isLogin={false} />
+      <Header isLogin={true} />
       <Padding />
       <Routes>
         <Route path="/" element={
@@ -31,6 +33,9 @@ function App() {
           path='/playlistDetail/:index'
           element = {<PlaylistDetail />}
         />
+        <Route path="profile" element={<Profile />} />
+        <Route path="login" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </>
   );

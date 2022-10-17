@@ -20,13 +20,22 @@
 }
 
 .navigation {
-    font-size: 20px;
     a{
         margin: 1rem;
     }
+    font-size: 20px;
     color: #AF2F2c;
     font-weight: 500;
+    text-decoration: none;
 }
+
+.navigate_element {
+    font-size: 20px;
+    color: #AF2F2c;
+    font-weight: 500;
+    text-decoration: none;
+}
+
 
 .space {
     padding-top: 80px;
