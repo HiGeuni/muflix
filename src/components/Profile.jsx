@@ -1,4 +1,4 @@
-import musicData from "../data.json";
+import playlistData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -13,6 +13,8 @@ const CustomDiv = styled.div`
         font-weight: 530;
     }
     h3 {
+        margin-top: 5px;
+        padding-top: 5px;
         color: #ACACAC;
         font-weight: 350;
         width: 260px;
@@ -21,6 +23,7 @@ const CustomDiv = styled.div`
     header{
         display: flex;
         margin-top: 5px;
+        margin-bottom: 50px;
     }
     .account_info {
         font-size: large;
@@ -37,16 +40,25 @@ const CustomDiv = styled.div`
     }
     justify-content: center;
     margin: auto;
-    padding-bottom: 500px;
+    padding-bottom: 200px;
+`
+const Bt_style = styled(Link)`
+    display: inline-block;
+    margin-top: 5px;
+    padding-top: 5px;
+    text-decoration: none;
+    color: #ACACAC;
 `
 
 function Profile(){
     const dummy_user = {
+        "id": 1,
         "이름": "김 연수",
         "전화번호": "010 4665 7922",
-        "계정" : "dustnrkfnfn@naver.com"
+        "user_id" : "dustnrkfnfn@naver.com"
     }
-    const key_list = ["이름","전화번호","계정"]
+    const dummy_playlist = playlistData.playlist
+    const key_list = ["user_id","이름","전화번호"]
     return (
         <CustomDiv>
             <h1>계정</h1>
@@ -57,11 +69,31 @@ function Profile(){
                     <div>
                         { key_list.map((s) => (
                             <div className="info_button">
-                            <div className="account_info">
-                                {dummy_user[s]}
+                                <div className="account_info">
+                                    {dummy_user[s]}
+                                </div>
+                                <Bt_style>{s} 변경</Bt_style>
                             </div>
-                            <button>{s} 변경</button>
-                        </div>
+                        ))}
+                    </div>
+                </section>
+            </header>
+            <header>
+                <h3>플레이리스트</h3>
+                <section>
+                    <div>
+                        { dummy_playlist.map((s) => (
+                            <div className="info_button">
+                                <div className="account_info">
+                                    {s.name}
+                                </div>
+                                <div className="account_info">
+                                    {s.info}
+                                </div>
+                                <Bt_style to={{pathname: "/playlistDetail/"+s.id}}>
+                                    수정
+                                </Bt_style>
+                            </div>
                         ))}
                     </div>
                 </section>

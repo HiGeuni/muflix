@@ -47,7 +47,6 @@ const CustomDiv = styled.div`
 `
 
 function Playlist(){
-    
     const data = playlistData.playlist.map((s) => {
         return s.musics;
     })
