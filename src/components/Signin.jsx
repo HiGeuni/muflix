@@ -12,7 +12,7 @@ function SignInForm(){
                     <label>ID</label>
                     <input name="id" {...register("id")} placeholder="Id"/>
                     <label>password</label>
-                    <input name="password" {...register("password")} placeholder="Password"/>
+                    <input name="password" type="password" {...register("password")} placeholder="Password"/>
                     <input type="submit" className="submitButton" value="등록" />
                 </form>
             </NewStyle>

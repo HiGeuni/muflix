@@ -14,10 +14,12 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 
 // isLogin은 상태 관리하기
+
 function App() {
+  const [isLoginned, setIsLogin] = useState(false);
   return (
     <>
-      <Header isLogin={true} />
+      <Header isLogin={isLoginned} />
       <Padding />
       <Routes>
         <Route path="/" element={
