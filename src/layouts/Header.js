@@ -3,8 +3,16 @@ import React from "react";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
 import styled from "styled-components";
+import axios from "axios";
 
 function Header({isLogin}){
+
+
+    // const onButtonClick = async () => {
+    //     const response = await axios.get('http://localhost:4000/login');
+    //     console.log(response)
+    // }
+    
     return (
         <header className="header">
             <div className="contents">
