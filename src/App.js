@@ -12,14 +12,21 @@ import SignInForm from './components/Signin';
 import Profile from './components/Profile';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
+import Axios from 'axios';
 
 // isLogin은 상태 관리하기
 
 function App() {
-  const [isLoginned, setIsLogin] = useState(false);
+  const [isLoginned, setLogin] = useState(false);
+
+  const loginHandler = async () => {
+    const response = await Axios.get('http://localhost:4000/users/check');
+    console.log(response);
+  }
+
   return (
     <>
-      <Header isLogin={isLoginned} />
+      <Header isLogin={false} />
       <Padding />
       <Routes>
         <Route path="/" element={

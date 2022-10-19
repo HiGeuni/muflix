@@ -1,18 +1,37 @@
 // react-hook-form을 이용해서 form을 만들기
 import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
+import Axios from 'axios';
+import {useNavigate } from 'react-router-dom';
 
-function SignInForm(){
-    const {register, handleSubmit} = useForm();
+function SignInForm(){  
+    const { register, watch, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const onValid = async (data) => {
+        const response = await Axios.post('http://localhost:4000/users/signin',data);
+        console.log(response);
+        if(response.data == 'Try Again!') alert('없는 계정입니다.')
+        else navigate("/")
+    };
+    const onInvalid = (data) => console.log(data, "onInvalid");
     return (
         <>
             <NewStyle>
                 <h2>로그인</h2>
-                <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
-                    <label>ID</label>
-                    <input name="id" {...register("id")} placeholder="Id"/>
-                    <label>password</label>
-                    <input name="password" type="password" {...register("password")} placeholder="Password"/>
+                <form onSubmit={handleSubmit(onValid, onInvalid)}>
+                    <label>E-mail</label>
+                    <input name="email" 
+                        {...register("email", { required: "email error", pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i })} 
+                        placeholder="E-mail"
+                        type="text"
+                    />
+                    <label>Password</label>
+                    <input name="password" 
+                        type="password" {...register("password", {required: "password error", minLength: {
+                            value:8, message: "too short"
+                        }})} 
+                        placeholder="Password"
+                    />
                     <input type="submit" className="submitButton" value="등록" />
                 </form>
             </NewStyle>
