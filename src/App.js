@@ -12,21 +12,19 @@ import SignInForm from './components/Signin';
 import Profile from './components/Profile';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
-import Axios from 'axios';
+import Logout from './components/Logout';
 
 // isLogin은 상태 관리하기
 
-function App() {
-  const [isLoginned, setLogin] = useState(false);
+export const UserLoggedIn = React.createContext(false);
 
-  const loginHandler = async () => {
-    const response = await Axios.get('http://localhost:4000/users/check');
-    console.log(response);
-  }
+function App() {
+
+  const [isLoggedIn, setLoginState] = useState(false);
 
   return (
-    <>
-      <Header isLogin={false} />
+    <UserLoggedIn.Provider value = {{isLoggedIn, setLoginState}} >
+      <Header />
       <Padding />
       <Routes>
         <Route path="/" element={
@@ -42,11 +40,12 @@ function App() {
           path='/playlistDetail/:index'
           element = {<PlaylistDetail />}
         />
+        <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
-    </>
+    </UserLoggedIn.Provider>
   );
 }
 

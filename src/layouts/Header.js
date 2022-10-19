@@ -1,18 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 // import styled from "styled-components";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
-import styled from "styled-components";
-import axios from "axios";
+import { UserLoggedIn } from "../App";
 
-function Header({isLogin}){
+function Header(){
 
+    const {isLoggedIn} = useContext(UserLoggedIn);
 
-    // const onButtonClick = async () => {
-    //     const response = await axios.get('http://localhost:4000/login');
-    //     console.log(response)
-    // }
-    
     return (
         <header className="header">
             <div className="contents">
@@ -22,9 +17,9 @@ function Header({isLogin}){
                         src="https://cdn.discordapp.com/attachments/874897301292875836/1030724425194156092/mufilx.png" 
                     />
                 </Link>
-                { isLogin
+                { isLoggedIn
                     ? <nav className="navigation">
-                        <Link className="navigate_element" to="/">Logout</Link>
+                        <Link className="navigate_element" to="logout">Logout</Link>
                         <Link className="navigate_element" to="profile">Profile</Link>
                         </nav>
                     : <nav className="navigation">

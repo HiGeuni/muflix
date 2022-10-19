@@ -3,15 +3,21 @@ import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { UserLoggedIn } from "../App";
 
 function SignInForm(){  
+    const {setLoginState} = useContext(UserLoggedIn);
     const { register, watch, handleSubmit } = useForm();
     const navigate = useNavigate();
     const onValid = async (data) => {
         const response = await Axios.post('http://localhost:4000/users/signin',data);
         console.log(response);
         if(response.data == 'Try Again!') alert('없는 계정입니다.')
-        else navigate("/")
+        else{
+            setLoginState(true);
+            navigate("/");
+        }
     };
     const onInvalid = (data) => console.log(data, "onInvalid");
     return (

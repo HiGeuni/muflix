@@ -1,7 +1,6 @@
 import playlistData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
