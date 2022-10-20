@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
+// cascading issue?
+// styled component와 css를 같이 사용해서 생길수도
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
 
@@ -13,11 +15,11 @@ const AddMusic = styled.div`
     align-items: center; // for vertical
     justify-content: center; // for horizontal
     margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     background-color:#d2e7e8;
     // padding: 40px;
-    margin: auto;
+    // margin: auto;
     width: 200px;
     height: 200px;
 `
@@ -42,16 +44,14 @@ const Music = styled.div`
     }
 `
 
-// const CenteredSlider = styled(Slider)`
-//     display: flex;
-//     text-align: center;
-//     justify-content : center;
-// `
-
 const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
     justify-content: center;
+`
+
+const SizedBox = styled.div`
+    padding-top: 40px;
 `
 
 function MusicList(){
@@ -59,7 +59,7 @@ function MusicList(){
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 2
     };
     return (
@@ -83,6 +83,7 @@ function MusicList(){
                     <AddMusic> Add Music </AddMusic>
                 </Link>
             </Slider>
+            <SizedBox />
         </CustomDiv>
     )
 }

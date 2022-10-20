@@ -23,10 +23,10 @@ const StyledLink = styled(Link)`
 
 const UnMarkedli = styled.li`
     display: flex;
-    align-items: center; // for vertical
-    justify-content: center; // for horizontal
+    align-items: center;
+    justify-content: center;
     list-style: none;
-    border: 2px solid;
+    border: 1px solid;
     margin: auto;
     width: 200px;
     height: 200px;
@@ -43,7 +43,7 @@ function Playlist(){
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 2
     };
     const data = playlistData.playlist.map((s) => {
