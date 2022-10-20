@@ -6,7 +6,7 @@ import {useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { SessionId } from "../App";
 
-function SignInForm(){  
+const SignInForm = () => {  
     const {setSessionId} = useContext(SessionId);
     const { register, handleSubmit } = useForm();
 
@@ -18,6 +18,7 @@ function SignInForm(){
         if(response.data === 'Try Again!') alert('없는 계정입니다.')
         else{
             console.log("Login Success !!");
+            console.log(response.data.sessionId);
             setSessionId(response.data.sessionId);
             navigate("/");
         }

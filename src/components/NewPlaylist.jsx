@@ -2,7 +2,7 @@
 import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
 
-function NewPlayListForm(){
+const NewPlayListForm = () => {
     const {register, handleSubmit} = useForm();
     return (
         <>

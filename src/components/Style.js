@@ -24,7 +24,9 @@ const NewStyle = styled.div`
         padding: 10px
     }
     .submitButton{
-        background-color: #d2e7e8;
+        background-color: #0c0c0c;
+        color: #AF2F2c;
+        font-weight: 800;
     }
 `
 

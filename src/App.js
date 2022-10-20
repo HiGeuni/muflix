@@ -17,7 +17,7 @@ import Logout from './components/Logout';
 
 export const SessionId = React.createContext(false);
 
-function App() {
+const App = () => {
 
   const [sessionId, setSessionId] = useState(null);
 

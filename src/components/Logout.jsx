@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { SessionId } from "../App";
 
-function Logout(){ 
+const Logout = () => { 
     const {sessionId, setSessionId} = useContext(SessionId);
 
     const navigate = useNavigate();

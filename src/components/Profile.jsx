@@ -49,7 +49,7 @@ const BtStyle = styled(Link)`
     color: #0073e6;
 `
 
-function Profile(){
+const Profile = () => {
     const dummy_user = {
         "id": 1,
         "이름": "김 연수",

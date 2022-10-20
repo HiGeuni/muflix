@@ -4,7 +4,7 @@ import NewStyle from "./Style";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 
-function SignInForm(){
+const SignInForm = () => {
 
     const navigate = useNavigate();
 

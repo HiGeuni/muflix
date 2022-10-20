@@ -4,8 +4,10 @@ const SizedBox = styled.div`
     padding-top: 80px;
 `
 
-export default function Padding(){
+const Padding = () => {
     return (
         <SizedBox />
-    )
+    );
 }
+
+export default Padding;

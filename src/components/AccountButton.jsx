@@ -16,7 +16,7 @@ const CustomDiv = styled.div`
     }
 `
 
-function Account_info(){
+const Account_info = () => {
     return (
         <CustomDiv>
             <div className="info_button">

@@ -16,10 +16,13 @@ const AddMusic = styled.div`
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
-    background-color:#d2e7e8;
-    // padding: 40px;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
+    background-color:#0c0c0c;
+    color: #AF2F2c;
+    font-size: 24px;
+    font-weight: 700;
+    border: #AF2F2c 5px solid;
 `
 
 const UnMarkedli = styled.li`
@@ -54,7 +57,7 @@ const CustomDiv = styled.div`
     justify-content: center;
 `
 
-function MusicList(){
+const MusicList = () => {
     return (
         <CustomDiv>
             <h2>Music List</h2>

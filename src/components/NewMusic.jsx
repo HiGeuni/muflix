@@ -3,7 +3,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
 
-function NewMusicForm(){
+const NewMusicForm = () => {
     
     const {register, handleSubmit} = useForm();
 

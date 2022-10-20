@@ -9,9 +9,14 @@ const AddPlaylist = styled.div`
     align-items: center; // for vertical
     justify-content: center; // for horizontal
     margin: auto;
-    background-color:#d2e7e8;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
+    background-color:#0c0c0c;
+    color: #AF2F2c;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    border: #AF2F2c 5px solid;
 `
 
 const StyledLink = styled(Link)`
@@ -45,7 +50,7 @@ const CustomDiv = styled.div`
     padding-bottom: 2rem;
 `
 
-function Playlist(){
+const Playlist = () => {
     // const data = playlistData.playlist.map((s) => {
     //     return s.musics;
     // })

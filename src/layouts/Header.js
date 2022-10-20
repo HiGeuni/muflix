@@ -4,7 +4,7 @@ import "./Header.scss";
 import {Link} from 'react-router-dom';
 import { SessionId } from "../App";
 
-function Header(){
+const Header = () => {
     const {sessionId} = useContext(SessionId);
     
     return (
