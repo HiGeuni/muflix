@@ -4,6 +4,7 @@ import musicData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import SliderSettings from "./SliderSettings";
 
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
@@ -54,17 +55,10 @@ const CustomDiv = styled.div`
 `
 
 function MusicList(){
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 2
-    };
     return (
         <CustomDiv>
             <h2>Music List</h2>
-            <Slider {...settings}>
+            <Slider {...SliderSettings}>
                 { musicData.music.map((s) => (
                     <UnMarkedli key = {s.id}>
                         <Music>

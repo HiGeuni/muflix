@@ -4,18 +4,21 @@ import NewStyle from "./Style";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { useContext } from "react";
-import { UserLoggedIn } from "../App";
+import { SessionId } from "../App";
 
 function SignInForm(){  
-    const {setLoginState} = useContext(UserLoggedIn);
-    const { register, watch, handleSubmit } = useForm();
+    const {setSessionId} = useContext(SessionId);
+    const { register, handleSubmit } = useForm();
+
     const navigate = useNavigate();
+
     const onValid = async (data) => {
         const response = await Axios.post('http://localhost:4000/users/signin',data);
         console.log(response);
-        if(response.data == 'Try Again!') alert('없는 계정입니다.')
+        if(response.data === 'Try Again!') alert('없는 계정입니다.')
         else{
-            setLoginState(true);
+            console.log("Login Success !!");
+            setSessionId(response.data.sessionId);
             navigate("/");
         }
     };

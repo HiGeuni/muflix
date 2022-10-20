@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import data from "../data.json";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -17,7 +17,7 @@ const PlaylistControl = styled.div`
     h1{
         margin: 1rem;
     }
-    a{
+    nav{
         font-size: 18px;
         font-weight: 600;
         background-color: #dbf2f4;
@@ -42,8 +42,8 @@ function PlaylistDetail(){
                 <>
                     <PlaylistControl>
                         <h1>{d.name}</h1>
-                        <a>수정</a>
-                        <a>삭제</a>
+                        <nav>수정</nav>
+                        <nav>삭제</nav>
                     </PlaylistControl>
                     
                     {d.musics.map((data) => (

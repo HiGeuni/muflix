@@ -41,7 +41,7 @@ const CustomDiv = styled.div`
     margin: auto;
     padding-bottom: 200px;
 `
-const Bt_style = styled(Link)`
+const BtStyle = styled(Link)`
     display: inline-block;
     margin-top: 5px;
     padding-top: 5px;
@@ -71,7 +71,7 @@ function Profile(){
                                 <div className="account_info">
                                     {dummy_user[s]}
                                 </div>
-                                <Bt_style>{s} 변경</Bt_style>
+                                <BtStyle>{s} 변경</BtStyle>
                             </div>
                         ))}
                     </div>
@@ -89,9 +89,9 @@ function Profile(){
                                 <div className="account_info">
                                     {s.info}
                                 </div>
-                                <Bt_style to={{pathname: "/playlistDetail/"+s.id}}>
+                                <BtStyle to={{pathname: "/playlistDetail/"+s.id}}>
                                     수정
-                                </Bt_style>
+                                </BtStyle>
                             </div>
                         ))}
                     </div>
