@@ -2,74 +2,75 @@ import playlistData from '../data.json';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import SliderSettings from './SliderSettings';
 
 const AddPlaylist = styled.div`
     display: flex;
     align-items: center; // for vertical
     justify-content: center; // for horizontal
-    // margin-top: 1rem;
-    // margin-left: 1rem;
-    // margin-right: 1rem;
-    background-color:#d2e7e8;
-    // padding: 40px;
     margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
+    background-color:#0c0c0c;
+    color: #AF2F2c;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    border: #AF2F2c 5px solid;
 `
 
 const StyledLink = styled(Link)`
     display: flex;
+    margin: auto;
+    align-items: center; // for vertical
+    justify-content: center; // for horizontal
+    border: 2px solid;
+    width: 200px;
+    height: 200px;
 `
 
 const UnMarkedli = styled.li`
     display: flex;
-    align-items: center;
-    justify-content: center;
     list-style: none;
-    border: 1px solid;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 200px;
     height: 200px;
+    padding-bottom: 20px;
 `
 
 const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
     justify-content: center;
+    h2{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    padding-bottom: 2rem;
 `
 
-function Playlist(){
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 2
-    };
-    const data = playlistData.playlist.map((s) => {
-        return s.musics;
-    })
-    console.log(data);
+const Playlist = () => {
+    // const data = playlistData.playlist.map((s) => {
+    //     return s.musics;
+    // })
     return (
         <CustomDiv>
             <h2>
                 PlayList
             </h2>
-            <Slider {...settings}>
+            <Slider {...SliderSettings}>
                 { playlistData.playlist.map((s) => (
-                    <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
                         <UnMarkedli key = {s.id}>
-                            {s.name} <br />
-                            {/* Musics: {s.musics.map((t) => {
-                                <li key = {t.no}>
-                                    {t.name}
-                                </li>
-                            })} */}
+                            <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
+                                {s.name}
+                            </StyledLink>
                         </UnMarkedli>
-                    </StyledLink>
                 ))}
                 <Link to="/newPlaylistForm">
-                    <AddPlaylist> Add Playlist </AddPlaylist>
+                    <AddPlaylist>
+                        Add Playlist
+                    </AddPlaylist>
                 </Link>
             </Slider>
         </CustomDiv>

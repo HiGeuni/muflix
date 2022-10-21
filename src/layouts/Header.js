@@ -1,23 +1,32 @@
-import React from "react";
+import React, {useContext} from "react";
 // import styled from "styled-components";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
-import styled from "styled-components";
+import { SessionId } from "../App";
 
-
-
-
-function Header({isLogin}){
+const Header = () => {
+    const {sessionId} = useContext(SessionId);
+    
     return (
         <header className="header">
             <div className="contents">
                 <Link to="/">
-                    <b>Logo</b>
+                    <img 
+                        className="logo" 
+                        src="https://cdn.discordapp.com/attachments/874897301292875836/1030724425194156092/mufilx.png" 
+                        alt="logo"
+                    />
                 </Link>
-                <nav className="navigation">
-                    <a>{isLogin ? "Logout" : "Login"}</a>
-                    <a>{isLogin? "Profile" : "Signup"}</a>
-                </nav>
+                { sessionId !== null
+                    ? <nav className="navigation">
+                        <Link className="navigate_element" to="logout">Logout</Link>
+                        <Link className="navigate_element" to="profile">Profile</Link>
+                        </nav>
+                    : <nav className="navigation">
+                        <Link className="navigate_element" to="login">Login</Link>
+                        <Link className="navigate_element" to="signup">Signup</Link>
+                        </nav>
+                }
             </div>
         </header>
     );

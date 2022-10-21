@@ -4,6 +4,7 @@ import musicData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import SliderSettings from "./SliderSettings";
 
 // cascading issue?
 // styled component와 css를 같이 사용해서 생길수도
@@ -17,11 +18,13 @@ const AddMusic = styled.div`
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
-    background-color:#d2e7e8;
-    // padding: 40px;
-    // margin: auto;
-    width: 200px;
-    height: 200px;
+    width: 190px;
+    height: 190px;
+    background-color:#0c0c0c;
+    color: #AF2F2c;
+    font-size: 24px;
+    font-weight: 700;
+    border: #AF2F2c 5px solid;
 `
 
 const UnMarkedli = styled.li`
@@ -50,27 +53,16 @@ const CustomDiv = styled.div`
     justify-content: center;
 `
 
-const SizedBox = styled.div`
-    padding-top: 40px;
-`
-
-function MusicList(){
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 2
-    };
+const MusicList = () => {
     return (
         <CustomDiv>
             <h2>Music List</h2>
-            <Slider {...settings}>
+            <Slider {...SliderSettings}>
                 { musicData.music.map((s) => (
                     <UnMarkedli key = {s.id}>
                         <Music>
                             <img
-                                src={`${process.env.PUBLIC_URL}/album_cover/${s.album_cover}`}
+                                src={s.album_cover}
                                 className="Album-Cover"
                                 alt="Album"
                             /> <br />
@@ -83,7 +75,6 @@ function MusicList(){
                     <AddMusic> Add Music </AddMusic>
                 </Link>
             </Slider>
-            <SizedBox />
         </CustomDiv>
     )
 }
