@@ -13,7 +13,9 @@ const SignInForm = () => {
     const navigate = useNavigate();
 
     const onValid = async (data) => {
-        const response = await Axios.post('http://localhost:4000/users/signin',data);
+        const response = await Axios.post('http://localhost:4000/users/signin',data, {
+            withCredentials : true,
+        });
         console.log(response);
         if(response.data === 'Try Again!') alert('없는 계정입니다.')
         else{

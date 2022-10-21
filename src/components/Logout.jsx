@@ -9,7 +9,9 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const logout = async () => {
-        Axios.post('http://localhost:4000/users/logout'); //post로 바꿈
+        Axios.post('http://localhost:4000/users/logout',{
+            withCredentials : true,
+        }); //post로 바꿈
         console.log("session clear");
         setSessionId(null);
         console.log(sessionId);

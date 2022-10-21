@@ -16,7 +16,9 @@ const SignInForm = () => {
             tmp_obj["전화번호"] = data["phonenum"];
             tmp_obj["password"] = data["password1"];
 
-            const response = await Axios.post('http://localhost:4000/users/signup',tmp_obj);
+            const response = await Axios.post('http://localhost:4000/users/signup',tmp_obj, {
+                withCredentials : true,
+            });
             console.log(response);
 
             navigate("/login")
