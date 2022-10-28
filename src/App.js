@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from './layouts/Header';
 import MusicList from './components/MusicList';
@@ -12,17 +12,43 @@ import Profile from './components/Profile';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Logout from './components/Logout';
+import Axios from 'axios';
 
 // isLogin은 상태 관리하기
-
-export const SessionId = React.createContext(false);
+export const UserId = React.createContext(false);
 
 const App = () => {
+  const [userId, setUserId] = useState(null);
+  const fetchUsers = async () => {
+    try{
+        let token = localStorage.getItem('loging-token');
+        const response = await Axios.get('http://localhost:4000/users/profile',
+        { headers: {
+            "Authorization": token,
+            "withCredentials": true,
+            "Content-Type" :'application/json',
+        }
+        },
+        );
+        if(response.data === "No User"){
+          setUserId(null);
+        }
+        else{
+          setUserId(response.data.user_id);
+        }
+    }
+    catch (e){
+        console.log(e);
+    }
+  }
 
-  const [sessionId, setSessionId] = useState(null);
+  useEffect(() => {
+      console.log("프로필 확인");
+      fetchUsers();
+  },[]);
 
   return (
-    <SessionId.Provider value = {{sessionId, setSessionId}} >
+    <UserId.Provider value = {{userId, setUserId}} >
       <Header />
       <Padding />
       <Routes>
@@ -44,7 +70,7 @@ const App = () => {
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
-    </SessionId.Provider>
+    </UserId.Provider>
   );
 }
 

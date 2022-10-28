@@ -2,16 +2,22 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const NewMusicForm = () => {
-    
+    const navigate = useNavigate();
+    const onclick = async (data) => {
+        const res = await axios.post('http://localhost:4000/musics/addMusic',data);
+        console.log(res);
+        navigate('/');
+    }
     const {register, handleSubmit} = useForm();
 
     return (
         <>
             <NewStyle>
                 <h2>New Music</h2>
-                <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
+                <form onSubmit={handleSubmit((data) => onclick(data))}>
                     <label>Music name</label>
                     <input name="Name" placeholder="Music Name" {...register("name")} />
                     <label>Singer</label>

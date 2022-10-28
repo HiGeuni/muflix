@@ -1,13 +1,13 @@
-// 이렇게 화면 구성을 했는데, 얘네들을 내가 원하는 모양으로 만들기 위해선 어떻게 해야 할 지?
-
-import musicData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import SliderSettings from "./SliderSettings";
+import Axios from "axios";
+import { useEffect, useState } from "react";
 
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
+
 
 const AddMusic = styled.div`
     display: flex;
@@ -45,11 +45,9 @@ const Music = styled.div`
     }
 `
 
-// const CenteredSlider = styled(Slider)`
-//     display: flex;
-//     text-align: center;
-//     justify-content : center;
-// `
+const CustomLink = styled(Link)`
+    text-decoration: none;
+`
 
 const CustomDiv = styled.div`
     // display: flex;
@@ -58,26 +56,44 @@ const CustomDiv = styled.div`
 `
 
 const MusicList = () => {
+    const [data, setData] = useState(null);
+
+    const getData = async () => {
+        await Axios.get("http://localhost:4000/musics/getAllMusics")
+        .then((res) => {
+            setData(res.data);
+            console.log(data);
+        })
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
     return (
         <CustomDiv>
             <h2>Music List</h2>
             <Slider {...SliderSettings}>
-                { musicData.music.map((s) => (
-                    <UnMarkedli key = {s.id}>
-                        <Music>
-                            <img
-                                src={s.album_cover}
-                                className="Album-Cover"
-                                alt="Album"
-                            /> <br />
-                            Title : {s.name} <br />
-                            Singer : {s.singer}
-                        </Music>
-                    </UnMarkedli>
-                ))}
-                <Link to="/newMusicForm">
+                {
+                    data 
+                        ? data.map((s) => (
+                            <UnMarkedli key = {s.musicId}>
+                                <Music>
+                                    <img
+                                        src={s.album_cover}
+                                        className="Album-Cover"
+                                        alt="Album"
+                                    /> <br />
+                                    Title : {s.name} <br />
+                                    Singer : {s.singer}
+                                </Music>
+                            </UnMarkedli>
+                        )) 
+                        : <div>{console.log("asdfas " + data)} loading...</div>
+                }
+                <CustomLink to="/newMusicForm">
                     <AddMusic> Add Music </AddMusic>
-                </Link>
+                </CustomLink>
             </Slider>
         </CustomDiv>
     )

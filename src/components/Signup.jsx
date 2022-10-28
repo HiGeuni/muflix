@@ -10,13 +10,7 @@ const SignInForm = () => {
 
     const onButtonClick = async (data) => {
         if(data["password1"] === data["password2"]){
-            var tmp_obj = {};
-            tmp_obj["user_id"] = data["email"];
-            tmp_obj["이름"] = data["nickname"];
-            tmp_obj["전화번호"] = data["phonenum"];
-            tmp_obj["password"] = data["password1"];
-
-            const response = await Axios.post('http://localhost:4000/users/signup',tmp_obj);
+            const response = await Axios.post('http://localhost:4000/users/signup',data);
             console.log(response);
 
             navigate("/login")

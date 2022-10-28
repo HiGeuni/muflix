@@ -2,10 +2,10 @@ import React, {useContext} from "react";
 // import styled from "styled-components";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
-import { SessionId } from "../App";
+import { UserId } from "../App";
 
 const Header = () => {
-    const {sessionId} = useContext(SessionId);
+    const {userId} = useContext(UserId);
     
     return (
         <header className="header">
@@ -17,7 +17,7 @@ const Header = () => {
                         alt="logo"
                     />
                 </Link>
-                { sessionId !== null
+                { userId
                     ? <nav className="navigation">
                         <Link className="navigate_element" to="logout">Logout</Link>
                         <Link className="navigate_element" to="profile">Profile</Link>

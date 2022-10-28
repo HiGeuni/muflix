@@ -4,10 +4,10 @@ import NewStyle from "./Style";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { useContext } from "react";
-import { SessionId } from "../App";
+import { UserId } from "../App";
 
 const SignInForm = () => {  
-    const {setSessionId} = useContext(SessionId);
+    const {setUserId} = useContext(UserId);
     const { register, handleSubmit } = useForm();
 
     const navigate = useNavigate();
@@ -18,11 +18,12 @@ const SignInForm = () => {
         if(response.data === 'Try Again!') alert('없는 계정입니다.')
         else{
             console.log("Login Success !!");
-            console.log(response.data.sessionId);
-            setSessionId(response.data.sessionId);
+            setUserId(true);
+            localStorage.setItem('loging-token', response.data.token);
             navigate("/");
         }
     };
+
     const onInvalid = (data) => console.log(data, "onInvalid");
     return (
         <>

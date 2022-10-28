@@ -13,7 +13,6 @@ const UnMarkedli = styled.li`
 const PlaylistControl = styled.div`
     display: flex;
     align-items: center;
-    // justify-content: ;
     h1{
         margin: 1rem;
     }

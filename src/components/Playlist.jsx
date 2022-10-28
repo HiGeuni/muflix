@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import SliderSettings from './SliderSettings';
+import Axios from 'axios';
 
 const AddPlaylist = styled.div`
     display: flex;
@@ -39,6 +40,10 @@ const UnMarkedli = styled.li`
     padding-bottom: 20px;
 `
 
+const CustomLink = styled(Link)`
+    text-decoration: none;
+`
+
 const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
@@ -51,9 +56,7 @@ const CustomDiv = styled.div`
 `
 
 const Playlist = () => {
-    // const data = playlistData.playlist.map((s) => {
-    //     return s.musics;
-    // })
+    
     return (
         <CustomDiv>
             <h2>
@@ -67,11 +70,11 @@ const Playlist = () => {
                             </StyledLink>
                         </UnMarkedli>
                 ))}
-                <Link to="/newPlaylistForm">
+                <CustomLink to="/newPlaylistForm">
                     <AddPlaylist>
                         Add Playlist
                     </AddPlaylist>
-                </Link>
+                </CustomLink>
             </Slider>
         </CustomDiv>
     )

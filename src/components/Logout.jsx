@@ -1,18 +1,18 @@
-import {useContext} from "react";
+import {useState, useContext} from "react";
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { SessionId } from "../App";
+import { UserId } from "../App";
 
 const Logout = () => { 
-    const {sessionId, setSessionId} = useContext(SessionId);
+    const {userId, setUserId} = useContext(UserId);
 
     const navigate = useNavigate();
 
     const logout = async () => {
-        Axios.post('http://localhost:4000/users/logout'); //post로 바꿈
-        console.log("session clear");
-        setSessionId(null);
-        console.log(sessionId);
+        Axios.get('http://localhost:4000/users/logout');
+        setUserId(null);
+        localStorage.clear();
+        console.log(userId);
         navigate('/')
     };
     logout();
