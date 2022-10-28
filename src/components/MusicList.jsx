@@ -5,6 +5,8 @@ import SliderSettings from "./SliderSettings";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
+// cascading issue?
+// styled component와 css를 같이 사용해서 생길수도
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
 
