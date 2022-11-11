@@ -5,6 +5,7 @@ import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { UserId } from "../App";
+import { api } from "../config/api";
 
 const SignInForm = () => {  
     const {setUserId} = useContext(UserId);
@@ -13,7 +14,7 @@ const SignInForm = () => {
     const navigate = useNavigate();
 
     const onValid = async (data) => {
-        const response = await Axios.post('http://localhost:4000/users/signin',data, {
+        const response = await Axios.post(`${api.url}/users/signin`,data, {
             withCredentials : true,
         });
         console.log(response);

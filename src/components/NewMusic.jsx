@@ -4,10 +4,11 @@ import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../config/api';
 const NewMusicForm = () => {
     const navigate = useNavigate();
     const onclick = async (data) => {
-        const res = await axios.post('http://localhost:4000/musics/addMusic',data);
+        const res = await axios.post(`${api.url}musics/addMusic`,data);
         console.log(res);
         navigate('/');
     }

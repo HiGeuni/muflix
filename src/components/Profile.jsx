@@ -2,6 +2,7 @@ import playlistData from "../data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
+import { api } from "../config/api";
 
 import "../styles/slick-theme.css";
 import "../styles/slick.css";
@@ -59,17 +60,38 @@ const BtStyle = styled(Link)`
     color: #0073e6;
 `
 
+const PlaylistControl = styled.div`
+    display: flex;
+    align-items: center;
+    h1{
+        margin: 1rem;
+    }
+    nav{
+        font-size: 15px;
+        font-weight: 600;
+        background-color: #0c0c0c;
+        color: #ffffff;
+        border: 2px solid;
+        margin: 0.3rem;
+        border-radius : 4px;
+        padding: 3px;
+    }
+`
+
 const Profile = () => {
+    const [user, setUsers] = useState(null)
+
     const fetchUsers = async () => {
         try{
             let token = localStorage.getItem('loging-token');
             console.log(token);
-            const response = await Axios.get('http://localhost:4000/users/profile',
-            { headers: {
-                "Authorization": token,
-                "withCredentials": true,
-                "Content-Type" :'application/json',
-            }
+            const response = await Axios.get(`${api.url}/users/profile`,
+            { 
+                headers: {
+                    "Authorization": token,
+                    "withCredentials": true,
+                    "Content-Type" :'application/json',
+                }
             },
             );
             dummy_user = response.data[USER];
@@ -80,19 +102,19 @@ const Profile = () => {
             console.log(e);
         }
     }
-    const [user, setUsers] = useState(null);
+    
     useEffect(() => {
         console.log("프로필 확인");
         fetchUsers();
     },[]);
     const dummy_playlist = playlistData.playlist
-    //console.log(dummy_playlist);
-    //dummy_playlist = [];
     console.log(dummy_user);
     const key_list = ["user_id","이름","전화번호"];
     return (
         <CustomDiv>
-            <h1>계정</h1>
+            <PlaylistControl>
+                <h1>계정</h1>
+            </PlaylistControl>
             <hr />
             <header>
                 <h3>계정 & 개인 정보</h3>

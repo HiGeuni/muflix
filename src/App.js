@@ -13,6 +13,7 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Axios from 'axios';
+import { api } from './config/api';
 
 // isLogin은 상태 관리하기
 export const UserId = React.createContext(false);
@@ -22,19 +23,20 @@ const App = () => {
   const fetchUsers = async () => {
     try{
         let token = localStorage.getItem('loging-token');
-        const response = await Axios.get('http://localhost:4000/users/profile',
-        { headers: {
-            "Authorization": token,
-            "withCredentials": true,
-            "Content-Type" :'application/json',
-        }
+        const response = await Axios.get(`${api.url}/users/profile`,
+        { 
+            headers: {
+                "Authorization": token,
+                "withCredentials": true,
+                "Content-Type" :'application/json',
+            }
         },
         );
         if(response.data === "No User"){
-          setUserId(null);
+            setUserId(null);
         }
         else{
-          setUserId(response.data.user_id);
+            setUserId(response.data.user_id);
         }
     }
     catch (e){

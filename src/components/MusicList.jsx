@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import SliderSettings from "./SliderSettings";
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { api } from "../config/api";
 
 // cascading issue?
 // styled component와 css를 같이 사용해서 생길수도
@@ -52,6 +53,8 @@ const CustomLink = styled(Link)`
 `
 
 const CustomDiv = styled.div`
+    font-family:"noto-sans";
+    font-weight:600;
     // display: flex;
     text-align: center;
     justify-content: center;
@@ -61,7 +64,7 @@ const MusicList = () => {
     const [data, setData] = useState(null);
 
     const getData = async () => {
-        await Axios.get("http://localhost:4000/musics/getAllMusics")
+        await Axios.get(`${api.url}/musics/getAllMusics`)
         .then((res) => {
             setData(res.data);
             console.log(data);
@@ -90,11 +93,12 @@ const MusicList = () => {
                                     Singer : {s.singer}
                                 </Music>
                             </UnMarkedli>
+                                
                         )) 
-                        : <div>{console.log("asdfas " + data)} loading...</div>
+                        : ""
                 }
                 <CustomLink to="/newMusicForm">
-                    <AddMusic> Add Music </AddMusic>
+                    <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>
                 </CustomLink>
             </Slider>
         </CustomDiv>

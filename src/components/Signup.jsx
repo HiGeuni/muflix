@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import NewStyle from "./Style";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
+import { api } from "../config/api";
 
 const SignInForm = () => {
 
@@ -10,7 +11,7 @@ const SignInForm = () => {
 
     const onButtonClick = async (data) => {
         if(data["password1"] === data["password2"]){
-            const response = await Axios.post('http://localhost:4000/users/signup',data);
+            const response = await Axios.post(`${api.url}/users/signup`,data);
             console.log(response);
 
             navigate("/login")
@@ -31,7 +32,7 @@ const SignInForm = () => {
                     <label>nickname</label>
                     <input name="nickname" placeholder="nickname" {...register("nickname")} />
                     <label>전화번호</label>
-                    <input name="전화번호" placeholder="010-****-****" {...register("phonenum")} />
+                    <input name="전화번호" placeholder="010-1234-5678" {...register("phonenum")} />
                     <label>password</label>
                     <input name="password1" type="password" placeholder="password" {...register("password1")} />
                     <label>password 확인</label>
