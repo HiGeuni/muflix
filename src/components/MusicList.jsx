@@ -86,7 +86,7 @@ const MusicList = () => {
                     data 
                         ? data.map((s) => (
                             <UnMarkedli key = {s.musicId}>
-                                <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
+                                <StyledLink to={{pathname: "/musicDetail"}}>
                                     <img
                                         src={s.album_cover}
                                         className="Album-Cover"

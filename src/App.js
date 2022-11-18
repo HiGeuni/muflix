@@ -69,8 +69,8 @@ const App = () => {
           element = {<PlaylistDetail />}
         />
         <Route
-          path="/musicDetail/:index"
-          elemant = {<MusicDetail />}
+          path="/musicDetail"
+          element = {<MusicDetail />}
         />
         <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />

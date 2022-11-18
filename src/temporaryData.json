@@ -2,9 +2,10 @@
     "music": [
         {
             "id": 1,
-            "name": "viva la vida",
-            "singer": "coldplay",
-            "album_cover" : "https://images.squarespace-cdn.com/content/v1/5099306be4b0f629c2afcc25/1394041945918-OFEO83X3PTNZ2END8XYI/ke17ZwdGBToddI8pDm48kEU48WT-wucwRp3XFlCQDSt7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UbvHAMoLgXluVzF2ehXBMnOuOmi5EXYdMsb-Ux5eFX1HB_rxXnGcBlRHfueBT1dxxQ/coldplay.jpg?format=2500w"
+            "name": "새삥",
+            "singer": "Zico",
+            "album_cover" : "https://media.discordapp.net/attachments/909308714161410071/1035515674791006228/unknown.png",
+            "information" : "새삥 (Prod. ZICO) (Feat. 호미들); 지코; 스트릿 맨 파이터(SMF) Original Vol.3 (계급미션)"
         },
         {
             "id": 2,
