@@ -28,6 +28,7 @@ const StyledLink = styled(Link)`
     border: 2px solid;
     width: 200px;
     height: 200px;
+    color : #000000;
 `
 
 const UnMarkedli = styled.li`
@@ -42,6 +43,7 @@ const UnMarkedli = styled.li`
 
 const CustomLink = styled(Link)`
     text-decoration: none;
+    color: #000000
 `
 
 const CustomDiv = styled.div`

@@ -34,12 +34,18 @@ const UnMarkedli = styled.li`
     list-style: none;
 `
 
-const Music = styled.div`
+const CustomLink = styled(Link)`
+    text-decoration: none;
+`
+
+const StyledLink = styled(Link)`
     display: fit-content;
     // width: 96%;
     max-width: 1100px;
     height: 100%;
     margin: 1rem;
+    text-decoration: none;
+    color: #000000;
     img {
         display: block;
         margin: auto;
@@ -48,9 +54,6 @@ const Music = styled.div`
     }
 `
 
-const CustomLink = styled(Link)`
-    text-decoration: none;
-`
 
 const CustomDiv = styled.div`
     font-family:"noto-sans";
@@ -83,7 +86,7 @@ const MusicList = () => {
                     data 
                         ? data.map((s) => (
                             <UnMarkedli key = {s.musicId}>
-                                <Music>
+                                <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
                                     <img
                                         src={s.album_cover}
                                         className="Album-Cover"
@@ -91,7 +94,7 @@ const MusicList = () => {
                                     /> <br />
                                     Title : {s.name} <br />
                                     Singer : {s.singer}
-                                </Music>
+                                </StyledLink>
                             </UnMarkedli>
                                 
                         )) 

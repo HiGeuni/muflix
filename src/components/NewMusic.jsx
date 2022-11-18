@@ -8,7 +8,7 @@ import { api } from '../config/api';
 const NewMusicForm = () => {
     const navigate = useNavigate();
     const onclick = async (data) => {
-        const res = await axios.post(`${api.url}musics/addMusic`,data);
+        const res = await axios.post(`${api.url}/musics/addMusic`,data);
         console.log(res);
         navigate('/');
     }
