@@ -13,6 +13,7 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Logout from './components/Logout';
 import MusicDetail from './components/MusicDetail';
+import TestComponent from './components/TestComponent';
 import Axios from 'axios';
 import { api } from './config/api';
 
@@ -69,7 +70,7 @@ const App = () => {
           element = {<PlaylistDetail />}
         />
         <Route
-          path="/musicDetail"
+          path="/musicDetail/:index"
           element = {<MusicDetail />}
         />
         <Route path="logout" element={<Logout />} />
@@ -77,7 +78,6 @@ const App = () => {
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
-      
     </UserId.Provider>
   );
 }

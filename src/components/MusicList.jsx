@@ -70,7 +70,6 @@ const MusicList = () => {
         await Axios.get(`${api.url}/musics/getAllMusics`)
         .then((res) => {
             setData(res.data);
-            console.log(data);
         })
     }
 
@@ -85,8 +84,8 @@ const MusicList = () => {
                 {
                     data 
                         ? data.map((s) => (
-                            <UnMarkedli key = {s.musicId}>
-                                <StyledLink to={{pathname: "/musicDetail"}}>
+                            <UnMarkedli key = {s.id}>
+                                <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
                                     <img
                                         src={s.album_cover}
                                         className="Album-Cover"

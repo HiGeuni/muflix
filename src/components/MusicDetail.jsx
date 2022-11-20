@@ -1,8 +1,8 @@
-import React from "react";
-import axios from "axios";
+import { React, useState, useEffect } from "react";
+import Axios from "axios";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import temporaryData from "../temporaryData.json";
+import { api } from "../config/api";
 
 const EntireArea = styled.div`
     margin-top : 5%;
@@ -40,29 +40,31 @@ const RowSizedBox = styled.div`
 
 const MusicDetail = () => {
     const params = useParams();
-    const navigate = useNavigate();
-    const musicData = temporaryData.music.filter((dd) => {
-        return dd.id === 1;
-    })
-    console.log(musicData);
+    const [dataObj, setData] = useState({});
+
+    const getMusicData = async () => {
+        await Axios.get(`${api.url}/musics/getMusic/${params["index"]}`)
+        .then((res) => {
+            setData(res.data[0]);
+        })
+    }
+    
+    useEffect(() => {
+        getMusicData();
+    }, []);
+
     return (
         <EntireArea>
             <RowSizedBox />
-            {
-                musicData.map((d) => (
-                    <> 
-                        <img src = {d.album_cover} alt="album2" />
-                        <InformationArea>
-                            <p>Song name</p>
-                            <div>{d.name}</div>
-                            <p>Singer</p>
-                            <div>{d.singer}</div>
-                            <p>Information</p>
-                            <div>{d.information}</div>
-                        </InformationArea>
-                    </>
-                ))
-            }
+                <img src = {dataObj.album_cover} alt="album2" />
+                <InformationArea>
+                    <p>Song name</p>
+                    <div>{dataObj.name}</div>
+                    <p>Singer</p>
+                    <div>{dataObj.singer}</div>
+                    <p>Information</p>
+                    <div>{dataObj.information}</div>
+                </InformationArea>
         </EntireArea>
     );
 }

@@ -84,7 +84,6 @@ const Profile = () => {
     const fetchUsers = async () => {
         try{
             let token = localStorage.getItem('loging-token');
-            console.log(token);
             const response = await Axios.get(`${api.url}/users/profile`,
             { 
                 headers: {
@@ -96,7 +95,6 @@ const Profile = () => {
             );
             dummy_user = response.data[USER];
             setUsers(dummy_user);
-            console.log(response);
         }
         catch (e){
             console.log(e);
@@ -104,11 +102,9 @@ const Profile = () => {
     }
     
     useEffect(() => {
-        console.log("프로필 확인");
         fetchUsers();
     },[]);
     const dummy_playlist = playlistData.playlist
-    console.log(dummy_user);
     const key_list = ["user_id","이름","전화번호"];
     return (
         <CustomDiv>

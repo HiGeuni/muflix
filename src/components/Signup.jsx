@@ -12,8 +12,6 @@ const SignInForm = () => {
     const onButtonClick = async (data) => {
         if(data["password1"] === data["password2"]){
             const response = await Axios.post(`${api.url}/users/signup`,data);
-            console.log(response);
-
             navigate("/login")
         }
         else {
