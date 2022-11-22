@@ -3,6 +3,7 @@ import Axios from "axios";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { api } from "config/api";
+import Comment from "components/Comment";
 
 const EntireArea = styled.div`
     margin-top : 5%;
@@ -20,23 +21,53 @@ const EntireArea = styled.div`
 `;
 
 const InformationArea = styled.div`
-    p {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        font-size: 24px;
-        font-weight: 700;
-    }
-    div {
-        font-size : 16px;
-        font-weight: 500;
-        margin-top: 14px;
-        margin-bottom: 14px;
-    }
+    width : 100%
+    // display : flex;
+    // flex-direction: column;
+`
+// margin을 퍼센트로 정하고 싶은데...
+const SongName = styled.div`
+    display: flex;
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 5%;
+    margin-bottom : 3%;
+`
+
+const SingerName = styled.div`
+    display: flex;
+    margin-bottom: 5%;
+    font-weight: 600;
+    font-size: 24px;
+    color: #4C5068;
 `
 
 const RowSizedBox = styled.div`
     width : 5%;
 `;
+
+const ButtonArea = styled.div`
+    display: flex;
+    // justify-content: center;
+    flex-direction: row;
+`
+
+const PlayButton = styled.button`
+    width: 80px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 3%;
+    background-color: white;
+`
+
+const AddButton = styled.button`
+    width: 200px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: black;
+    color : white;
+`
 
 const MusicDetail = () => {
     const params = useParams();
@@ -52,20 +83,26 @@ const MusicDetail = () => {
     useEffect(() => {
         getMusicData();
     });
-
     return (
-        <EntireArea>
-            <RowSizedBox />
+        <>
+            <EntireArea>
+                <RowSizedBox />
                 <img src = {dataObj.album_cover} alt="album2" />
                 <InformationArea>
-                    <p>Song name</p>
-                    <div>{dataObj.name}</div>
-                    <p>Singer</p>
-                    <div>{dataObj.singer}</div>
-                    <p>Information</p>
-                    <div>{dataObj.information}</div>
+                    <SongName>{dataObj.name}</SongName>
+                    <SingerName>{dataObj.singer}</SingerName>
+                    <ButtonArea>
+                        <PlayButton>
+                                ▶️ 재생
+                        </PlayButton>
+                        <AddButton>
+                            ✚ 플레이리스트에 추가
+                        </AddButton>
+                    </ButtonArea>
                 </InformationArea>
-        </EntireArea>
+            </EntireArea>
+            <Comment />
+        </>
     );
 }
 
