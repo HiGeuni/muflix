@@ -1,9 +1,9 @@
 // react-hook-form을 이용해서 form을 만들기
 import {useForm} from "react-hook-form";
-import NewStyle from "./Style";
+import NewStyle from "styles/FormStyle";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
-import { api } from "../config/api";
+import { api } from "config/api";
 
 const SignInForm = () => {
 

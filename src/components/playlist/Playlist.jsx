@@ -1,9 +1,9 @@
-import playlistData from '../data.json';
+import playlistData from 'data.json';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import SliderSettings from './SliderSettings';
-import Axios from 'axios';
+import SliderSettings from 'config/SliderSettings';
+// import Axios from 'axios';
 
 const AddPlaylist = styled.div`
     display: flex;

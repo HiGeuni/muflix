@@ -1,19 +1,23 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
-import Header from './layouts/Header';
-import MusicList from './components/MusicList';
-import Playlist from './components/Playlist';
-import NewPlayListForm from './components/NewPlaylist';
-import Padding from './layouts/Padding';
-import NewMusicForm from './components/NewMusic';
-import PlaylistDetail from './components/PlaylistDetail';
-import Profile from './components/Profile';
-import Signin from './components/Signin';
-import Signup from './components/Signup';
-import Logout from './components/Logout';
-import MusicDetail from './components/MusicDetail';
-import TestComponent from './components/TestComponent';
+import Header from 'layouts/Header';
+
+import Signin from 'components/user/Signin';
+import Signup from 'components/user/Signup';
+import Logout from 'components/user/Logout';
+import Profile from 'components/user/Profile';
+
+import MusicList from 'components/music/MusicList';
+import MusicDetail from 'components/music/MusicDetail';
+import NewMusicForm from "components/music/NewMusic";
+
+import Playlist from 'components/playlist/Playlist';
+import PlaylistDetail from 'components/playlist/PlaylistDetail.js'
+import NewPlayListForm from 'components/playlist/NewPlaylist'
+
+import Padding from 'layouts/Padding';
+import TestComponent from 'components/TestComponent';
 import Axios from 'axios';
 import { api } from './config/api';
 

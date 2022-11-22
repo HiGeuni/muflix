@@ -1,15 +1,15 @@
-import playlistData from "../data.json";
+import playlistData from "data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
-import { api } from "../config/api";
-
-import "../styles/slick-theme.css";
-import "../styles/slick.css";
+import { api } from "config/api";
 import { useState, useEffect } from "react";
 
+import "styles/slick-theme.css";
+import "styles/slick.css";
+
 const USER = 0;
-const PLAYLIST = 1;
+
 var dummy_user = {
     "이름": "김 연수",
     "전화번호": "010 4665 7922",
@@ -52,6 +52,7 @@ const CustomDiv = styled.div`
     margin: auto;
     padding-bottom: 200px;
 `
+
 const BtStyle = styled(Link)`
     display: inline-block;
     margin-top: 5px;

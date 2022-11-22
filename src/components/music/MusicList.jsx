@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import SliderSettings from "./SliderSettings";
+import SliderSettings from "config/SliderSettings";
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import { api } from "../config/api";
+import { api } from "config/api";
 
 // cascading issue?
 // styled component와 css를 같이 사용해서 생길수도
-import "../styles/slick-theme.css";
-import "../styles/slick.css";
+import "styles/slick-theme.css";
+import "styles/slick.css";
 
 
 const AddMusic = styled.div`

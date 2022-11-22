@@ -1,6 +1,6 @@
 // react-hook-form을 이용해서 form을 만들기
 import {useForm} from "react-hook-form";
-import NewStyle from "./Style";
+import NewStyle from "styles/FormStyle";
 
 const NewPlayListForm = () => {
     const {register, handleSubmit} = useForm();

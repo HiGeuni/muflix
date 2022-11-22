@@ -1,7 +1,8 @@
-import {useState, useContext} from "react";
+// For Test
+import { useContext } from "react";
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { UserId } from "../App";
+import { UserId } from "App";
 
 const Logout = () => { 
     const {userId, setUserId} = useContext(UserId);

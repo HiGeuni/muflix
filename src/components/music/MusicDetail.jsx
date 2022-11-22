@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import Axios from "axios";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../config/api";
+import { useParams } from "react-router-dom";
+import { api } from "config/api";
 
 const EntireArea = styled.div`
     margin-top : 5%;
@@ -51,7 +51,7 @@ const MusicDetail = () => {
     
     useEffect(() => {
         getMusicData();
-    }, []);
+    });
 
     return (
         <EntireArea>
