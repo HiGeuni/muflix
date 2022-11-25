@@ -25,4 +25,4 @@ yarn-error.log*
 src/data.json
 
 static/
-config/
+src/config/api.js
