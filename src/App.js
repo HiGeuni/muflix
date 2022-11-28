@@ -20,6 +20,7 @@ import Padding from 'layouts/Padding';
 import TestComponent from 'components/TestComponent';
 import Axios from 'axios';
 import { api } from './config/api';
+import Title from 'components/Title';
 
 // isLogin은 상태 관리하기
 export const UserId = React.createContext(false);
@@ -62,7 +63,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={
           <>
+            <Title name="Music List"/>
             <MusicList/>
+            <Title name="Playlist" />
             <Playlist />
           </>
         } 

@@ -61,9 +61,6 @@ const Playlist = () => {
     
     return (
         <CustomDiv>
-            <h2>
-                PlayList
-            </h2>
             <Slider {...SliderSettings}>
                 { playlistData.playlist.map((s) => (
                         <UnMarkedli key = {s.id}>

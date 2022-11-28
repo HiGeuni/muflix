@@ -79,7 +79,6 @@ const MusicList = () => {
 
     return (
         <CustomDiv>
-            <h2>Music List</h2>
             <Slider {...SliderSettings}>
                 {
                     data 

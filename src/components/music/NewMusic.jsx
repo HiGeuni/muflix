@@ -8,7 +8,7 @@ import { api } from 'config/api';
 
 const NewMusicForm = () => {
     const navigate = useNavigate();
-    const onclick = async (data) => {
+    const onSubmit = async (data) => {
         const res = await axios.post(`${api.url}/musics/addMusic`,data);
         console.log(res);
         navigate('/');
@@ -19,7 +19,7 @@ const NewMusicForm = () => {
         <>
             <NewStyle>
                 <h2>New Music</h2>
-                <form onSubmit={handleSubmit((data) => onclick(data))}>
+                <form onSubmit={handleSubmit((data) => onSubmit(data))}>
                     <label>Music name</label>
                     <input name="Name" placeholder="Music Name" {...register("name")} />
                     <label>Singer</label>
