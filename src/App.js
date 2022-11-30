@@ -43,7 +43,7 @@ const App = () => {
             setUserId(null);
         }
         else{
-            setUserId(response.data.user_id);
+            setUserId(response.data[0].user_id);
         }
     }
     catch (e){

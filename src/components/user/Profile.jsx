@@ -9,12 +9,15 @@ import "styles/slick-theme.css";
 import "styles/slick.css";
 
 const USER = 0;
+const PLAYLIST = 1;
 
 var dummy_user = {
     "이름": "김 연수",
     "전화번호": "010 4665 7922",
     "user_id" : "dustnrkfnfn@naver.com"
 }
+
+var dummy_playlist = playlistData.playlist
 
 const CustomDiv = styled.div`
     width : 1024px;
@@ -80,7 +83,8 @@ const PlaylistControl = styled.div`
 `
 
 const Profile = () => {
-    const [user, setUsers] = useState(null)
+    const [user, setUsers] = useState(null);
+    const [playlist, setPlaylist] = useState(dummy_playlist);
 
     const fetchUsers = async () => {
         try{
@@ -95,6 +99,7 @@ const Profile = () => {
             },
             );
             dummy_user = response.data[USER];
+            setPlaylist(response.data[PLAYLIST].playlist);
             setUsers(dummy_user);
         }
         catch (e){
@@ -105,7 +110,6 @@ const Profile = () => {
     useEffect(() => {
         fetchUsers();
     },[]);
-    const dummy_playlist = playlistData.playlist
     const key_list = ["user_id","이름","전화번호"];
     return (
         <CustomDiv>
@@ -132,13 +136,13 @@ const Profile = () => {
                 <h3>플레이리스트</h3>
                 <section>
                     <div>
-                        { dummy_playlist.map((s) => (
+                        { playlist.map((s) => (
                             <div className="info_button">
                                 <div className="account_info">
                                     {s.name}
                                 </div>
                                 <div className="account_info">
-                                    {s.info}
+                                    {s.information}
                                 </div>
                                 <BtStyle to={{pathname: "/playlistDetail/"+s.id}}>
                                     수정

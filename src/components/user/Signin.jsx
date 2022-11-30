@@ -14,7 +14,7 @@ const SignInForm = () => {
     const navigate = useNavigate();
 
     const onValid = async (data) => {
-        const response = await Axios.post(`${api.url}/users/signin`,data, {
+        const response = await Axios.post(`${api.url}/signin`,data, {
             withCredentials : true,
         });
         console.log(response);
