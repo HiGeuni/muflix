@@ -67,7 +67,7 @@ const MusicList = () => {
     const [data, setData] = useState(null);
 
     const getData = async () => {
-        await Axios.get(`${api.url}/musics/getAllMusics`)
+        await Axios.get(`http://localhost:8080/musics`)
         .then((res) => {
             setData(res.data);
         })
@@ -86,7 +86,7 @@ const MusicList = () => {
                             <UnMarkedli key = {s.id}>
                                 <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
                                     <img
-                                        src={s.album_cover}
+                                        src={s.albumCover}
                                         className="Album-Cover"
                                         alt="Album"
                                     /> <br />

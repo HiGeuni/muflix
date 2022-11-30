@@ -74,20 +74,21 @@ const MusicDetail = () => {
     const [dataObj, setData] = useState({});
 
     const getMusicData = async () => {
-        await Axios.get(`${api.url}/musics/getMusic/${params["index"]}`)
+        // await Axios.get(`${api.url}/musics/${params["index"]}`)
+        await Axios.get(`http://localhost:8080/musics/${params["index"]}`)
         .then((res) => {
-            setData(res.data[0]);
+            setData(res.data);
         })
     }
     
     useEffect(() => {
         getMusicData();
-    });
+    }, []);
     return (
         <>
             <EntireArea>
                 <RowSizedBox />
-                <img src = {dataObj.album_cover} alt="album2" />
+                <img src = {dataObj.albumCover} alt="album2" />
                 <InformationArea>
                     <SongName>{dataObj.name}</SongName>
                     <SingerName>{dataObj.singer}</SingerName>
