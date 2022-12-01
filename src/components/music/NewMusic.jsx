@@ -24,9 +24,9 @@ const NewMusicForm = () => {
                     <label>Music name</label>
                     <input name="Name" placeholder="Music Name" {...register("name")} />
                     <label>Singer</label>
-                    <input name="Singer" placeholder="Singer" {...register("Singer")} />
+                    <input name="Singer" placeholder="Singer" {...register("singer")} />
                     <label>Album Cover</label>
-                    <input name="cover" placeholder="Album Cover Image" {...register("cover")} />
+                    <input name="cover" placeholder="Album Cover Image" {...register("albumCover")} />
                     <input type="submit" className="submitButton" value="등록" />
                 </form>
             </NewStyle>
