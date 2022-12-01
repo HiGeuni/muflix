@@ -61,16 +61,16 @@ const NewPlayListForm = () => {
     
     const onSubmit = async (data) => {
         data["musics"] = resList;
-        alert(JSON.stringify(data));
-        // let token = localStorage.getItem('loging-token');
-        // await Axios.post(`${api.url}/musics/addPlaylist`, data, {
-        //     headers: {
-        //         "Authorization": token,
-        //         "withCredentials": true,
-        //         "Content-Type": "application/json",
-        //     },
-        // });
-        // navigate('/');
+        // alert(JSON.stringify(data));
+        let token = localStorage.getItem('loging-token');
+        await Axios.post(`${api.url}/musics/addPlaylist`, data, {
+            headers: {
+                "Authorization": token,
+                "withCredentials": true,
+                "Content-Type": "application/json",
+            },
+        });
+        navigate('/');
     }
 
     return (

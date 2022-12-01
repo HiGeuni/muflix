@@ -82,7 +82,7 @@ const MusicDetail = () => {
     
     useEffect(() => {
         getMusicData();
-    });
+    }, []);
     return (
         <>
             <EntireArea>
@@ -93,7 +93,7 @@ const MusicDetail = () => {
                     <SingerName>{dataObj.singer}</SingerName>
                     <ButtonArea>
                         <PlayButton>
-                                ▶️ 재생
+                            ▶️ 재생
                         </PlayButton>
                         <AddButton>
                             ✚ 플레이리스트에 추가
