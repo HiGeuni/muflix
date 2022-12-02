@@ -6,8 +6,6 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { api } from "config/api";
 
-// cascading issue?
-// styled component와 css를 같이 사용해서 생길수도
 import "styles/slick-theme.css";
 import "styles/slick.css";
 
@@ -29,7 +27,7 @@ const AddMusic = styled.div`
 `
 
 const UnMarkedli = styled.li`
-    display: flex;
+    display: block;
     align-items: center;
     list-style: none;
 `
@@ -39,13 +37,14 @@ const CustomLink = styled(Link)`
 `
 
 const StyledLink = styled(Link)`
-    display: fit-content;
-    // width: 96%;
+    // display: flex;
+    margin:auto;
     max-width: 1100px;
     height: 100%;
-    margin: 1rem;
     text-decoration: none;
     color: #000000;
+    align-items: center; // for vertical
+    justify-content: center; // for horizontal
     img {
         display: block;
         margin: auto;
@@ -53,7 +52,6 @@ const StyledLink = styled(Link)`
         height: 200px;
     }
 `
-
 
 const CustomDiv = styled.div`
     font-family:"noto-sans";
@@ -81,8 +79,7 @@ const MusicList = () => {
         <CustomDiv>
             <Slider {...SliderSettings}>
                 {
-                    data 
-                        ? data.map((s) => (
+                    data?.map((s) => (
                             <UnMarkedli key = {s.id}>
                                 <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
                                     <img
@@ -90,13 +87,11 @@ const MusicList = () => {
                                         className="Album-Cover"
                                         alt="Album"
                                     /> <br />
-                                    Title : {s.name} <br />
-                                    Singer : {s.singer}
                                 </StyledLink>
+                                Title : {s.name} <br />
+                                Singer : {s.singer}
                             </UnMarkedli>
-                                
-                        )) 
-                        : ""
+                        ))
                 }
                 <CustomLink to="/newMusicForm">
                     <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>

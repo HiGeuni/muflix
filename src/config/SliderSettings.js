@@ -9,19 +9,19 @@ const SliderSettings = {
     {
       breakpoint: 1500,
       settings: {
-        slidesToShow: 4
+        slidesToShow: 4,
       }
     },
     {  
       breakpoint: 1152, //화면 사이즈 1152px
       settings: {
-        slidesToShow: 3
+        slidesToShow: 3,
       } 
     },
     { 
       breakpoint: 768, //화면 사이즈 768px
       settings: {    
-        slidesToShow: 2
+        slidesToShow: 2,
       } 
     }
   ]

@@ -1,4 +1,3 @@
-import playlistData from "data.json";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Axios from 'axios';
@@ -10,14 +9,6 @@ import "styles/slick.css";
 
 const USER = 0;
 const PLAYLIST = 1;
-
-var dummy_user = {
-    "이름": "김 연수",
-    "전화번호": "010 4665 7922",
-    "user_id" : "dustnrkfnfn@naver.com"
-}
-
-var dummy_playlist = playlistData.playlist
 
 const CustomDiv = styled.div`
     width : 1024px;
@@ -84,23 +75,24 @@ const PlaylistControl = styled.div`
 
 const Profile = () => {
     const [user, setUsers] = useState(null);
-    const [playlist, setPlaylist] = useState(dummy_playlist);
+    const [playlist, setPlaylist] = useState(null);
 
     const fetchUsers = async () => {
         try{
             let token = localStorage.getItem('loging-token');
             const response = await Axios.get(`${api.url}/users/profile`,
-            { 
-                headers: {
-                    "Authorization": token,
-                    "withCredentials": true,
-                    "Content-Type" :'application/json',
-                }
-            },
+                { 
+                    headers: {
+                        "Authorization": token,
+                        "withCredentials": true,
+                        "Content-Type" :'application/json',
+                    }
+                },
             );
-            dummy_user = response.data[USER];
+            const t_user = response.data[USER];
+            console.log(t_user);
             setPlaylist(response.data[PLAYLIST].playlist);
-            setUsers(dummy_user);
+            setUsers(t_user);
         }
         catch (e){
             console.log(e);
@@ -110,6 +102,7 @@ const Profile = () => {
     useEffect(() => {
         fetchUsers();
     },[]);
+
     const key_list = ["user_id","이름","전화번호"];
     return (
         <CustomDiv>
@@ -121,14 +114,15 @@ const Profile = () => {
                 <h3>계정 & 개인 정보</h3>
                 <section>
                     <div>
-                        { key_list.map((s) => (
-                            <div className="info_button">
-                                <div className="account_info">
-                                    {dummy_user[s]}
+                        { user? key_list.map((s) => (
+                                <div className="info_button">
+                                    <div className="account_info">
+                                        {user[s]}
+                                    </div>
+                                    <BtStyle>{s} 변경</BtStyle>
                                 </div>
-                                <BtStyle>{s} 변경</BtStyle>
-                            </div>
-                        ))}
+                            )) : ""
+                        }
                     </div>
                 </section>
             </header>
@@ -136,7 +130,7 @@ const Profile = () => {
                 <h3>플레이리스트</h3>
                 <section>
                     <div>
-                        { playlist.map((s) => (
+                        { playlist?.map((s) => (
                             <div className="info_button">
                                 <div className="account_info">
                                     {s.name}
@@ -145,7 +139,7 @@ const Profile = () => {
                                     {s.information}
                                 </div>
                                 <BtStyle to={{pathname: "/playlistDetail/"+s.id}}>
-                                    수정
+                                    자세히 보기
                                 </BtStyle>
                             </div>
                         ))}

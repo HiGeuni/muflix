@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import data from "data.json";
 import { useParams } from "react-router-dom";
+import Axios from "axios";
+import { api } from "config/api";
+import { useState, useEffect } from "react";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -30,29 +32,44 @@ const PlaylistControl = styled.div`
 
 const PlaylistDetail = () => {
     const params = useParams();
-    // console.log(this.props.match.params.id);
-    // playlistId를 기준으로 filtering 후 포함 된 음악들을 보여주기
-    // playlistId = 1;
-    const PlayListData = data.playlist.filter((dd) => {
-        return dd.id === parseInt(params["index"]);
-    });
+    const [playlistData, setData] = useState();
+    const [musicData, setMusics] = useState([]);
+
+    const fetchData = async () => {
+        await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
+            .then((d) => {
+                console.log(d.data.playlist_info);
+                console.log(d.data.musics)
+                setData(d.data.playlist_info);
+                for(let i of d.data.musics){
+                    Axios.get(`${api.url}/musics/getMusic/${i.music_id}`)
+                    .then((res) => {
+                        console.log(res.data[0]);
+                        const res2 = res.data;
+                        setMusics(prev => {
+                            return [...prev, ...res2];
+                        });
+                    })
+                }
+            })
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <>
-            {PlayListData.map((d) => (
-                <>
-                    <PlaylistControl>
-                        <h1>{d.name}</h1>
-                        <nav>수정</nav>
-                        <nav>삭제</nav>
-                    </PlaylistControl>
-                    
-                    {d.musics.map((data) => (
-                        <UnMarkedli key={data.no}>
-                            {data.name} - {data.singer}
-                        </UnMarkedli>
-                    ))}
-                </>
+            <PlaylistControl>
+                <h1>{playlistData? playlistData.name : ""}</h1>
+                <nav>수정</nav>
+                <nav>삭제</nav>
+            </PlaylistControl>
+            
+            {musicData?.map((data) => (
+                <UnMarkedli key={data.no}>
+                    {data.name} - {data.singer}
+                </UnMarkedli>
             ))}
         </>
     )
