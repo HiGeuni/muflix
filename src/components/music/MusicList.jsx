@@ -8,6 +8,7 @@ import { api } from "config/api";
 
 import "styles/slick-theme.css";
 import "styles/slick.css";
+import Comment from "components/Comment";
 
 
 const AddMusic = styled.div`
@@ -97,6 +98,7 @@ const MusicList = () => {
                     <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>
                 </CustomLink>
             </Slider>
+            <Comment />
         </CustomDiv>
     )
 }
