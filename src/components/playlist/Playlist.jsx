@@ -63,7 +63,6 @@ const Playlist = () => {
     const fetchData = async () => {
         await Axios.get(`${api.url}/musics/getAllPlaylist`)
         .then((data) => {
-            console.log(data.data);
             setplaylistData(data.data)
         })
     }
@@ -80,7 +79,7 @@ const Playlist = () => {
                             </StyledLink>
                         </UnMarkedli>
                 ))}
-                <CustomLink to="/newPlaylistForm">
+                <CustomLink to="/newPlaylist">
                     <AddPlaylist>
                         Add Playlist
                     </AddPlaylist>

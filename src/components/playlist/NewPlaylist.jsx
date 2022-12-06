@@ -1,14 +1,13 @@
 // react-hook-form을 이용해서 form을 만들기
 import {useForm} from "react-hook-form";
 import NewStyle from "styles/FormStyle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 import { api } from "config/api";
-import { useEffect } from "react";
 import Slider from "react-slick";
 import SliderSettings from "config/SliderSettings";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UnMarkedli = styled.li`
     display: flex;
@@ -36,8 +35,10 @@ const SizedBox = styled.div`
 const NewPlayListForm = () => {
     const {register, handleSubmit} = useForm();
     const [musicData, setData] = useState(null);
+    const [playlistData, setPlayListData] = useState();
     const [resList, setRes] = useState([])
     const navigate = useNavigate();
+    const params = useParams();
 
     const getData = async () => {
         await Axios.get(`${api.url}/musics/getAllMusics`)
@@ -46,7 +47,32 @@ const NewPlayListForm = () => {
         })
     }
 
+    // for music Selection
+    // const [musicData, setMusics] = useState([]);
+
+    const fetchData = async () => {
+        await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
+            .then((d) => {
+                console.log(d.data.playlist_info);
+                console.log(d.data.musics)
+                setPlayListData(d.data.playlist_info);
+                // for(let i of d.data.musics){
+                //     Axios.get(`${api.url}/musics/getMusic/${i.music_id}`)
+                //     .then((res) => {
+                //         console.log(res.data[0]);
+                //         const res2 = res.data;
+                //         setMusics(prev => {
+                //             return [...prev, ...res2];
+                //         });
+                //     })
+                // }
+            })
+    };
+
     useEffect(() => {
+        if(params.index){
+            fetchData();
+        }
         getData();
     }, []);
 
@@ -76,12 +102,12 @@ const NewPlayListForm = () => {
     return (
         <>
             <NewStyle>
-                <h2>New Playlist</h2>
+                <h2>{playlistData? "Edit Playlist": "New Playlist"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>
                     <label>Playlist name</label>
-                    <input name="name" placeholder="Playlist Name" {...register("name")} />
+                    <input name="name" value={playlistData?.name} placeholder="Playlist Name" {...register("name")} />
                     <label>Playlist information</label>
-                    <input name="information" placeholder="Playlist Information" {...register("information")} />
+                    <input name="information" value={playlistData?.information} placeholder="Playlist Information" {...register("information")} />
                     
                     <Slider {...SliderSettings}>
                         {
