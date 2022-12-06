@@ -73,6 +73,12 @@ const PlaylistControl = styled.div`
     }
 `
 
+const DelUser = styled.div`
+    margin-top: 15px;
+    font-size: 12px;
+    color: gray;
+`
+
 const Profile = () => {
     const [user, setUsers] = useState(null);
     const [playlist, setPlaylist] = useState(null);
@@ -97,6 +103,12 @@ const Profile = () => {
         catch (e){
             console.log(e);
         }
+    }
+
+    const delUser = async () => {
+        // 유저가 가진 플레이리스트 삭제
+        // 유저 삭제
+        // 로그아웃
     }
     
     useEffect(() => {
@@ -124,6 +136,9 @@ const Profile = () => {
                             )) : ""
                         }
                     </div>
+                    <DelUser>
+                        계정 삭제
+                    </DelUser>
                 </section>
             </header>
             <header>
