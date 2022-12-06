@@ -28,7 +28,7 @@ $ npm install
 
 ```javascript
 export const api = {
-	url:"http://3.37.109.116:4000",
+	url:"server_address":4000",
 };
 ```
 
