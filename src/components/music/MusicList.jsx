@@ -94,7 +94,7 @@ const MusicList = () => {
                             </UnMarkedli>
                         ))
                 }
-                <CustomLink to="/newMusicForm">
+                <CustomLink to="/newMusic">
                     <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>
                 </CustomLink>
             </Slider>

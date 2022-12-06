@@ -31,7 +31,7 @@ const SongName = styled.div`
     font-weight: 700;
     font-size: 40px;
     margin-top: 5%;
-    margin-bottom : 3%;
+    margin-bottom : 5%;
 `
 
 const SingerName = styled.div`
