@@ -35,7 +35,7 @@ const NewMusicForm = () => {
     return (
         <>
             <NewStyle>
-                <h2>New Music</h2>
+                <h2>{dataObj?"Edit Music":"New Music"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>
                     <label>Music name</label>
                     <input name="Name" value={dataObj?.name} placeholder="Music Name" {...register("name")} />
