@@ -103,7 +103,7 @@ const NewPlayListForm = () => {
         }
         console.log(data);
         isEdit
-            ? await Axios.put(`${api.url}/musics/updatePlaylist`, data, {
+            ? await Axios.put(`${api.url}/musics/updatePlaylist/${params.index}`, data, {
                 headers: headers
             })
             : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
