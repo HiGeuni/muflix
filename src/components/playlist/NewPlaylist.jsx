@@ -39,6 +39,7 @@ const NewPlayListForm = () => {
     const [resList, setRes] = useState([])
     const navigate = useNavigate();
     const params = useParams();
+    const isEdit = params.index? true : false;
 
     const getData = async () => {
         await Axios.get(`${api.url}/musics/getAllMusics`)
@@ -70,7 +71,7 @@ const NewPlayListForm = () => {
     };
 
     useEffect(() => {
-        if(params.index){
+        if(isEdit){
             fetchData();
         }
         getData();
@@ -86,28 +87,41 @@ const NewPlayListForm = () => {
     };
     
     const onSubmit = async (data) => {
+        if(data["name"] === ''){
+            data["name"] = playlistData?.name;
+        }
+        if(data["information"] === ""){
+            data["information"] = playlistData?.information;
+        }
         data["musics"] = resList;
         // alert(JSON.stringify(data));
         let token = localStorage.getItem('loging-token');
-        await Axios.post(`${api.url}/musics/addPlaylist`, data, {
-            headers: {
-                "Authorization": token,
-                "withCredentials": true,
-                "Content-Type": "application/json",
-            },
-        });
+        const headers = {
+            "Authorization": token,
+            "withCredentials": true,
+            "Content-Type": "application/json",
+        }
+        console.log(data);
+        isEdit
+            ? await Axios.put(`${api.url}/musics/updatePlaylist`, data, {
+                headers: headers
+            })
+            : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
+                headers: headers
+            })
+        ;
         navigate('/');
     }
 
     return (
         <>
             <NewStyle>
-                <h2>{playlistData? "Edit Playlist": "New Playlist"}</h2>
+                <h2>{isEdit? "Edit Playlist": "New Playlist"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>
                     <label>Playlist name</label>
-                    <input name="name" value={playlistData?.name} placeholder="Playlist Name" {...register("name")} />
+                    <input type="text" name="name" defaultValue={playlistData?.name} placeholder="Playlist Name" {...register("name")} />
                     <label>Playlist information</label>
-                    <input name="information" value={playlistData?.information} placeholder="Playlist Information" {...register("information")} />
+                    <input type="text" name="information" defaultValue={playlistData?.information} placeholder="Playlist Information" {...register("information")} />
                     
                     <Slider {...SliderSettings}>
                         {

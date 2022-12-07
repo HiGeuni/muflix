@@ -11,9 +11,13 @@ const NewMusicForm = () => {
     const navigate = useNavigate();
     const [dataObj, setData] = useState({});
     const {register, handleSubmit} = useForm();
+    const isEdit = params.index ? true : false;
 
     const onSubmit = async (data) => {
-        const res = await Axios.post(`${api.url}/musics/addMusic`,data);
+        const res = isEdit
+            ? await Axios.put(`${api.url}/musics/addMusic`,data)
+            : await Axios.post(`${api.url}/musics/addMusic`,data);
+            
         console.log(res);
         navigate('/');
     }
@@ -26,7 +30,7 @@ const NewMusicForm = () => {
     }
 
     useEffect(() => {
-        if(params.index){
+        if(isEdit){
             console.log("Params : ", params);
             getMusicData();
         }
@@ -35,7 +39,7 @@ const NewMusicForm = () => {
     return (
         <>
             <NewStyle>
-                <h2>{dataObj?"Edit Music":"New Music"}</h2>
+                <h2>{isEdit?"Edit Music":"New Music"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>
                     <label>Music name</label>
                     <input name="Name" value={dataObj?.name} placeholder="Music Name" {...register("name")} />

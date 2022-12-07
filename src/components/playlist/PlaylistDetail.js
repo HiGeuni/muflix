@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { api } from "config/api";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -18,16 +19,16 @@ const PlaylistControl = styled.div`
     h1{
         margin: 1rem;
     }
-    nav{
-        font-size: 15px;
-        font-weight: 600;
-        background-color: #0c0c0c;
-        color: #ffffff;
-        border: 2px solid;
-        margin: 0.3rem;
-        border-radius : 4px;
-        padding: 3px;
-    }
+`
+const CustomLink = styled(Link)`
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #0c0c0c;
+    color: #ffffff;
+    border: 2px solid;
+    margin: 0.3rem;
+    border-radius : 4px;
+    padding: 3px;
 `
 
 const PlaylistDetail = () => {
@@ -62,8 +63,8 @@ const PlaylistDetail = () => {
         <>
             <PlaylistControl>
                 <h1>{playlistData? playlistData.name : ""}</h1>
-                <nav>수정</nav>
-                <nav>삭제</nav>
+                <CustomLink to={{pathname: `/editPlaylist/${params.index}`}}>수정</CustomLink>
+                <CustomLink>삭제</CustomLink>
             </PlaylistControl>
             
             {musicData?.map((data) => (

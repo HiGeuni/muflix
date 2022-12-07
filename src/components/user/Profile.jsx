@@ -96,7 +96,6 @@ const Profile = () => {
                 },
             );
             const t_user = response.data[USER];
-            console.log(t_user);
             setPlaylist(response.data[PLAYLIST].playlist);
             setUsers(t_user);
         }
@@ -104,6 +103,7 @@ const Profile = () => {
             console.log(e);
         }
     }
+
 
     const delUser = async () => {
         // 유저가 가진 플레이리스트 삭제
