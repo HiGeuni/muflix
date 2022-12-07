@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "noto-sans";
+    src: url("./NotoSansKR-Black.eot") format("embedded-opentype"),
+    url("./NotoSansKR-Bold.eot") format("embedded-opentype"),
+    url("./NotoSansKR-Light.eot") format("embedded-opentype"),
+    url("./NotoSansKR-Medium.eot") format("embedded-opentype"),
+    url("./NotoSansKR-Regular.eot") format("embedded-opentype"),
+    url("./NotoSansKR-Thin.eot") format("embedded-opentype"),
+    ;
+
+    font-weight: 400;
+    font-style: normal;
+
+}
