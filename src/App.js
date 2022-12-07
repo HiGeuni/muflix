@@ -71,7 +71,6 @@ const App = () => {
         } 
         />
         <Route path="/newMusic" element={<NewMusicForm />} />
-        <Route path="/editMusic/:index" element={<NewMusicForm />} />
         <Route path="/newPlaylist" element={<NewPlayListForm />} />
         <Route path="/editPlaylist/:index" element={<NewPlayListForm />} />
         <Route

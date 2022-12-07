@@ -39,13 +39,10 @@ const PlaylistDetail = () => {
     const fetchData = async () => {
         await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
             .then((d) => {
-                console.log(d.data.playlist_info);
-                console.log(d.data.musics)
                 setData(d.data.playlist_info);
                 for(let i of d.data.musics){
                     Axios.get(`${api.url}/musics/getMusic/${i.music_id}`)
                     .then((res) => {
-                        console.log(res.data[0]);
                         const res2 = res.data;
                         setMusics(prev => {
                             return [...prev, ...res2];
@@ -55,6 +52,22 @@ const PlaylistDetail = () => {
             })
     };
 
+    const onClickDelete = async () => {
+        const token = localStorage.getItem("loging-token");
+        await Axios.delete(`${api.url}/musics/delPlaylist/${params["index"]}`, 
+            {
+                headers: {
+                    "Authorization" : token,
+                    "withCredentials" : true,
+                }
+            }
+        )
+            .then((res) => {
+                console.log(res);
+                alert("Success!");
+            })
+    }
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -63,8 +76,11 @@ const PlaylistDetail = () => {
         <>
             <PlaylistControl>
                 <h1>{playlistData? playlistData.name : ""}</h1>
+                {
+                    
+                }
                 <CustomLink to={{pathname: `/editPlaylist/${params.index}`}}>수정</CustomLink>
-                <CustomLink>삭제</CustomLink>
+                <CustomLink to={{pathname: `/`}} onClick={onClickDelete} >삭제</CustomLink>
             </PlaylistControl>
             
             {musicData?.map((data) => (
