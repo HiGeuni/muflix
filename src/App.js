@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from 'layouts/Header';
+import BackGround from 'layouts/Background';
 
 import Signin from 'components/user/Signin';
 import Signup from 'components/user/Signup';

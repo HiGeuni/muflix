@@ -5,6 +5,7 @@ import NewStyle from 'styles/FormStyle';
 import Axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from 'config/api';
+import Background from 'layouts/Background';
 
 const NewMusicForm = () => {
     const params = useParams();
@@ -38,6 +39,7 @@ const NewMusicForm = () => {
 
     return (
         <>
+            <Background />
             <NewStyle>
                 <h2>{isEdit?"Edit Music":"New Music"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>

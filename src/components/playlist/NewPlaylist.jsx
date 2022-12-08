@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import SliderSettings from "config/SliderSettings";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import Background from "layouts/Background";
 
 const UnMarkedli = styled.li`
     display: flex;
@@ -114,6 +115,7 @@ const NewPlayListForm = () => {
 
     return (
         <>
+            <Background />
             <NewStyle>
                 <h2>{isEdit? "Edit Playlist": "New Playlist"}</h2>
                 <form onSubmit={handleSubmit((data) => onSubmit(data))}>

@@ -7,37 +7,18 @@ import { api } from "config/api";
 import { IsLogin } from "App";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import image from "static/images.jpg";
 
-const Background = styled.div`
-    position: absolute;
-    display: block;
-    z-index: -1;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    background-color: #000;
-    img{
-        height: 0%;
-        width: 0%;
-    }
-    @media only screen and (min-width: 740px){
-        img{
-            min-height: 100%;
-            min-width: 100%;
-        }
-    }
-`
+import Background from "layouts/Background";
 
 const NewStyle = styled.div`
     display: block;
     background-color: black;
     margin: 5%;
     @media only screen and (min-width: 740px){
-        background-color: rgba(0,0,0,.75);
+        background-color: rgba(0,0,0,.90);
         padding: 60px;
-        max-width: 450px;
-        min-height: 100vh;
+        max-width: 600px;
+        min-height: 80vh;
         margin: auto;
     }
     h2{
@@ -55,8 +36,8 @@ const NewStyle = styled.div`
     }
     input{
         margin: 4px;
-        border : 0;
-        border-radius: 2px;
+        border : none;
+        border-radius: 3px;
         padding: 10px;
         color: #fff;
         background: #333;
@@ -98,9 +79,7 @@ const SignInForm = () => {
     const onInvalid = (data) => console.log(data, "onInvalid");
     return (
         <>
-            <Background>
-                <img src={image} alt="" />
-            </Background>
+            <Background />
             <NewStyle>
                 <h2>로그인</h2>
                 <form onSubmit={handleSubmit(onValid, onInvalid)}>
@@ -121,7 +100,7 @@ const SignInForm = () => {
                 </form>
                 <div className="isUser">
                     회원이 아니신가요?  
-                    <Link>회원 가입 </Link>
+                    <Link to={{pathname: "/signup"}}>회원 가입 </Link>
                 </div>
             </NewStyle>
         </>
