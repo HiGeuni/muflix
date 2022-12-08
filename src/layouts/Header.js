@@ -2,10 +2,10 @@ import React, {useContext} from "react";
 // import styled from "styled-components";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
-import { UserId } from "../App";
+import { IsLogin } from "../App";
 
-const Header = ({isLogin}) => {
-    // const {userId} = useContext(UserId);
+const Header = () => {
+    const {isLogin} = useContext(IsLogin);
     
     return (
         <header className="header">

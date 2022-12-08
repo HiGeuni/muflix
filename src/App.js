@@ -22,10 +22,10 @@ import { api } from './config/api';
 import Title from 'components/Title';
 
 // isLogin은 상태 관리하기
-export const UserId = React.createContext(false);
+export const IsLogin = React.createContext(false);
 
 const App = () => {
-  const [userId, setUserId] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
   const fetchUsers = async () => {
     try{
         let token = localStorage.getItem('loging-token');
@@ -39,10 +39,10 @@ const App = () => {
         },
         );
         if(response.data === "No User"){
-            setUserId(null);
+            setIsLogin(false);
         }
         else{
-            setUserId(response.data[0].user_id);
+            setIsLogin(true);
         }
     }
     catch (e){
@@ -56,7 +56,7 @@ const App = () => {
   },[]);
 
   return (
-    <UserId.Provider value = {{userId, setUserId}} >
+    <IsLogin.Provider value = {{isLogin, setIsLogin}} >
       <Header />
       <Padding />
       <Routes>
@@ -85,7 +85,7 @@ const App = () => {
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
-    </UserId.Provider>
+    </IsLogin.Provider>
   );
 }
 

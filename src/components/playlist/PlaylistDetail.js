@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { api } from "config/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { IsLogin } from "App";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -33,6 +34,7 @@ const CustomLink = styled(Link)`
 
 const PlaylistDetail = () => {
     const params = useParams();
+    const {isLogin} = useContext(IsLogin);
     const [playlistData, setData] = useState();
     const [musicData, setMusics] = useState([]);
     const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
@@ -41,6 +43,7 @@ const PlaylistDetail = () => {
         await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
             .then((d) => {
                 setData(d.data.playlist_info);
+                setMusics([]);
                 for(let i of d.data.musics){
                     Axios.get(`${api.url}/musics/getMusic/${i.music_id}`)
                     .then((res) => {
@@ -63,7 +66,6 @@ const PlaylistDetail = () => {
             }
         })
         .then((user) => {
-            console.log(user.data[1].playlist, params["index"])
             let flag = false;
             for(let playlist of user.data[1].playlist){
                 if(playlist.id == params["index"]){
@@ -71,7 +73,6 @@ const PlaylistDetail = () => {
                 }
             }
             setUserHasPlaylist(flag);
-            console.log("flag : ", flag);
         });
         
     }
@@ -94,7 +95,9 @@ const PlaylistDetail = () => {
 
     useEffect(() => {
         fetchData();
-        fetchUser();
+        if(isLogin){
+            fetchUser();
+        }
     }, []);
 
     return (
@@ -112,7 +115,7 @@ const PlaylistDetail = () => {
             </PlaylistControl>
             
             {musicData?.map((data) => (
-                <UnMarkedli key={data.no}>
+                <UnMarkedli key={data.id}>
                     {data.name} - {data.singer}
                 </UnMarkedli>
             ))}

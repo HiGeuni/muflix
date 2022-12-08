@@ -147,7 +147,7 @@ const Profile = () => {
                 <section>
                     <div>
                         { playlist?.map((s) => (
-                            <div className="info_button">
+                            <div key={s.id} className="info_button">
                                 <div className="account_info">
                                     {s.name}
                                 </div>

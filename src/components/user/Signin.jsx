@@ -4,8 +4,11 @@ import NewStyle from "styles/FormStyle";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from "config/api";
+import { IsLogin } from "App";
+import { useContext } from "react";
 
 const SignInForm = () => {  
+    const {setIsLogin} = useContext(IsLogin);
     const { register, handleSubmit } = useForm();
 
     const navigate = useNavigate();
@@ -18,6 +21,7 @@ const SignInForm = () => {
         if(response.data === 'Try Again!') alert('없는 계정입니다.')
         else{
             console.log("Login Success !!");
+            setIsLogin(true);
             localStorage.setItem('loging-token', response.data.token);
             navigate("/");
         }

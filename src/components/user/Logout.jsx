@@ -1,8 +1,11 @@
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { api } from "config/api";
+import { IsLogin } from "App";
+import { useContext } from 'react';
 
 const Logout = () => { 
+    const {setIsLogin} = useContext(IsLogin);
 
     const navigate = useNavigate();
 
@@ -18,6 +21,7 @@ const Logout = () => {
             if(res.status === 200){
                 alert(res.data.message);
                 localStorage.clear();
+                setIsLogin(false);
                 navigate('/');
             }else{
                 alert("잘못된 요청입니다.")
