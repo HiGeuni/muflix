@@ -6,6 +6,8 @@ const CustomDiv = styled.div`
     // display: flex;
     text-align: center;
     justify-content: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
 `
 
 const Title = ({name}) => {
