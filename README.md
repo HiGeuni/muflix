@@ -6,7 +6,7 @@
 
 18101210 김효근
 
-### 🔤 Language
+### 🔤 Language & Environment
 
 > Front-end : reactJs
 >
