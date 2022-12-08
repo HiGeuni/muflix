@@ -84,6 +84,7 @@ const App = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
+        {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
     </IsLogin.Provider>
   );

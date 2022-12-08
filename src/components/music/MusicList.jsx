@@ -27,6 +27,7 @@ const AddMusic = styled.div`
     border: #AF2F2c 5px solid;
 `
 
+
 const UnMarkedli = styled.li`
     display: block;
     align-items: center;
@@ -39,19 +40,20 @@ const CustomLink = styled(Link)`
 
 const StyledLink = styled(Link)`
     // display: flex;
-    margin:auto;
+    display: inline-block;
     max-width: 1100px;
     height: 100%;
     text-decoration: none;
     color: #000000;
-    align-items: center; // for vertical
-    justify-content: center; // for horizontal
+    // align-items: center; // for vertical
+    // justify-content: center; // for horizontal
     img {
         display: block;
-        margin: auto;
         width: 200px;
         height: 200px;
     }
+    margin-left: auto;
+    margin-right: auto;
 `
 
 const CustomDiv = styled.div`
@@ -88,9 +90,11 @@ const MusicList = () => {
                                         className="Album-Cover"
                                         alt="Album"
                                     /> <br />
+                                    <span>
+                                        Title : {s.name} <br />
+                                        Singer : {s.singer}
+                                    </span>
                                 </StyledLink>
-                                Title : {s.name} <br />
-                                Singer : {s.singer}
                             </UnMarkedli>
                         ))
                 }
@@ -98,7 +102,7 @@ const MusicList = () => {
                     <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>
                 </CustomLink>
             </Slider>
-            <Comment />
+            {/* <Comment /> */}
         </CustomDiv>
     )
 }

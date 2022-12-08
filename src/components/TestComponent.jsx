@@ -9,28 +9,11 @@ const CustomButton = styled.button`
 `
 
 const testComponent = () => {
-
-    const test = async (data) => {
-        try{
-            const token = localStorage.getItem("loging-token") || '';
-            // const request = await Axios.post(`${api.url}/test`, {
-            //     headers: {
-            //         "Authorization" : token
-            //     }
-            // },
-            // );
-            // request();
-        } catch (e) {
-            console.log(e);
-        }
-        
-        
-    }
     
     return (
-        <CustomButton onClick={test}>
-            This is Test Button.
-        </CustomButton>
+        <audio src="">
+            
+        </audio>
     )
 }
 
