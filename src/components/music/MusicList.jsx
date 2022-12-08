@@ -10,7 +10,6 @@ import "styles/slick-theme.css";
 import "styles/slick.css";
 import Comment from "components/Comment";
 
-
 const AddMusic = styled.div`
     display: flex;
     align-items: center; // for vertical
@@ -27,7 +26,6 @@ const AddMusic = styled.div`
     border: #AF2F2c 5px solid;
 `
 
-
 const UnMarkedli = styled.li`
     display: block;
     align-items: center;
@@ -39,14 +37,11 @@ const CustomLink = styled(Link)`
 `
 
 const StyledLink = styled(Link)`
-    // display: flex;
     display: inline-block;
     max-width: 1100px;
     height: 100%;
     text-decoration: none;
     color: #000000;
-    // align-items: center; // for vertical
-    // justify-content: center; // for horizontal
     img {
         display: block;
         width: 200px;
@@ -59,9 +54,10 @@ const StyledLink = styled(Link)`
 const CustomDiv = styled.div`
     font-family:"noto-sans";
     font-weight:600;
-    // display: flex;
     text-align: center;
     justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
 `
 
 const MusicList = () => {
@@ -83,20 +79,20 @@ const MusicList = () => {
             <Slider {...SliderSettings}>
                 {
                     data?.map((s) => (
-                            <UnMarkedli key = {s.id}>
-                                <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
-                                    <img
-                                        src={s.album_cover}
-                                        className="Album-Cover"
-                                        alt="Album"
-                                    /> <br />
-                                    <span>
-                                        Title : {s.name} <br />
-                                        Singer : {s.singer}
-                                    </span>
-                                </StyledLink>
-                            </UnMarkedli>
-                        ))
+                        <UnMarkedli key = {s.id}>
+                            <StyledLink to={{pathname: "/musicDetail/"+s.id}}>
+                                <img
+                                    src={s.album_cover}
+                                    className="Album-Cover"
+                                    alt="Album"
+                                /> <br />
+                                <span>
+                                    Title : {s.name} <br />
+                                    Singer : {s.singer}
+                                </span>
+                            </StyledLink>
+                        </UnMarkedli>
+                    ))
                 }
                 <CustomLink to="/newMusic">
                     <AddMusic> {data ? "Add Music" : "Loading..."} </AddMusic>

@@ -55,7 +55,8 @@ const CustomDiv = styled.div`
         padding-top: 2rem;
         padding-bottom: 1.5rem;
     }
-    padding-bottom: 2rem;
+    margin-left: 10%;
+    margin-right: 10%;
 `
 
 const Playlist = () => {

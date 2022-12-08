@@ -1,30 +1,35 @@
 // react-hook-form을 이용해서 form을 만들기
 import {useForm} from "react-hook-form";
-import NewStyle from "styles/FormStyle";
+// import NewStyle from "styles/FormStyle";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { api } from "config/api";
 import Slider from "react-slick";
-import SliderSettings from "config/SliderSettings";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Background from "layouts/Background";
 
 const UnMarkedli = styled.li`
-    display: flex;
+    display: block;
     align-items: center;
     list-style: none;
+    margin-left: 16%;
 `
 
 const CustomDiv = styled.div`
-    text-decoration: none;
-    color : #000000;
+    display: inline-block;
+    max-width: 1100px;
+    height: 100%;
     img { 
-        display : block;
-        margin: auto;
+        display: block;
         width : 200px;
         height : 200px;
     }
+    span {
+        color: white;
+    }
+    margin-left: auto;
+    margin-right: auto;
 `
 
 const SizedBox = styled.div`
@@ -32,6 +37,69 @@ const SizedBox = styled.div`
     height : 50px;
 `
 
+const NewStyle = styled.div`
+    display: block;
+    background-color: black;
+    margin: 5%;
+    @media only screen and (min-width: 740px){
+        background-color: rgba(0,0,0,.90);
+        padding: 60px;
+        max-width: 900px;
+        min-height: 85vh;
+        margin: auto;
+    }
+    h2{
+        color: white;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin : 5px;
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+    }
+    input{
+        margin: 4px;
+        border : 0;
+        border-radius: 2px;
+        padding: 10px;
+        color: #fff;
+        background: #333;
+        line-height: 18px;
+    }
+    .submitButton{
+        margin-top: 0.83em;
+        background-color: red;
+        color: white;
+        font-weight: 800;
+        font-size: 20px;
+    }
+    .isUser{
+        margin-top: 0.83em;;
+        color: gray;
+    }
+`
+
+const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    draggable : true,     //드래그 가능 여부 
+    responsive: [
+        {
+            breakpoint: 840,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+            }
+        },
+    ]
+};
 
 const NewPlayListForm = () => {
     const {register, handleSubmit} = useForm();
@@ -124,7 +192,7 @@ const NewPlayListForm = () => {
                     <label>Playlist information</label>
                     <input type="text" name="information" defaultValue={playlistData?.information} placeholder="Playlist Information" {...register("information")} />
                     
-                    <Slider {...SliderSettings}>
+                    <Slider {...settings}>
                         {
                             musicData?.map((s) => (
                                 <UnMarkedli key = {s.id}>
@@ -135,8 +203,10 @@ const NewPlayListForm = () => {
                                             className="Album-Cover"
                                             alt="Album"
                                         /> <br />
-                                        Title : {s.name} <br />
-                                        Singer : {s.singer}
+                                        <span>
+                                            Title : {s.name} <br />
+                                            Singer : {s.singer}
+                                        </span>
                                     </CustomDiv>
                                 </UnMarkedli>
                             ))

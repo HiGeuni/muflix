@@ -3,6 +3,12 @@ import React, {useContext} from "react";
 import "./Header.scss";
 import {Link} from 'react-router-dom';
 import { IsLogin } from "../App";
+import logo from "static/logo.png"
+import styled from "styled-components";
+
+const StyledLogo = styled.img`
+    min-width: 150px;
+`
 
 const Header = () => {
     const {isLogin} = useContext(IsLogin);
@@ -11,9 +17,9 @@ const Header = () => {
         <header className="header">
             <div className="contents">
                 <Link to="/">
-                    <img 
+                    <StyledLogo 
                         className="logo" 
-                        src="https://cdn.discordapp.com/attachments/874897301292875836/1030724425194156092/mufilx.png" 
+                        src= {logo}
                         alt="logo"
                     />
                 </Link>

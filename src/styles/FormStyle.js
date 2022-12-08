@@ -5,10 +5,10 @@ const NewStyle = styled.div`
     background-color: black;
     margin: 5%;
     @media only screen and (min-width: 740px){
-        background-color: rgba(0,0,0,.75);
+        background-color: rgba(0,0,0,.90);
         padding: 60px;
-        max-width: 450px;
-        min-height: 100vh;
+        max-width: 600px;
+        min-height: 85vh;
         margin: auto;
     }
     h2{
@@ -26,8 +26,8 @@ const NewStyle = styled.div`
     }
     input{
         margin: 4px;
-        border : 0;
-        border-radius: 2px;
+        border : none;
+        border-radius: 3px;
         padding: 10px;
         color: #fff;
         background: #333;

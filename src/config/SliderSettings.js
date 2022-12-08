@@ -3,7 +3,7 @@ const SliderSettings = {
     infinite: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 2,
+    slidesToScroll: 3,
     draggable : true,     //드래그 가능 여부 
     responsive: [ // 반응형 웹 구현 옵션
     {
@@ -13,15 +13,17 @@ const SliderSettings = {
       }
     },
     {  
-      breakpoint: 1152, //화면 사이즈 1152px
+      breakpoint: 1186, //화면 사이즈 1152px
       settings: {
         slidesToShow: 3,
+        slidesToScroll: 2,
       } 
     },
     { 
-      breakpoint: 768, //화면 사이즈 768px
+      breakpoint: 960, //화면 사이즈 768px
       settings: {    
         slidesToShow: 2,
+        slidesToScroll: 1,
       } 
     }
   ]
