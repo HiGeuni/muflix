@@ -95,6 +95,7 @@ const Profile = () => {
                     }
                 },
             );
+            console.log(response);
             const t_user = response.data[USER];
             setPlaylist(response.data[PLAYLIST].playlist);
             setUsers(t_user);

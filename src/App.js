@@ -17,7 +17,6 @@ import PlaylistDetail from 'components/playlist/PlaylistDetail.js'
 import NewPlayListForm from 'components/playlist/NewPlaylist'
 
 import Padding from 'layouts/Padding';
-import TestComponent from 'components/TestComponent';
 import Axios from 'axios';
 import { api } from './config/api';
 import Title from 'components/Title';

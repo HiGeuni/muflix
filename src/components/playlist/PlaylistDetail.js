@@ -35,6 +35,7 @@ const PlaylistDetail = () => {
     const params = useParams();
     const [playlistData, setData] = useState();
     const [musicData, setMusics] = useState([]);
+    const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
 
     const fetchData = async () => {
         await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
@@ -52,6 +53,29 @@ const PlaylistDetail = () => {
             })
     };
 
+    const fetchUser = async () => {
+        const token = localStorage.getItem('loging-token');
+        await Axios.get(`${api.url}/users/profile`, {
+            headers:{
+                "Authorization": token,
+                "withCredentials": true,
+                "Content-Type" :'application/json',
+            }
+        })
+        .then((user) => {
+            console.log(user.data[1].playlist, params["index"])
+            let flag = false;
+            for(let playlist of user.data[1].playlist){
+                if(playlist.id == params["index"]){
+                    flag = true;
+                }
+            }
+            setUserHasPlaylist(flag);
+            console.log("flag : ", flag);
+        });
+        
+    }
+
     const onClickDelete = async () => {
         const token = localStorage.getItem("loging-token");
         await Axios.delete(`${api.url}/musics/delPlaylist/${params["index"]}`, 
@@ -63,13 +87,14 @@ const PlaylistDetail = () => {
             }
         )
             .then((res) => {
-                console.log(res);
-                alert("Success!");
+                if(res.status === 200)
+                    alert(res.data);
             })
     }
 
     useEffect(() => {
         fetchData();
+        fetchUser();
     }, []);
 
     return (
@@ -77,10 +102,13 @@ const PlaylistDetail = () => {
             <PlaylistControl>
                 <h1>{playlistData? playlistData.name : ""}</h1>
                 {
-                    
+                    isUserHasPlaylist
+                    ? <>
+                        <CustomLink to={{pathname: `/editPlaylist/${params.index}`}}>수정</CustomLink>
+                        <CustomLink to={{pathname: `/`}} onClick={onClickDelete} >삭제</CustomLink>
+                    </>
+                    : ""
                 }
-                <CustomLink to={{pathname: `/editPlaylist/${params.index}`}}>수정</CustomLink>
-                <CustomLink to={{pathname: `/`}} onClick={onClickDelete} >삭제</CustomLink>
             </PlaylistControl>
             
             {musicData?.map((data) => (

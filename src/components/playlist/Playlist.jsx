@@ -66,6 +66,9 @@ const Playlist = () => {
             setplaylistData(data.data)
         })
     }
+
+
+    
     useEffect(() => {
         fetchData();
     }, [])
@@ -74,7 +77,11 @@ const Playlist = () => {
             <Slider {...SliderSettings}>
                 { playlistData?.map((s) => (
                         <UnMarkedli key = {s.id}>
-                            <StyledLink to={{pathname: "/playlistDetail/"+s.id}}>
+                            <StyledLink 
+                                to={{
+                                    pathname: "/playlistDetail/"+s.id,
+                                }}
+                                >
                                 {s.name}
                             </StyledLink>
                         </UnMarkedli>

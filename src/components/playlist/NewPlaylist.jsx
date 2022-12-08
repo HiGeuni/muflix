@@ -101,7 +101,6 @@ const NewPlayListForm = () => {
             "withCredentials": true,
             "Content-Type": "application/json",
         }
-        console.log(data);
         isEdit
             ? await Axios.put(`${api.url}/musics/updatePlaylist/${params.index}`, data, {
                 headers: headers
