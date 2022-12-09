@@ -3,6 +3,15 @@ import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from 'layouts/Header';
 import Background from 'layouts/Background';
+import { useRecoilState } from 'recoil';
+import { musicState } from 'atoms/music';
+// import {
+//   RecoilRoot,
+//   atom,
+//   selector,
+//   useRecoilState,
+//   useRecoilValue,
+// } from 'recoil';
 
 import Signin from 'components/user/Signin';
 import Signup from 'components/user/Signup';
@@ -22,12 +31,15 @@ import Axios from 'axios';
 import { api } from './config/api';
 import Title from 'components/Title';
 import TestComponent from 'components/TestComponent';
+import Comment from 'components/Comment';
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const [curMusicState, setMusicState] = useRecoilState(musicState);
+
   const fetchUsers = async () => {
     try{
         let token = localStorage.getItem('loging-token');
@@ -109,6 +121,7 @@ const App = () => {
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
       <TestComponent url="/Users/khyo/GDSC/PROJECT/muflix/public/MeetOnlyInDream.mp3"/>
+      {curMusicState.isPlaying && <Comment />}
     </IsLogin.Provider>
   );
 }

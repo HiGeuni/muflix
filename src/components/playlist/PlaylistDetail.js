@@ -5,6 +5,8 @@ import { api } from "config/api";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { IsLogin } from "App";
+import { musicState } from "atoms/music";
+import { useRecoilState } from "recoil";
 
 const UnMarkedli = styled.li`
     margin: 1rem;
@@ -38,7 +40,9 @@ const PlaylistDetail = () => {
     const [playlistData, setData] = useState();
     const [musicData, setMusics] = useState([]);
     const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
+    const [curMusicState] = useRecoilState(musicState);
 
+    console.log("isPlaying: ", curMusicState.isPlaying);
     const fetchData = async () => {
         await Axios.get(`${api.url}/musics/getPlaylist/${params["index"]}`)
             .then((d) => {

@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { api } from "config/api";
 import Comment from "components/Comment";
+import { useRecoilState } from "recoil";
+import { musicState } from "atoms/music";
 
 const EntireArea = styled.div`
     margin-top : 5%;
@@ -72,7 +74,8 @@ const AddButton = styled.button`
 const MusicDetail = () => {
     const params = useParams();
     const [dataObj, setData] = useState({});
-
+    const [curMusicState, setMusicState] = useRecoilState(musicState);
+    console.log(curMusicState);
     const getMusicData = async () => {
         await Axios.get(`${api.url}/musics/getMusic/${params["index"]}`)
         .then((res) => {
@@ -83,6 +86,16 @@ const MusicDetail = () => {
     useEffect(() => {
         getMusicData();
     }, []);
+
+    const AddMusicToPlaylist = () => {
+        const id = params.index;
+        setMusicState(prev => {
+            let tempList = Object.assign({}, prev);
+            tempList.playlist = [...prev.playlist, id];
+            return tempList;
+        });
+    }
+
     return (
         <>
             <EntireArea>
@@ -95,7 +108,7 @@ const MusicDetail = () => {
                         <PlayButton>
                             ▶️ 재생
                         </PlayButton>
-                        <AddButton>
+                        <AddButton onClick={AddMusicToPlaylist}>
                             ✚ 플레이리스트에 추가
                         </AddButton>
                     </ButtonArea>

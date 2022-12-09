@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { musicState } from 'atoms/music';
 
 const PlaylistDiv = styled.div`
     display: flex;
     margin-left: 13%;
+    margin-top: 5%;
 `
 
 const useAudio = url => {
@@ -29,11 +32,19 @@ const useAudio = url => {
 };
   
 const TestComponent = ({ url }) => {
-    const [playing, toggle] = useAudio(url);
+    const [curMusicState, setMusicState] = useRecoilState(musicState);
+
+    const toggle = () => {
+        setMusicState(prev => {
+            let tempList = Object.assign({}, prev);
+            tempList.isPlaying = !prev.isPlaying;
+            return tempList;
+        });
+    } 
 
     return (
         <PlaylistDiv>
-            <button onClick={toggle}>{playing ? "▶️" : "⏸"}</button>
+            <button onClick={toggle}>{curMusicState.isPlaying ? "▶️" : "⏸"}</button>
         </PlaylistDiv>
     );
 };
