@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Axios from "axios";
+import { api } from "config/api";
+import { useParams } from "react-router-dom";
 import CommentData from "../data.json";
 
 const CommentArea = styled.div`
@@ -39,9 +42,22 @@ const CustomDiv = styled.div`
 `
 
 const Comment = () => {
+    const params = useParams();
+    const [comments, setComments] = useState(null);
+    const fetchData = async () => {
+        await Axios.get(`${api.url}/comments/getComment/${params["index"]}`)
+        .then((res) => {
+            setComments(res.data);
+        })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <CustomDiv>
-            {
+            {/* {
                 CommentData.comments?.map((s) => (
                     <CommentArea key={s.id}>
                         <UserId>
@@ -52,6 +68,21 @@ const Comment = () => {
                         </Content>
                         <Time>
                             {s.time}
+                        </Time>
+                    </CommentArea>
+                ))
+            } */}
+            {comments && 
+                comments.map((s) => (
+                    <CommentArea key={s.id}>
+                        <UserId>
+                            {s.writer}
+                        </UserId>
+                        <Content>
+                            {s.comments}
+                        </Content>
+                        <Time>
+                            {s.write_time}
                         </Time>
                     </CommentArea>
                 ))
