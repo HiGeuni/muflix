@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { api } from "config/api";
 import { useRecoilState } from "recoil";
 import { musicState } from "atoms/music";
+import ReactAudioPlayer from 'react-audio-player';
 
 const EntireArea = styled.div`
     margin-top : 5%;
@@ -74,12 +75,15 @@ const MusicDetail = () => {
     const params = useParams();
     const [dataObj, setData] = useState({});
     const [curMusicState, setMusicState] = useRecoilState(musicState);
+    const [musicUrl, setMusicUrl] = useState(null);
     console.log(curMusicState);
     const getMusicData = async () => {
         await Axios.get(`${api.url}/musics/getMusic/${params["index"]}`)
         .then((res) => {
             setData(res.data[0]);
-        })
+        });
+        console.log("다음!!!");
+        setMusicUrl(`${api.url}/musics/${params["index"]}.mp3`);
     }
     
     useEffect(() => {
@@ -104,9 +108,11 @@ const MusicDetail = () => {
                     <SongName>{dataObj.name}</SongName>
                     <SingerName>{dataObj.singer}</SingerName>
                     <ButtonArea>
-                        <PlayButton>
-                            ▶️ 재생
-                        </PlayButton>
+                        <ReactAudioPlayer
+                            src={musicUrl}
+                            autoPlay
+                            controls
+                        />
                         <AddButton onClick={AddMusicToPlaylist}>
                             ✚ 플레이리스트에 추가
                         </AddButton>
