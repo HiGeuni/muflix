@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { musicState } from 'atoms/music';
+import music from "static/MeetOnlyInDream.mp3";
 
 const PlaylistDiv = styled.div`
     display: flex;
@@ -32,19 +33,36 @@ const useAudio = url => {
 };
   
 const TestComponent = ({ url }) => {
+
+    console.log(url);
+
+    const [audio] = useState(new Audio(music));
     const [curMusicState, setMusicState] = useRecoilState(musicState);
+
+    // useEffect(() => {
+    //     audio.addEventListener('ended', () => setMusicState(prev => {
+    //         let tempList = Object.assgin({}, prev);
+    //     }));
+    //     return () => {
+    //       audio.removeEventListener('ended', () => setMusicState(prev => {
+
+    //       }));
+    //     };
+    //   }, []);
+    
 
     const toggle = () => {
         setMusicState(prev => {
             let tempList = Object.assign({}, prev);
             tempList.isPlaying = !prev.isPlaying;
+            tempList.isPlaying ? audio.play() : audio.pause();
             return tempList;
         });
     } 
 
     return (
         <PlaylistDiv>
-            <button onClick={toggle}>{curMusicState.isPlaying ? "▶️" : "⏸"}</button>
+            <button onClick={toggle}>{curMusicState.isPlaying ? "⏸" : "▶️"}</button>
         </PlaylistDiv>
     );
 };

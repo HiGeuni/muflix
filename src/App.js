@@ -22,6 +22,9 @@ import MusicList from 'components/music/MusicList';
 import MusicDetail from 'components/music/MusicDetail';
 import NewMusicForm from "components/music/NewMusic";
 
+import CommentForm from 'components/comment/NewComment';
+import CommentList from 'components/comment/CommentList';
+
 import Playlist from 'components/playlist/Playlist';
 import PlaylistDetail from 'components/playlist/PlaylistDetail.js'
 import NewPlayListForm from 'components/playlist/NewPlaylist'
@@ -31,7 +34,7 @@ import Axios from 'axios';
 import { api } from './config/api';
 import Title from 'components/Title';
 import TestComponent from 'components/TestComponent';
-import Comment from 'components/Comment';
+
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
@@ -102,7 +105,13 @@ const App = () => {
         />
         <Route
           path="/musicDetail/:index"
-          element = {<MusicDetail />}
+          element = {
+            <>
+              <MusicDetail />
+              <CommentForm />
+              <CommentList />
+            </>
+          }
         />
         <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
@@ -120,8 +129,7 @@ const App = () => {
         } />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
-      <TestComponent url="/Users/khyo/GDSC/PROJECT/muflix/public/MeetOnlyInDream.mp3"/>
-      {curMusicState.isPlaying && <Comment />}
+      {/* <TestComponent url={`MeetOnlyInDream.mp3`}/> */}
     </IsLogin.Provider>
   );
 }

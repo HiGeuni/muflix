@@ -3,7 +3,6 @@ import Axios from "axios";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { api } from "config/api";
-import Comment from "components/Comment";
 import { useRecoilState } from "recoil";
 import { musicState } from "atoms/music";
 
@@ -114,7 +113,6 @@ const MusicDetail = () => {
                     </ButtonArea>
                 </InformationArea>
             </EntireArea>
-            <Comment />
         </>
     );
 }
