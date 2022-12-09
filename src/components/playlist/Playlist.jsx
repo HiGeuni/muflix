@@ -26,10 +26,11 @@ const StyledLink = styled(Link)`
     margin: auto;
     align-items: center; // for vertical
     justify-content: center; // for horizontal
-    border: 2px solid;
+    border: 2px solid black;
     width: 200px;
     height: 200px;
-    color : #000000;
+    text-decoration: none;
+    color: black;
 `
 
 const UnMarkedli = styled.li`
@@ -68,8 +69,6 @@ const Playlist = () => {
         })
     }
 
-
-    
     useEffect(() => {
         fetchData();
     }, [])

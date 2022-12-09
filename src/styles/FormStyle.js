@@ -8,7 +8,7 @@ const NewStyle = styled.div`
         background-color: rgba(0,0,0,.90);
         padding: 60px;
         max-width: 600px;
-        min-height: 85vh;
+        min-height: 80vh;
         margin: auto;
     }
     h2{

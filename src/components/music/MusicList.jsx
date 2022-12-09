@@ -10,6 +10,15 @@ import "styles/slick-theme.css";
 import "styles/slick.css";
 import Comment from "components/Comment";
 
+const CustomDiv = styled.div`
+    font-family:"noto-sans";
+    font-weight:600;
+    text-align: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+`
+
 const AddMusic = styled.div`
     display: flex;
     align-items: center; // for vertical
@@ -49,15 +58,6 @@ const StyledLink = styled(Link)`
     }
     margin-left: auto;
     margin-right: auto;
-`
-
-const CustomDiv = styled.div`
-    font-family:"noto-sans";
-    font-weight:600;
-    text-align: center;
-    justify-content: center;
-    margin-left: 10%;
-    margin-right: 10%;
 `
 
 const MusicList = () => {

@@ -1,20 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Axios } from "axios";
-import { api } from "../config/api";
 
-const CustomButton = styled.button`
-    font-weight: 600;
-    font-size: 24px;
+const PlaylistDiv = styled.div`
+    display: flex;
+    margin-left: 13%;
 `
 
-const testComponent = () => {
-    
-    return (
-        <audio src="">
-            
-        </audio>
-    )
-}
+const useAudio = url => {
+    const [audio] = useState(new Audio(url));
+    const [playing, setPlaying] = useState(false);
+  
+    const toggle = () => setPlaying(!playing);
+  
+    useEffect(() => {
+        playing ? audio.play() : audio.pause();
+      },
+      [playing]
+    );
+  
+    useEffect(() => {
+      audio.addEventListener('ended', () => setPlaying(false));
+      return () => {
+        audio.removeEventListener('ended', () => setPlaying(false));
+      };
+    }, []);
+  
+    return [playing, toggle];
+};
+  
+const TestComponent = ({ url }) => {
+    const [playing, toggle] = useAudio(url);
 
-export default testComponent;
+    return (
+        <PlaylistDiv>
+            <button onClick={toggle}>{playing ? "▶️" : "⏸"}</button>
+        </PlaylistDiv>
+    );
+};
+
+export default TestComponent;

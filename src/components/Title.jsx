@@ -3,11 +3,11 @@ import styled from "styled-components"
 const CustomDiv = styled.div`
     font-family:"noto-sans";
     font-weight:600;
-    // display: flex;
-    text-align: center;
     justify-content: center;
     margin-top: 3%;
-    margin-bottom: 3%;
+    margin-left: 13%;
+    margin-right: 13%;
+    // color: gray;
 `
 
 const Title = ({name}) => {

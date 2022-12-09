@@ -1,6 +1,5 @@
 // react-hook-form을 이용해서 form을 만들기
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from "config/api";
@@ -8,8 +7,6 @@ import { IsLogin } from "App";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import NewStyle from "styles/FormStyle";
-
-import Background from "layouts/Background";
 
 const SignInForm = () => {  
     const {setIsLogin} = useContext(IsLogin);
@@ -34,7 +31,6 @@ const SignInForm = () => {
     const onInvalid = (data) => console.log(data, "onInvalid");
     return (
         <>
-            <Background />
             <NewStyle>
                 <h2>로그인</h2>
                 <form onSubmit={handleSubmit(onValid, onInvalid)}>

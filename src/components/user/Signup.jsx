@@ -4,7 +4,6 @@ import NewStyle from "styles/FormStyle";
 import Axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { api } from "config/api";
-import Background from "layouts/Background";
 
 const SignInForm = () => {
 
@@ -23,7 +22,6 @@ const SignInForm = () => {
 
     return (
         <>
-            <Background />
             <NewStyle>
                 <h2>회원 가입</h2>
                 <form onSubmit={handleSubmit((data) => onButtonClick(data))}>

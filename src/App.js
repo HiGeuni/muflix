@@ -2,7 +2,7 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import Header from 'layouts/Header';
-import BackGround from 'layouts/Background';
+import Background from 'layouts/Background';
 
 import Signin from 'components/user/Signin';
 import Signup from 'components/user/Signup';
@@ -17,10 +17,11 @@ import Playlist from 'components/playlist/Playlist';
 import PlaylistDetail from 'components/playlist/PlaylistDetail.js'
 import NewPlayListForm from 'components/playlist/NewPlaylist'
 
-import Padding from 'layouts/Padding';
+import TopSizedBox from 'layouts/TopSizedBox';
 import Axios from 'axios';
 import { api } from './config/api';
 import Title from 'components/Title';
+import TestComponent from 'components/TestComponent';
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
@@ -59,7 +60,7 @@ const App = () => {
   return (
     <IsLogin.Provider value = {{isLogin, setIsLogin}} >
       <Header />
-      <Padding />
+      <TopSizedBox />
       <Routes>
         <Route path="/" element={
           <>
@@ -70,8 +71,18 @@ const App = () => {
           </>
         } 
         />
-        <Route path="/newMusic" element={<NewMusicForm />} />
-        <Route path="/newPlaylist" element={<NewPlayListForm />} />
+        <Route path="/newMusic" element={
+          <>
+            <Background />
+            <NewMusicForm />
+          </>
+        } />
+        <Route path="/newPlaylist" element={
+          <>
+            <Background />
+            <NewPlayListForm />
+          </>
+        } />
         <Route path="/editPlaylist/:index" element={<NewPlayListForm />} />
         <Route
           path='/playlistDetail/:index'
@@ -83,10 +94,21 @@ const App = () => {
         />
         <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="login" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="login" element={
+          <>
+            <Background />
+            <Signin />
+          </>
+        } />
+        <Route path="signup" element={
+          <>
+            <Background />
+            <Signup />
+          </>
+        } />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
+      <TestComponent url="/Users/khyo/GDSC/PROJECT/muflix/public/MeetOnlyInDream.mp3"/>
     </IsLogin.Provider>
   );
 }
