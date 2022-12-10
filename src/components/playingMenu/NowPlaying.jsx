@@ -4,8 +4,6 @@ import { useRecoilState } from "recoil";
 import { musicState } from 'atoms/music';
 import Axios from "axios";
 import { api } from "config/api";
-import { Link } from "react-router-dom";
-import { ProgressBar } from "audio-progress-bar";
 import ReactAudioPlayer from "react-audio-player";
 
 // .header {
