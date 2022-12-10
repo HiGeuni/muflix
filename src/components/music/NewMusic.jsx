@@ -1,4 +1,4 @@
-// react-hook-form을 이용해서 form을 만들기
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import NewStyle from 'styles/FormStyle';

@@ -27,7 +27,7 @@ const InformationArea = styled.div`
   // display : flex;
   // flex-direction: column;
 `;
-// margin을 퍼센트로 정하고 싶은데...
+
 const SongName = styled.div`
   display: flex;
   font-weight: 700;
@@ -64,7 +64,7 @@ const ButtonArea = styled.div`
 // `;
 
 const AddButton = styled.button`
-  width: 200px;
+  min-width: 250px;
   font-size: 18px;
   font-weight: 600;
   background-color: black;
@@ -76,6 +76,7 @@ function MusicDetail() {
   const [dataObj, setData] = useState({});
   const [curMusicState, setMusicState] = useRecoilState(musicState);
   const [musicUrl, setMusicUrl] = useState(null);
+  
   const getMusicData = async () => {
     await Axios.get(`${api.url}/musics/getMusic/${params.index}`).then(
       (res) => {
@@ -86,6 +87,7 @@ function MusicDetail() {
   };
 
   useEffect(() => {
+    console.log(curMusicState);
     getMusicData();
   }, []);
 
@@ -93,7 +95,7 @@ function MusicDetail() {
     const id = params.index;
     setMusicState((prev) => {
       const tempList = { ...prev };
-      tempList.playlist = [...prev.playlist, id];
+      tempList.playlist = [...prev.playlist, dataObj];
       return tempList;
     });
   };

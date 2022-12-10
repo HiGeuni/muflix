@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import SliderSettings from 'config/SliderSettings';
 import Axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { api } from 'config/api';
 
 // import 'styles/slick-theme.css';
@@ -78,17 +78,21 @@ function MusicList() {
         {data?.map((s) => (
           <UnMarkedli key={s.id}>
             <StyledLink to={{ pathname: `/musicDetail/${s.id}` }}>
-              <img src={s.album_cover} className="Album-Cover" alt="Album" />{' '}
+              <img src={s.album_cover} className="Album-Cover" alt="Album" />
+              {' '}
               <br />
               <span>
-                Title : {s.name} <br />
-                Singer : {s.singer}
+                Title :
+                {s.name}
+                <br />
+                Singer :
+                {s.singer}
               </span>
             </StyledLink>
           </UnMarkedli>
         ))}
         <CustomLink to="/newMusic">
-          <AddMusic> {data ? 'Add Music' : 'Loading...'} </AddMusic>
+          <AddMusic>{data ? 'Add Music' : 'Loading...'}</AddMusic>
         </CustomLink>
       </Slider>
     </CustomDiv>

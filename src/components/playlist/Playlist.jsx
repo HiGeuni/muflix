@@ -71,6 +71,7 @@ function Playlist() {
   useEffect(() => {
     fetchData();
   }, []);
+  
   return (
     <CustomDiv>
       <Slider {...SliderSettings}>

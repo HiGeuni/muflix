@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import image from 'static/images.jpg';
+import React from 'react';
 
 const StyledBackground = styled.div`
   position: absolute;

@@ -5,6 +5,8 @@ import { musicState } from 'atoms/music';
 import Axios from 'axios';
 import { api } from 'config/api';
 import ReactAudioPlayer from 'react-audio-player';
+import prevSong from 'static/musicControl/back.png';
+import nextSong from 'static/musicControl/next.png';
 
 const Wrapper = styled.div`
   display: block;
@@ -39,21 +41,30 @@ const PlaylistDiv = styled.div`
     display: block;
     .title {
       font-size: 20px;
+      font-weight: 700;
       margin: 3%;
       border: solid 1px;
     }
     .singer {
-      font-size: 16px;
+      font-size: 14px;
       display: flex;
       margin: 3%;
       border: solid 1px;
     }
+  }
+  .music-info-area {
+    border: solid 1px;
   }
   .control {
     display: flex;
     min-width: 500px;
     align-items: center;
     margin: 1%;
+    border: solid 1px;
+    img {
+      width: 30px;
+      height: 30px;
+    }
     * {
       font-size: 18px;
       margin: 3%;
@@ -76,7 +87,7 @@ function NowPlaying() {
   const [curMusicData, setCurMusicData] = useState(null);
 
   const setAudioData = async (index) => {
-    const musicId = curMusicState.playlist[index];
+    const musicId = curMusicState.playlist[index].id;
 
     setMusicState((prev) => ({
       ...prev,
@@ -84,43 +95,17 @@ function NowPlaying() {
       curPlaying: index,
     }));
 
-    // setMusicState((prev) => {
-    //   const tempList = { ...prev };
-    //   tempList.isPlaying = false;
-    //   tempList.curPlaying = index;
-    //   return tempList;
-    // });
-
-    // setAudio(() => {
-    //     const ad = new Audio(`${api.url}/musics/${musicId}.mp3`);
-    //     ad.controls = true;
-    //     return ad;
-    // });
-
     setAudioURL(`${api.url}/musics/${musicId}.mp3`);
 
     await Axios.get(`${api.url}/musics/getMusic/${musicId}`).then((res) => {
       setCurMusicData(res.data[0]);
     });
-
-    //     audio?.addEventListener('ended', () => setMusicState((prev) => {
-    //         let tempList = Object.assign({}, prev);
-    //         tempList.isPlaying = false;
-    //         return tempList;
-    //     }));
-    //     return () => {
-    //         audio?.removeEventListener('ended', () => setMusicState((prev) => {
-    //             let tempList = Object.assign({}, prev);
-    //             tempList.isPlaying = false;
-    //             return tempList;
-    //         }));
-    //   };
   };
 
   const onClickPrev = () => {
     if (
-      curMusicState.curPlaying > 0 &&
-      curMusicState.curPlaying < curMusicState.playlist.length
+      curMusicState.curPlaying > 0
+      && curMusicState.curPlaying < curMusicState.playlist.length
     ) {
       setAudioData(curMusicState.curPlaying - 1);
     } else if (curMusicState.curPlaying === 0) {
@@ -146,10 +131,6 @@ function NowPlaying() {
     }));
   };
 
-  // const onClickShowPlayList = () => {
-
-  // }
-
   useEffect(() => {
     setAudioData(0);
   }, []);
@@ -158,9 +139,13 @@ function NowPlaying() {
     <Wrapper>
       <PlaylistDiv>
         <div className="control">
-          <div onClick={onClickPrev}>⏮</div>
-          <ReactAudioPlayer src={audioURL} controls />
-          <div onClick={onClickNext}>⏭</div>
+          <button type="button" onClick={onClickPrev}>
+            <img src={prevSong} alt="back" />
+          </button>
+          <ReactAudioPlayer src={audioURL} controls autoPlay />
+          <button type="button" onClick={onClickNext}>
+            <img src={nextSong} alt="next" />
+          </button>
         </div>
         <div className="music-info-area">
           <div className="album-cover">
@@ -175,19 +160,10 @@ function NowPlaying() {
             </div>
           </div>
         </div>
-        {/* <div className="control">
-                    <div onClick={onClickPrev}>
-                        ⏮
-                    </div>
-                    <div onClick={onClickPlay}>{curMusicState.isPlaying ? "⏸" : "▶️"}</div>
-                    <div onClick={onClickNext}>
-                        ⏭
-                    </div>
-                </div> */}
         <div className="playlist">⏏</div>
-        <div className="close" onClick={onClickClose}>
+        <button type="button" className="close" onClick={onClickClose}>
           X
-        </div>
+        </button>
       </PlaylistDiv>
     </Wrapper>
   );
