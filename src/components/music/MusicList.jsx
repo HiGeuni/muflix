@@ -10,12 +10,13 @@ import { api } from 'config/api';
 // import 'styles/slick.css';
 
 const CustomDiv = styled.div`
+  max-width: 1024px;
   font-family: 'noto-sans';
   font-weight: 600;
   text-align: center;
   justify-content: center;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const AddMusic = styled.div`

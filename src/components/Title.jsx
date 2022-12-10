@@ -5,8 +5,9 @@ const CustomDiv = styled.div`
   font-weight: 600;
   justify-content: center;
   margin-top: 3%;
-  margin-left: 21%;
-  margin-right: 21%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
   // color: gray;
 `;
 

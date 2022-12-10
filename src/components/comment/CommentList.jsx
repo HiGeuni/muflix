@@ -6,6 +6,12 @@ import styled from 'styled-components';
 import { IsLogin } from 'App';
 import { useForm } from 'react-hook-form';
 
+const Wrapper = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+`
+
 const CustomDiv = styled.div`
   border: solid 2px black;
   border-radius: 5px;
@@ -107,7 +113,7 @@ function CommentList() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <CustomDiv>
         <form onSubmit={handleSubmit((data) => onSubmit(data))}>
           <textarea
@@ -152,7 +158,7 @@ function CommentList() {
           </div>
         ))}
       </CommentListArea>
-    </>
+    </Wrapper>
   );
 }
 

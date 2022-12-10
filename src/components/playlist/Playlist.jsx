@@ -56,8 +56,9 @@ const CustomDiv = styled.div`
     padding-top: 2rem;
     padding-bottom: 1.5rem;
   }
-  margin-left: 20%;
-  margin-right: 20%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 function Playlist() {

@@ -9,8 +9,8 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   display: block;
   position: fixed;
-  bottom: 0px;
-  right: 0px;
+  bottom: 20px;
+  right: 20px;
   button {
     background: none;
     border: none;
@@ -62,12 +62,14 @@ const StyledDiv = styled.div`
   }
 
   .title {
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 16px;
     margin-bottom: 4px;
   }
 
   .artist {
-    font-weight: 300;
+    font-weight: 200;
+    font-size: 15px;
     margin-top: 0;
   }
 
@@ -80,14 +82,14 @@ const StyledDiv = styled.div`
 
   .audio-controls .prev svg,
   .audio-controls .next svg {
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
   }
 
   .audio-controls .play svg,
   .audio-controls .pause svg {
-    height: 40px;
-    width: 40px;
+    height: 25px;
+    width: 25px;
   }
 
   .audio-controls path {

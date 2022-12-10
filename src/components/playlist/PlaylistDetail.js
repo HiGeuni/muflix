@@ -7,6 +7,12 @@ import { IsLogin } from 'App';
 import { musicState } from 'atoms/music';
 import { useRecoilState } from 'recoil';
 
+const Wrapper = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+`
+
 const UnMarkedli = styled.li`
   margin: 1rem;
   padding: 1rem;
@@ -95,7 +101,7 @@ function PlaylistDetail() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <PlaylistControl>
         <h1>{playlistData ? playlistData.name : ''}</h1>
         {isUserHasPlaylist ? (
@@ -117,7 +123,7 @@ function PlaylistDetail() {
           {data.name} -{data.singer}
         </UnMarkedli>
       ))}
-    </>
+    </Wrapper>
   );
 }
 

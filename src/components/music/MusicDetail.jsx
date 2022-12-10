@@ -8,10 +8,15 @@ import ReactAudioPlayer from 'react-audio-player';
 import { musicState } from 'atoms/music';
 
 const EntireArea = styled.div`
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 5%;
   display: flex;
   // justify-content: center;
   img {
+    min-width: 250px;
+    min-height: 250px;
     margin-right: 3%;
     display: block;
     width: 25%;
@@ -54,21 +59,13 @@ const ButtonArea = styled.div`
   flex-direction: row;
 `;
 
-// const PlayButton = styled.button`
-//   width: 80px;
-//   height: 40px;
-//   font-size: 18px;
-//   font-weight: 600;
-//   margin-right: 3%;
-//   background-color: white;
-// `;
-
 const AddButton = styled.button`
-  min-width: 250px;
+  min-width: 240px;
   font-size: 18px;
   font-weight: 600;
   background-color: black;
   color: white;
+  margin-left: 5%;
 `;
 
 function MusicDetail() {
@@ -76,7 +73,7 @@ function MusicDetail() {
   const [dataObj, setData] = useState({});
   const [curMusicState, setMusicState] = useRecoilState(musicState);
   const [musicUrl, setMusicUrl] = useState(null);
-  
+
   const getMusicData = async () => {
     await Axios.get(`${api.url}/musics/getMusic/${params.index}`).then(
       (res) => {
