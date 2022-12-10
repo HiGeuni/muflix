@@ -110,7 +110,6 @@ const MusicDetail = () => {
                     <ButtonArea>
                         <ReactAudioPlayer
                             src={musicUrl}
-                            autoPlay
                             controls
                         />
                         <AddButton onClick={AddMusicToPlaylist}>

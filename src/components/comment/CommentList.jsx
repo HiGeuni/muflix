@@ -40,13 +40,11 @@ const CommentList = () => {
     const getComments = async () => {
         await Axios.get(`${api.url}/comments/getComment/${params.index}`)
         .then((data) => {
-            console.log(...data.data);
             setComments([...data.data]);
         })
     }
 
     const onDeleteButtonClick = (id) => {
-        console.log("id : ", id);
         const token = localStorage.getItem('loging-token');
         Axios.delete(`${api.url}/comments/delComment/${id}`,{
             headers:{
@@ -55,7 +53,6 @@ const CommentList = () => {
             }
         })
         .then(response => {
-            console.log(response);
             alert(response.data);
         });
     }

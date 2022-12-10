@@ -46,6 +46,7 @@ const CommentForm = () => {
                 }
             }
         );
+        alert("댓글 작성이 완료되었습니다.");
     }
 
     return (
@@ -55,7 +56,7 @@ const CommentForm = () => {
                 {isLogin && 
                     <>
                         <div>
-                            <input type="checkbox" {...register("anomymous")}/>익명
+                            <input type="checkbox" {...register("anonymous")}/>익명
                         </div>
                         <input type="submit" className="submitButton" value="등록" />
                     </>

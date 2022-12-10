@@ -34,6 +34,7 @@ import Axios from 'axios';
 import { api } from './config/api';
 import Title from 'components/Title';
 import TestComponent from 'components/TestComponent';
+import NowPlaying from 'components/playingMenu/NowPlaying';
 
 
 // isLogin은 상태 관리하기
@@ -129,7 +130,7 @@ const App = () => {
         } />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
-      {/* <TestComponent url={`MeetOnlyInDream.mp3`}/> */}
+      {curMusicState.playlist.length && <NowPlaying />}
     </IsLogin.Provider>
   );
 }
