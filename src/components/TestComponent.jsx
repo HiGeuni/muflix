@@ -34,8 +34,6 @@ const useAudio = url => {
   
 const TestComponent = ({ url }) => {
 
-    console.log(url);
-
     const [audio] = useState(new Audio(music));
     const [curMusicState, setMusicState] = useRecoilState(musicState);
 

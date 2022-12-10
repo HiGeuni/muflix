@@ -59,7 +59,7 @@ const CommentList = () => {
 
     useEffect(() => {
         getComments();
-    }, []);
+    }, [comments]);
 
     return (
         <CommentListArea>

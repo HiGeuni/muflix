@@ -34,8 +34,7 @@ const SignInForm = () => {
                     <label>password</label>
                     <input name="password1" type="password" placeholder="password" {...register("password1")} />
                     <label>password 확인</label>
-                    <input name="password2" type="password" placeholder="Verify Password" {...register("password2")} />
-                    
+                    <input name="password2" type="password" placeholder="Verify Password" {...register("password2")} />            
                     <input type="submit" className="submitButton" value="등록" />
                 </form>
             </NewStyle>

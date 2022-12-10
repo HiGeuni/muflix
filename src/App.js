@@ -130,7 +130,7 @@ const App = () => {
         } />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
-      {curMusicState.playlist.length && <NowPlaying />}
+      {curMusicState.playlist.length ? <NowPlaying /> :""}
     </IsLogin.Provider>
   );
 }
