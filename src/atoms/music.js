@@ -3,7 +3,7 @@ const { atom } = require('recoil');
 
 // const { persistAtom } = recoilPersist();
 
-export default atom({
+export const musicState = atom({
   key: 'musicState',
   default: {
     isPlaying: false,

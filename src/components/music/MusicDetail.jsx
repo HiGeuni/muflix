@@ -74,7 +74,7 @@ const AddButton = styled.button`
 function MusicDetail() {
   const params = useParams();
   const [dataObj, setData] = useState({});
-  const [setMusicState] = useRecoilState(musicState);
+  const [curMusicState, setMusicState] = useRecoilState(musicState);
   const [musicUrl, setMusicUrl] = useState(null);
   const getMusicData = async () => {
     await Axios.get(`${api.url}/musics/getMusic/${params.index}`).then(

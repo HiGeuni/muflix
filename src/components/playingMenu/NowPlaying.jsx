@@ -6,16 +6,6 @@ import Axios from 'axios';
 import { api } from 'config/api';
 import ReactAudioPlayer from 'react-audio-player';
 
-// .header {
-//     display: block;
-//     font-size: 40px;
-//     position: fixed;
-//     width: 100%;
-//     height: 80px;
-//     background-color: rgba($color: #000000, $alpha: 0.75);
-//     z-index: 8;
-// }
-
 const Wrapper = styled.div`
   display: block;
   position: fixed;
@@ -90,15 +80,16 @@ function NowPlaying() {
 
     setMusicState((prev) => ({
       ...prev,
-      isPlaying: true,
+      isPlaying: false,
+      curPlaying: index,
     }));
 
-    setMusicState((prev) => {
-      const tempList = { ...prev };
-      tempList.isPlaying = false;
-      tempList.curPlaying = index;
-      return tempList;
-    });
+    // setMusicState((prev) => {
+    //   const tempList = { ...prev };
+    //   tempList.isPlaying = false;
+    //   tempList.curPlaying = index;
+    //   return tempList;
+    // });
 
     // setAudio(() => {
     //     const ad = new Audio(`${api.url}/musics/${musicId}.mp3`);
@@ -147,13 +138,12 @@ function NowPlaying() {
 
   const onClickClose = () => {
     // audio.pause();
-    setMusicState((prev) => {
-      const tempList = { ...prev };
-      tempList.playlist = [];
-      tempList.curPlaying = -1;
-      tempList.isPlaying = false;
-      return tempList;
-    });
+    setMusicState((prev) => ({
+      ...prev,
+      playlist: [],
+      curPlaying: -1,
+      isPlaying: false,
+    }));
   };
 
   // const onClickShowPlayList = () => {

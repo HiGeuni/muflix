@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import api from 'config/api';
+import { api } from 'config/api';
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
