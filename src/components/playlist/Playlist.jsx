@@ -56,8 +56,8 @@ const CustomDiv = styled.div`
     padding-top: 2rem;
     padding-bottom: 1.5rem;
   }
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 `;
 
 function Playlist() {
@@ -71,7 +71,7 @@ function Playlist() {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   return (
     <CustomDiv>
       <Slider {...SliderSettings}>

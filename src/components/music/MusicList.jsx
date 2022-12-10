@@ -14,8 +14,8 @@ const CustomDiv = styled.div`
   font-weight: 600;
   text-align: center;
   justify-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 `;
 
 const AddMusic = styled.div`
