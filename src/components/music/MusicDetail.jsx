@@ -113,7 +113,7 @@ const MusicDetail = () => {
                             controls
                         />
                         <AddButton onClick={AddMusicToPlaylist}>
-                            ✚ 플레이리스트에 추가
+                            ✚ 현재 재생목록에 추가
                         </AddButton>
                     </ButtonArea>
                 </InformationArea>

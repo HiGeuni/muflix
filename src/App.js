@@ -1,17 +1,15 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom';
-import Header from 'layouts/Header';
-import Background from 'layouts/Background';
+import Axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { musicState } from 'atoms/music';
-// import {
-//   RecoilRoot,
-//   atom,
-//   selector,
-//   useRecoilState,
-//   useRecoilValue,
-// } from 'recoil';
+import { api } from './config/api';
+
+import Header from 'layouts/Header';
+import Background from 'layouts/Background';
+import TopSizedBox from 'layouts/TopSizedBox';
+import BottomSizedBox from 'layouts/BottomSizedBox';
 
 import Signin from 'components/user/Signin';
 import Signup from 'components/user/Signup';
@@ -22,20 +20,15 @@ import MusicList from 'components/music/MusicList';
 import MusicDetail from 'components/music/MusicDetail';
 import NewMusicForm from "components/music/NewMusic";
 
-import CommentForm from 'components/comment/NewComment';
 import CommentList from 'components/comment/CommentList';
 
 import Playlist from 'components/playlist/Playlist';
-import PlaylistDetail from 'components/playlist/PlaylistDetail.js'
+import PlaylistDetail from 'components/playlist/PlaylistDetail'
 import NewPlayListForm from 'components/playlist/NewPlaylist'
 
-import TopSizedBox from 'layouts/TopSizedBox';
-import Axios from 'axios';
-import { api } from './config/api';
-import Title from 'components/Title';
-import TestComponent from 'components/TestComponent';
 import NowPlaying from 'components/playingMenu/NowPlaying';
 
+import Title from 'components/Title';
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
@@ -109,7 +102,6 @@ const App = () => {
           element = {
             <>
               <MusicDetail />
-              <CommentForm />
               <CommentList />
             </>
           }
@@ -130,7 +122,12 @@ const App = () => {
         } />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
-      {curMusicState.playlist.length ? <NowPlaying /> :""}
+      {curMusicState.playlist.length 
+        ? <>
+            <BottomSizedBox />
+            <NowPlaying />
+          </> 
+        : ""}
     </IsLogin.Provider>
   );
 }
