@@ -1,14 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BottomArea = styled.div`
-    display: block;
-    height: 150px;
-`
+  display: block;
+  height: 150px;
+`;
 
-const BottomSizedBox = () => {
-    return (
-        <BottomArea></BottomArea>
-    )
+function BottomSizedBox() {
+  return <BottomArea />;
 }
 
 export default BottomSizedBox;

@@ -1,14 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const TopArea = styled.div`
-    display: block;
-    height: 80px;
-`
+  display: block;
+  height: 80px;
+`;
 
-const TopSizedBox = () => {
-    return (
-        <TopArea></TopArea>
-    )
+function TopSizedBox() {
+  return <TopArea />;
 }
 
 export default TopSizedBox;
