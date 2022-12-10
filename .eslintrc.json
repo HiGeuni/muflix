@@ -18,12 +18,14 @@
         "react"
     ],
     "rules": {
+        "import/no-unresolved": "off",
+        "react/jsx-props-no-spreading": "off"
     },
     "settings": {
         "import/resolver": {
-          "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
         }
-      },
+    }
 }

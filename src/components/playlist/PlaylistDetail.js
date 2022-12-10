@@ -39,9 +39,8 @@ function PlaylistDetail() {
   const [playlistData, setData] = useState();
   const [musicData, setMusics] = useState([]);
   const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
-  const [curMusicState] = useRecoilState(musicState);
+  const [curMusicState, setMusicState] = useRecoilState(musicState);
 
-  console.log('isPlaying: ', curMusicState.isPlaying);
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getPlaylist/${params.index}`).then(
       (d) => {

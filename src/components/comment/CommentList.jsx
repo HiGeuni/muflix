@@ -1,6 +1,6 @@
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import { api } from 'config/api';
-import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IsLogin } from 'App';
@@ -63,9 +63,20 @@ function CommentList() {
   const { register, handleSubmit } = useForm();
   const [comments, setComments] = useState([]);
 
+  const getComments = async () => {
+    await Axios.get(`${api.url}/comments/getComment/${params.index}`).then(
+      (data) => {
+        const d = [...data.data];
+        for (let i = 0; i < d.length; i += 1) {
+          d[i].write_time = d[i].write_time.replace(/[a-z]/gi, ' ');
+        }
+        setComments([...d]);
+      },
+    );
+  };
+
   const onSubmit = async (data) => {
     const token = localStorage.getItem('loging-token');
-    console.log(data, params.index, token);
     await Axios.post(`${api.url}/comments/newComment/${params.index}`, data, {
       headers: {
         Authorization: token,
@@ -74,14 +85,6 @@ function CommentList() {
       },
     });
     getComments();
-  };
-
-  const getComments = async () => {
-    await Axios.get(`${api.url}/comments/getComment/${params.index}`).then(
-      (data) => {
-        setComments([...data.data]);
-      },
-    );
   };
 
   const onDeleteButtonClick = (id) => {
@@ -133,8 +136,11 @@ function CommentList() {
                 <div className="write-time">{data.write_time}</div>
               </div>
               <div className="buttons">
-                <button className="edit-button">수정</button>
+                <button type="button" className="edit-button">
+                  수정
+                </button>
                 <button
+                  type="button"
                   className="delete-button"
                   onClick={() => onDeleteButtonClick(data.id)}
                 >
