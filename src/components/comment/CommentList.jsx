@@ -15,9 +15,11 @@ const Wrapper = styled.div`
 const CustomDiv = styled.div`
   border: solid 2px black;
   border-radius: 5px;
-  margin: 3.5%;
+  margin: 3.3%;
   width: 94%;
+  max-height: 200px;
   form {
+    font-size: 14px;
     display: flex;
     flex-direction: column;
     margin: 1%;
@@ -30,7 +32,7 @@ const CustomDiv = styled.div`
   }
   .submitButton {
     margin-left: 94%;
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 

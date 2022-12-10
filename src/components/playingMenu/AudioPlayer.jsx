@@ -128,10 +128,10 @@ function AudioPlayer() {
     audioRef.current.pause();
     audioRef.current = new Audio(getMusicUrl(index));
     setTrackProgress(audioRef.current.currentTime);
-      // audioRef.current.play();
+    audioRef.current.play();
     setMusicState((prev) => ({
         ...prev,
-        isPlaying: false,
+        isPlaying: true,
         curPlaying: index,
     }));
     startTimer();
