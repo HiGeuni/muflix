@@ -11,12 +11,12 @@ import { api } from 'config/api';
 
 const CustomDiv = styled.div`
   max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: 'noto-sans';
   font-weight: 600;
   text-align: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const AddMusic = styled.div`

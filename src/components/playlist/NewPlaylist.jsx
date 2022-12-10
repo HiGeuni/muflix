@@ -28,6 +28,10 @@ const CustomDiv = styled.div`
   span {
     color: white;
   }
+  .radio {
+    min-width: 200px;
+    color: white;
+  }
   margin-left: auto;
   margin-right: auto;
 `;
@@ -106,6 +110,7 @@ function NewPlayListForm() {
   const [musicData, setData] = useState(null);
   const [playlistData, setPlayListData] = useState();
   const [resList, setRes] = useState([]);
+  const [representativeSong, setRepSong] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
   const isEdit = !!params.index;
@@ -116,25 +121,12 @@ function NewPlayListForm() {
     });
   };
 
-  // for music Selection
-  // const [musicData, setMusics] = useState([]);
-
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getPlaylist/${params.index}`).then(
       (d) => {
         console.log(d.data.playlist_info);
         console.log(d.data.musics);
         setPlayListData(d.data.playlist_info);
-        // for(let i of d.data.musics){
-        //     Axios.get(`${api.url}/musics/getMusic/${i.music_id}`)
-        //     .then((res) => {
-        //         console.log(res.data[0]);
-        //         const res2 = res.data;
-        //         setMusics(prev => {
-        //             return [...prev, ...res2];
-        //         });
-        //     })
-        // }
       },
     );
   };
@@ -162,8 +154,8 @@ function NewPlayListForm() {
     if (data.information === '') {
       data.information = playlistData?.information;
     }
+    data.representative = representativeSong;
     data.musics = resList;
-    // alert(JSON.stringify(data));
     const token = localStorage.getItem('loging-token');
     const headers = {
       Authorization: token,
@@ -181,6 +173,7 @@ function NewPlayListForm() {
       : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
           headers,
         });
+    console.log(representativeSong);
     navigate('/');
   };
 
@@ -228,6 +221,17 @@ function NewPlayListForm() {
                     Title : {s.name} <br />
                     Singer : {s.singer}
                   </span>
+                  <div className='radio'>
+                    <input
+                    type="radio"
+                    value={s.name}
+                    name="represent"
+                    onChange ={() => {
+                      console.log(s.id);
+                      setRepSong(s.id);
+                    }}
+                    />대표 곡
+                  </div>
                 </CustomDiv>
               </UnMarkedli>
             ))}
