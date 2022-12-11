@@ -5,12 +5,13 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { IsLogin } from 'App';
 import { useForm } from 'react-hook-form';
+import { ReactComponent as Like } from 'static/icon/like.svg';
 
 const Wrapper = styled.div`
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
-`
+`;
 
 const CustomDiv = styled.div`
   border: solid 2px black;
@@ -43,22 +44,52 @@ const CommentListArea = styled.div`
   .topArea {
     display: flex;
     justify-content: space-between;
+    .info-area {
+      display: flex;
+      align-items: center;
+      .writer-info {
+        display: block;
+        .writer {
+          margin: 0.5%;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .write-time {
+          font-size: 12px;
+          color: gray;
+        }
+      }
+      .buttons {
+        min-width: 100px;
+        margin: auto;
+        .btn{
+          border: none;
+          background-color: #fff;
+          color: gray;
+        }
+      }
+    }
+    .good {
+      min-width: 100px;
+      display: flex;
+      align-items: center;
+      border 1px solid;
+      border-radius: 5px;
+      .good-button{
+        display: flex;
+        align-items: center;
+        border: none;
+        background: none;
+      }
+      .upvote {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   }
   .commmentArea {
     padding: 0.5%;
     border-bottom: solid black;
-  }
-  .writer-info {
-    display: block;
-  }
-  .writer {
-    margin: 0.5%;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .write-time {
-    font-size: 12px;
-    color: gray;
   }
   .content {
     padding-top: 1%;
@@ -68,7 +99,7 @@ const CommentListArea = styled.div`
 function CommentList() {
   const params = useParams();
   const { isLogin } = useContext(IsLogin);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [comments, setComments] = useState([]);
 
   const getComments = async () => {
@@ -92,6 +123,7 @@ function CommentList() {
         'Content-Type': 'application/json',
       },
     });
+    reset();
     getComments();
   };
 
@@ -110,6 +142,22 @@ function CommentList() {
     });
   };
 
+  const onClickLikeBtn = (id) => {
+    Axios.put(`${api.url}/comments/upvote/${id}`, {}).catch((e) =>
+      console.log(e),
+    );
+    setComments((prev) => {
+      let tempComment = [...prev];
+      for (let i = 0; i < prev.length; ++i) {
+        if (tempComment[i].id === id) {
+          tempComment[i].upvote += 1;
+          break;
+        }
+      }
+      return tempComment;
+    });
+  };
+
   useEffect(() => {
     getComments();
   }, []);
@@ -117,7 +165,11 @@ function CommentList() {
   return (
     <Wrapper>
       <CustomDiv>
-        <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+        <form
+          onSubmit={handleSubmit((data) => {
+            onSubmit(data);
+          })}
+        >
           <textarea
             className="textField"
             placeholder={isLogin ? 'Input Comment' : '로그인이 필요합니다.'}
@@ -139,21 +191,34 @@ function CommentList() {
         {comments.map((data) => (
           <div className="commmentArea" key={data.id}>
             <div className="topArea">
-              <div className="writer-info">
-                <span className="writer">{data.writer}</span>
-                <div className="write-time">{data.write_time}</div>
+              <div className="info-area">
+                <div className="writer-info">
+                  <span className="writer">{data.writer}</span>
+                  <div className="write-time">{data.write_time}</div>
+                </div>
+                <div className="buttons">
+                  <button type="button" className="btn edit-button">
+                    수정
+                  </button>
+                  <button
+                    type="button"
+                    className="btn delete-button"
+                    onClick={() => onDeleteButtonClick(data.id)}
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
-              <div className="buttons">
-                <button type="button" className="edit-button">
-                  수정
-                </button>
+              <div className="good">
                 <button
-                  type="button"
-                  className="delete-button"
-                  onClick={() => onDeleteButtonClick(data.id)}
+                  className="good-button"
+                  onClick={() => {
+                    onClickLikeBtn(data.id);
+                  }}
                 >
-                  삭제
+                  <Like />
                 </button>
+                <div className="upvote">{data.upvote}</div>
               </div>
             </div>
             <div className="content">{data.comments}</div>
