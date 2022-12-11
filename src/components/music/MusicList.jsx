@@ -6,8 +6,8 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { api } from 'config/api';
 
-// import 'styles/slick-theme.css';
-// import 'styles/slick.css';
+import 'styles/slick-theme.css';
+import 'styles/slick.css';
 
 const CustomDiv = styled.div`
   max-width: 1024px;
@@ -79,15 +79,12 @@ function MusicList() {
         {data?.map((s) => (
           <UnMarkedli key={s.id}>
             <StyledLink to={{ pathname: `/musicDetail/${s.id}` }}>
-              <img src={s.album_cover} className="Album-Cover" alt="Album" />
-              {' '}
+              <img src={s.album_cover} className="Album-Cover" alt="Album" />{' '}
               <br />
               <span>
-                Title :
-                {s.name}
+                Title :{s.name}
                 <br />
-                Singer :
-                {s.singer}
+                Singer :{s.singer}
               </span>
             </StyledLink>
           </UnMarkedli>

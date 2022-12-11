@@ -89,7 +89,6 @@ function MusicDetail() {
   }, []);
 
   const AddMusicToPlaylist = () => {
-    const id = params.index;
     setMusicState((prev) => {
       const tempList = { ...prev };
       tempList.playlist = [...prev.playlist, dataObj];

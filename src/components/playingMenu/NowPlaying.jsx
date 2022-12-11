@@ -104,8 +104,8 @@ function NowPlaying() {
 
   const onClickPrev = () => {
     if (
-      curMusicState.curPlaying > 0
-      && curMusicState.curPlaying < curMusicState.playlist.length
+      curMusicState.curPlaying > 0 &&
+      curMusicState.curPlaying < curMusicState.playlist.length
     ) {
       setAudioData(curMusicState.curPlaying - 1);
     } else if (curMusicState.curPlaying === 0) {

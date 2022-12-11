@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable react/jsx-filename-extension */
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -10,7 +8,6 @@ import { musicState } from 'atoms/music';
 import Header from 'layouts/Header';
 import Background from 'layouts/Background';
 import TopSizedBox from 'layouts/TopSizedBox';
-import BottomSizedBox from 'layouts/BottomSizedBox';
 
 import Signin from 'components/user/Signin';
 import Signup from 'components/user/Signup';
@@ -27,8 +24,6 @@ import Playlist from 'components/playlist/Playlist';
 import PlaylistDetail from 'components/playlist/PlaylistDetail';
 import NewPlayListForm from 'components/playlist/NewPlaylist';
 
-import NowPlaying from 'components/playingMenu/NowPlaying';
-
 import Title from 'components/Title';
 import { api } from './config/api';
 import AudioPlayer from 'components/playingMenu/AudioPlayer';
@@ -41,23 +36,25 @@ function App() {
   const [curMusicState, setMusicState] = useRecoilState(musicState);
 
   const fetchUsers = async () => {
-    try {
-      const token = localStorage.getItem('loging-token');
-      const response = await Axios.get(`${api.url}/users/profile`, {
-        headers: {
-          Authorization: token,
-          withCredentials: true,
-          'Content-Type': 'application/json',
-        },
+    const token = localStorage.getItem('loging-token');
+    // token is validate?
+    await Axios.get(`${api.url}/users/profile`, {
+      headers: {
+        Authorization: token,
+        withCredentials: true,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          setIsLogin(false);
+        } else {
+          setIsLogin(true);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
       });
-      if (response.data === 'No User') {
-        setIsLogin(false);
-      } else {
-        setIsLogin(true);
-      }
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   useEffect(() => {
@@ -72,76 +69,73 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={(
+          element={
             <>
               <Title name="Music List" />
               <MusicList />
               <Title name="Playlist" />
               <Playlist />
             </>
-          )}
+          }
         />
         <Route
           path="/newMusic"
-          element={(
+          element={
             <>
               <Background />
               <NewMusicForm />
             </>
-          )}
+          }
         />
         <Route
           path="/newPlaylist"
-          element={(
+          element={
             <>
               <Background />
               <NewPlayListForm />
             </>
-          )}
+          }
         />
         <Route path="/editPlaylist/:index" element={<NewPlayListForm />} />
         <Route path="/playlistDetail/:index" element={<PlaylistDetail />} />
         <Route
           path="/musicDetail/:index"
-          element={(
+          element={
             <>
               <MusicDetail />
               <CommentList />
             </>
-          )}
+          }
         />
         <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
         <Route
           path="login"
-          element={(
+          element={
             <>
               <Background />
               <Signin />
             </>
-          )}
+          }
         />
         <Route
           path="signup"
-          element={(
+          element={
             <>
               <Background />
               <Signup />
             </>
-          )}
+          }
         />
         {/* 만약 음악이 실행이 된다면, 여기에 추가하기 */}
       </Routes>
       {curMusicState.playlist.length ? (
         <>
           <AudioPlayer />
-          <BottomSizedBox />
-          {/* <NowPlaying /> */}
         </>
       ) : (
         ''
       )}
-
     </IsLogin.Provider>
   );
 }

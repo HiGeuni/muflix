@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 // import './styles.css';
 import { api } from 'config/api';
 import styled from 'styled-components';
+import Axios from 'axios';
 
 const StyledDiv = styled.div`
   display: block;
@@ -17,7 +18,7 @@ const StyledDiv = styled.div`
     cursor: pointer;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     height: 5px;
     -webkit-appearance: none;
     width: 100%;
@@ -28,7 +29,7 @@ const StyledDiv = styled.div`
     cursor: pointer;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
+  input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
@@ -95,7 +96,7 @@ const StyledDiv = styled.div`
   .audio-controls path {
     fill: var(--white);
   }
-`
+`;
 
 function AudioPlayer() {
   // isplaying, curPlaying
@@ -119,20 +120,19 @@ function AudioPlayer() {
     -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
   `;
 
-  const getMusicUrl = (index) => {
-    const musicId = curMusicState.playlist[index].id;
-    return `${api.url}/musics/${musicId}.mp3`;
-  };
-
-  const setAudioData = (index) => {
+  const setAudioData = async (index) => {
     audioRef.current.pause();
-    audioRef.current = new Audio(getMusicUrl(index));
+    const musicId = curMusicState.playlist[index].id;
+    audioRef.current = new Audio(`${api.url}/musics/${musicId}.mp3`);
+
+    await Axios.put(`${api.url}/musics/upstream/${musicId}`);
+
     setTrackProgress(audioRef.current.currentTime);
     audioRef.current.play();
     setMusicState((prev) => ({
-        ...prev,
-        isPlaying: true,
-        curPlaying: index,
+      ...prev,
+      isPlaying: true,
+      curPlaying: index,
     }));
     startTimer();
     setCurMusicData(curMusicState.playlist[index]);
@@ -141,19 +141,19 @@ function AudioPlayer() {
   const startTimer = () => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-    
+
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
-        if(curMusicState.curPlaying === curMusicState.playlist.length - 1){
-            audioRef.current.pause();
-            setMusicState((prev) => ({
-                ...prev,
-                isPlaying: false
-            }));
-            setTrackProgress(0);
-            clearTimer();
-        }else{
-            toNextTrack();
+        if (curMusicState.curPlaying === curMusicState.playlist.length - 1) {
+          audioRef.current.pause();
+          setMusicState((prev) => ({
+            ...prev,
+            isPlaying: false,
+          }));
+          setTrackProgress(0);
+          clearTimer();
+        } else {
+          toNextTrack();
         }
       } else {
         setTrackProgress(audioRef.current.currentTime);
@@ -163,7 +163,7 @@ function AudioPlayer() {
 
   const clearTimer = () => {
     clearInterval(intervalRef.current);
-  }
+  };
 
   const onScrub = (value) => {
     // Clear any timers already running
@@ -207,7 +207,9 @@ function AudioPlayer() {
   };
 
   useEffect(() => {
-    const index = curMusicState.curPlaying === -1 ? 0 : curMusicState.curPlaying;
+    console.log('Mounted!');
+    const index =
+      curMusicState.curPlaying === -1 ? 0 : curMusicState.curPlaying;
     setAudioData(index);
   }, []);
 
@@ -222,7 +224,7 @@ function AudioPlayer() {
 
   useEffect(() => {
     setAudioData(0);
-  }, [curMusicState.newPlaylist])
+  }, [curMusicState.newPlaylist]);
 
   useEffect(
     () =>
@@ -236,34 +238,34 @@ function AudioPlayer() {
 
   return (
     <StyledDiv>
-    <div className="audio-player">
-      <div className="track-info">
-        <img
-          className="artwork"
-          src={curMusicData?.album_cover}
-          alt={`track artwork for ${curMusicData?.name} by ${curMusicData?.singer}`}
-        />
-        <h2 className="title">{curMusicData?.name}</h2>
-        <h3 className="artist">{curMusicData?.singer}</h3>
-        <AudioControls
-          onPrevClick={toPrevTrack}
-          onNextClick={toNextTrack}
-          onPlayPauseClick={setIsPlaying}
-        />
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration || `${duration}`}
-          className="progress"
-          onChange={(e) => onScrub(e.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          style={{ background: trackStyling }}
-        />
+      <div className="audio-player">
+        <div className="track-info">
+          <img
+            className="artwork"
+            src={curMusicData?.album_cover}
+            alt={`track artwork for ${curMusicData?.name} by ${curMusicData?.singer}`}
+          />
+          <h2 className="title">{curMusicData?.name}</h2>
+          <h3 className="artist">{curMusicData?.singer}</h3>
+          <AudioControls
+            onPrevClick={toPrevTrack}
+            onNextClick={toNextTrack}
+            onPlayPauseClick={setIsPlaying}
+          />
+          <input
+            type="range"
+            value={trackProgress}
+            step="1"
+            min="0"
+            max={duration || `${duration}`}
+            className="progress"
+            onChange={(e) => onScrub(e.target.value)}
+            onMouseUp={onScrubEnd}
+            onKeyUp={onScrubEnd}
+            style={{ background: trackStyling }}
+          />
+        </div>
       </div>
-    </div>
     </StyledDiv>
   );
 }
