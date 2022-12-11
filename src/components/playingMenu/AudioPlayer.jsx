@@ -141,7 +141,7 @@ function AudioPlayer() {
   const startTimer = () => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-
+    
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
         if(curMusicState.curPlaying === curMusicState.playlist.length - 1){
@@ -151,6 +151,7 @@ function AudioPlayer() {
                 isPlaying: false
             }));
             setTrackProgress(0);
+            clearTimer();
         }else{
             toNextTrack();
         }
@@ -159,6 +160,10 @@ function AudioPlayer() {
       }
     }, [1000]);
   };
+
+  const clearTimer = () => {
+    clearInterval(intervalRef.current);
+  }
 
   const onScrub = (value) => {
     // Clear any timers already running
@@ -202,7 +207,8 @@ function AudioPlayer() {
   };
 
   useEffect(() => {
-    setAudioData(0);
+    const index = curMusicState.curPlaying === -1 ? 0 : curMusicState.curPlaying;
+    setAudioData(index);
   }, []);
 
   useEffect(() => {
@@ -214,6 +220,10 @@ function AudioPlayer() {
     }
   }, [curMusicState.isPlaying]);
 
+  useEffect(() => {
+    setAudioData(0);
+  }, [curMusicState.newPlaylist])
+
   useEffect(
     () =>
       // Pause and clean up on unmount
@@ -222,7 +232,7 @@ function AudioPlayer() {
         clearInterval(intervalRef.current);
       },
     [],
-);
+  );
 
   return (
     <StyledDiv>

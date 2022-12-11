@@ -1,7 +1,7 @@
 // react-hook-form을 이용해서 form을 만들기
 import { useForm } from 'react-hook-form';
 // import NewStyle from "styles/FormStyle";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { api } from 'config/api';
 import Slider from 'react-slick';

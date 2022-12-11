@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import NewStyle from 'styles/FormStyle';
@@ -18,7 +17,6 @@ function NewMusicForm() {
       ? await Axios.put(`${api.url}/musics/addMusic`, data)
       : await Axios.post(`${api.url}/musics/addMusic`, data);
 
-    console.log(res);
     navigate('/');
   };
 
@@ -32,7 +30,6 @@ function NewMusicForm() {
 
   useEffect(() => {
     if (isEdit) {
-      console.log('Params : ', params);
       getMusicData();
     }
   }, []);

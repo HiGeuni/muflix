@@ -9,6 +9,7 @@ export const musicState = atom({
     isPlaying: false,
     playlist: [],
     curPlaying: -1,
+    newPlaylist: false,
   },
   // effects_UNSTABLE: [persistAtom],
 });

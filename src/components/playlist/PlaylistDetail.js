@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 import Axios from 'axios';
 import { api } from 'config/api';
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { IsLogin } from 'App';
 import { musicState } from 'atoms/music';
 import { useRecoilState } from 'recoil';
@@ -46,6 +46,14 @@ function PlaylistDetail() {
   const [musicData, setMusics] = useState([]);
   const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
   const [curMusicState, setMusicState] = useRecoilState(musicState);
+
+  const onClickCurrentPlaylist = () => {
+    setMusicState((prev) => ({
+      ...prev,
+      playlist: musicData,
+      newPlaylist: !prev.newPlaylist
+    }));
+  }
 
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getPlaylist/${params.index}`).then(
@@ -104,6 +112,7 @@ function PlaylistDetail() {
     <Wrapper>
       <PlaylistControl>
         <h1>{playlistData ? playlistData.name : ''}</h1>
+        <button onClick={onClickCurrentPlaylist}>플레이리스트 재생</button>
         {isUserHasPlaylist ? (
           <>
             <CustomLink to={{ pathname: `/editPlaylist/${params.index}` }}>

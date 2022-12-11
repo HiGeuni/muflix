@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import SliderSettings from 'config/SliderSettings';
 import Axios from 'axios';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { api } from 'config/api';
 
 const AddPlaylist = styled.div`
