@@ -17,10 +17,20 @@ function SignInForm() {
       alert('비밀번호를 확인해주세요!');
     }
   };
-  const { register, handleSubmit, watch, setError, formState: {errors} } = useForm();
+  const { register, handleSubmit, watch, setError, formState } = useForm({
+    defaultValues: {
+      email: "",
+      nickname: "",
+      phonenum: "", 
+      password1: "", 
+      password2: ""
+    }
+  });
+
+  const {errors} = formState
 
   const password = watch("password");
-  
+
   //추가 예정
   const handlePasswordChange = (e) => {
     const value = e.target.value;
@@ -59,20 +69,22 @@ function SignInForm() {
         />
         <label>password</label>
         <input
-          name="password"
+          name="password1"
           type="password"
           placeholder="password"
+          onChange={handlePasswordChange}
           {...register('password1')}
         />
-        {errors.password && <p>{errors.passwrod.message}</p>}
+        {errors.password1 && <p>{errors.passwrod1.message}</p>}
         <label className='password-check'>password 확인</label>
         <input
-          name="passwordConfirm"
+          name="password2"
           type="password"
           placeholder="Verify Password"
+          onChange={handlePasswordChange}
           {...register('password2')}
         />
-        {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
+        {errors.password2 && <p>{errors.password2.message}</p>}
         <input type="submit" className="submitButton" value="등록" />
       </form>
     </NewStyle>

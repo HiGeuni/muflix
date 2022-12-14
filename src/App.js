@@ -27,11 +27,13 @@ import NewPlayListForm from 'components/playlist/NewPlaylist';
 import Title from 'components/Title';
 import { api } from './config/api';
 import AudioPlayer from 'components/playingMenu/AudioPlayer';
+import UserPlaylist from 'components/playlist/UserPlaylist';
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
 
 function App() {
+  const [username, setUsername] = useState('');
   const [isLogin, setIsLogin] = useState(false);
   const [curMusicState, setMusicState] = useRecoilState(musicState);
 
@@ -46,10 +48,12 @@ function App() {
       },
     })
       .then((res) => {
+        const user = res.data[0]["이름"];
         if (res.status === 401) {
           setIsLogin(false);
         } else {
           setIsLogin(true);
+          setUsername(user);
         }
       })
       .catch((e) => {
@@ -58,7 +62,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('프로필 확인');
     fetchUsers();
   }, []);
 
@@ -74,7 +77,13 @@ function App() {
             <>
               <Title name="Music List" />
               <MusicList />
-              <Title name="Playlist" />
+              {isLogin && 
+                <>
+                  <Title name={`${username}님의 Playlist`}/>
+                  <UserPlaylist />
+                </>
+              }
+              <Title name="Browse Playlist" />
               <Playlist />
             </>
           }

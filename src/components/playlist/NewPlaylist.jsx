@@ -162,6 +162,7 @@ function NewPlayListForm() {
       withCredentials: true,
       'Content-Type': 'application/json',
     };
+    console.log(headers);
     isEdit
       ? await Axios.put(
           `${api.url}/musics/updatePlaylist/${params.index}`,
@@ -170,10 +171,12 @@ function NewPlayListForm() {
             headers,
           },
         )
-      : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
+      : await Axios.post(`${api.url}/musics/addPlaylist`,
+        data, {
           headers,
+        }).then((res) => {
+          console.log(res);
         });
-    console.log(representativeSong);
     navigate('/');
   };
 

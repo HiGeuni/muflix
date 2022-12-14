@@ -93,7 +93,6 @@ function Profile() {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       const t_user = response.data[USER];
       setPlaylist(response.data[PLAYLIST].playlist);
       setUsers(t_user);
@@ -132,7 +131,7 @@ function Profile() {
                 ))
               : ''}
           </div>
-          <DelUser>계정 삭제</DelUser>
+          {/* <DelUser>계정 삭제</DelUser> */}
         </section>
       </header>
       <header>

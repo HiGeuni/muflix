@@ -29,12 +29,6 @@ const Logout = () => {
     });
   };
   logout();
-
-  return(
-  <>
-    <ToastContainer />
-  </>
-  )
 };
 
 export default Logout;

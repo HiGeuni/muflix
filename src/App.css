@@ -43,3 +43,8 @@ body {
   background-position: top center;
   background-size: cover;
 }
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("./static/fonts/NotoSansKR-Regular.eot");
+}

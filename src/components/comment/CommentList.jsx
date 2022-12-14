@@ -26,8 +26,9 @@ const CustomDiv = styled.div`
     margin: 1%;
   }
   .textField {
+    font-family: "NotoSansKR";
     resize: none;
-    font-size: 18px;
+    font-size: 16px;
     height: 100px;
     margin-bottom: 1%;
   }

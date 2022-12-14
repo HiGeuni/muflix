@@ -71,7 +71,7 @@ function PlaylistDetail() {
             setMusics((prev) => [...prev, ...res2]);
           });
         }
-        console.log(d.data.playlist_info, d.data.musics)
+        console.log(d.data.playlist_info, d.data.musics);
       },
     );
   };
@@ -95,9 +95,9 @@ function PlaylistDetail() {
     });
   };
 
-  const onClickDelete = async () => {
+  const onClickDelete = () => {
     const token = localStorage.getItem('loging-token');
-    await Axios.delete(`${api.url}/musics/delPlaylist/${params.index}`, {
+    Axios.delete(`${api.url}/musics/delPlaylist/${params.index}`, {
       headers: {
         Authorization: token,
         withCredentials: true,
