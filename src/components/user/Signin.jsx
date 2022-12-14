@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { api } from 'config/api';
 import { IsLogin } from 'App';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import NewStyle from 'styles/FormStyle';
 
 function SignInForm() {
@@ -17,10 +17,8 @@ function SignInForm() {
     const response = await Axios.post(`${api.url}/signin`, data, {
       withCredentials: true,
     });
-    console.log(response);
-    if (response.data === 'Try Again!') alert('없는 계정입니다.');
+    if (response.data === 'Try Again!') alert('Email이나 Password를 확인해주세요.');
     else {
-      console.log('Login Success !!');
       setIsLogin(true);
       localStorage.setItem('loging-token', response.data.token);
       navigate('/');

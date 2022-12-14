@@ -2,7 +2,8 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from 'config/api';
 import { IsLogin } from 'App';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Logout = () => {
   const { setIsLogin } = useContext(IsLogin);
@@ -28,6 +29,12 @@ const Logout = () => {
     });
   };
   logout();
+
+  return(
+  <>
+    <ToastContainer />
+  </>
+  )
 };
 
 export default Logout;

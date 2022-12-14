@@ -26,11 +26,17 @@ const StyledLink = styled(Link)`
   margin: auto;
   align-items: center; // for vertical
   justify-content: center; // for horizontal
-  border: 2px solid black;
   width: 200px;
-  height: 200px;
+  height: 250px;
   text-decoration: none;
   color: black;
+  img {
+    margin: auto;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const UnMarkedli = styled.li`
@@ -62,10 +68,24 @@ const CustomDiv = styled.div`
 `;
 
 function Playlist() {
-  const [playlistData, setplaylistData] = useState(null);
+  const [playlistData, setplaylistData] = useState([]);
+  // const [primaryMusic, setPrimaryMusic] = useState({});
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getAllPlaylist`).then((data) => {
+      console.log(data.data);
       setplaylistData(data.data);
+      // for(let i=0; i<data.data.length; i++){
+      //   if(data.data[i].primary_music){
+      //     Axios.get(`${api.url}/musics/getMusic/${data.data[i].primary_music}`)
+      //     .then((d) => {
+      //       console.log(d);
+      //       setPrimaryMusic((prev) => (
+      //         var obj = {...prev};
+      //         obj[data.data[i].id] = d.data[0];
+      //       ));
+      //     })
+      //   }
+      // }
     });
   };
 
@@ -83,7 +103,10 @@ function Playlist() {
                 pathname: `/playlistDetail/${s.id}`,
               }}
             >
-              {s.name}
+              <div>
+                <img src={s.representive_image}></img>
+                {s.name}
+              </div>
             </StyledLink>
           </UnMarkedli>
         ))}

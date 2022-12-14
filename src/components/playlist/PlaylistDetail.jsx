@@ -6,6 +6,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { IsLogin } from 'App';
 import { musicState } from 'atoms/music';
 import { useRecoilState } from 'recoil';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Wrapper = styled.div`
   max-width: 1024px;
@@ -47,7 +49,10 @@ function PlaylistDetail() {
   const [isUserHasPlaylist, setUserHasPlaylist] = useState(false);
   const [curMusicState, setMusicState] = useRecoilState(musicState);
 
-  const onClickCurrentPlaylist = () => {
+  const notify = (content) => toast(content);
+
+  const onClickCurrentPlaylist = (name) => {
+    toast(name);
     setMusicState((prev) => ({
       ...prev,
       playlist: musicData,
@@ -66,6 +71,7 @@ function PlaylistDetail() {
             setMusics((prev) => [...prev, ...res2]);
           });
         }
+        console.log(d.data.playlist_info, d.data.musics)
       },
     );
   };
@@ -112,7 +118,7 @@ function PlaylistDetail() {
     <Wrapper>
       <PlaylistControl>
         <h1>{playlistData ? playlistData.name : ''}</h1>
-        <button onClick={onClickCurrentPlaylist}>플레이리스트 재생</button>
+        <button onClick={() => {onClickCurrentPlaylist(playlistData.name)}}>플레이리스트 재생</button>
         {isUserHasPlaylist ? (
           <>
             <CustomLink to={{ pathname: `/editPlaylist/${params.index}` }}>
@@ -126,7 +132,7 @@ function PlaylistDetail() {
           ''
         )}
       </PlaylistControl>
-
+      <ToastContainer/>
       {musicData?.map((data) => (
         <UnMarkedli key={data.id}>
           {data.name} -{data.singer}

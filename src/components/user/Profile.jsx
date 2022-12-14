@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { api } from 'config/api';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import 'styles/slick-theme.css';
 import 'styles/slick.css';
@@ -125,7 +125,7 @@ function Profile() {
           <div>
             {user
               ? key_list.map((s) => (
-                  <div className="info_button">
+                  <div key={s.id} className="info_button">
                     <div className="account_info">{user[s]}</div>
                     <BtStyle>{s} 변경</BtStyle>
                   </div>

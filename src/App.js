@@ -66,6 +66,7 @@ function App() {
     <IsLogin.Provider value={{ isLogin, setIsLogin }}>
       <Header />
       <TopSizedBox />
+      {/* <Background /> */}
       <Routes>
         <Route
           path="/"

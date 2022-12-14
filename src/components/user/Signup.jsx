@@ -4,6 +4,7 @@ import NewStyle from 'styles/FormStyle';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from 'config/api';
+import React from 'react';
 
 function SignInForm() {
   const navigate = useNavigate();
@@ -16,7 +17,23 @@ function SignInForm() {
       alert('비밀번호를 확인해주세요!');
     }
   };
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, setError, formState: {errors} } = useForm();
+
+  const password = watch("password");
+  
+  //추가 예정
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    console.log(value);
+
+    if(value === password) return setError("passwordConfirm");
+
+    setError(
+      "passwordConfirm",
+      "notEqual",
+      "Password are different"
+    );
+  }
 
   return (
     <NewStyle>
@@ -42,18 +59,20 @@ function SignInForm() {
         />
         <label>password</label>
         <input
-          name="password1"
+          name="password"
           type="password"
           placeholder="password"
           {...register('password1')}
         />
-        <label>password 확인</label>
+        {errors.password && <p>{errors.passwrod.message}</p>}
+        <label className='password-check'>password 확인</label>
         <input
-          name="password2"
+          name="passwordConfirm"
           type="password"
           placeholder="Verify Password"
           {...register('password2')}
         />
+        {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
         <input type="submit" className="submitButton" value="등록" />
       </form>
     </NewStyle>
