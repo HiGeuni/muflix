@@ -79,7 +79,7 @@ function App() {
               <MusicList />
               {isLogin && 
                 <>
-                  <Title name={`${username}님의 Playlist`}/>
+                  <Title name={`${username?username:""}님의 Playlist`}/>
                   <UserPlaylist />
                 </>
               }
