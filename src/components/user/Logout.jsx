@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { api } from 'config/api';
 import { IsLogin } from 'App';
 import React, { useContext } from 'react';
+import { userState } from 'atoms/user';
+import { useRecoilState } from 'recoil';
 
 const Logout = () => {
   const { setIsLogin } = useContext(IsLogin);
+  const [curUserState, setUserState] = useRecoilState(userState);
 
   const navigate = useNavigate();
 
@@ -20,6 +23,7 @@ const Logout = () => {
       if (res.status === 200) {
         localStorage.clear();
         setIsLogin(false);
+        setUserState({ username: '' });
         navigate('/');
       } else {
         alert('잘못된 요청입니다.');

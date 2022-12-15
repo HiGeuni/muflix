@@ -43,7 +43,7 @@ function App() {
   const didMount = useRef(false);
 
   const notify = (name) => {
-    toast(`${name} 님 환영합니다!`);
+    toast(`환영합니다!`);
   };
 
   const fetchUsers = () => {
@@ -61,7 +61,6 @@ function App() {
         if (res.status === 401) {
           setIsLogin(false);
         } else {
-          setUsername(user);
           setUserState({ username: user });
           setIsLogin(true);
         }
@@ -76,12 +75,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!curUserState.username && isLogin) {
+      fetchUsers();
+      notify();
+    }
     if (!didMount.current) {
       didMount.current = true;
     } else {
-      if (isLogin) {
-        if (username) notify(username);
-      } else {
+      if (!isLogin) {
         toast('로그아웃!');
       }
     }
@@ -100,7 +101,7 @@ function App() {
             <>
               <Title name="Music List" />
               <MusicList />
-              {isLogin && (
+              {curUserState?.username && (
                 <>
                   <Title name={`${curUserState?.username}님의 Playlist`} />
                   <UserPlaylist />
