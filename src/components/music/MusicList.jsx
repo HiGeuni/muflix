@@ -89,9 +89,9 @@ function MusicList() {
             </StyledLink>
           </UnMarkedli>
         ))}
-        <CustomLink to="/newMusic">
+        {/* <CustomLink to="/newMusic">
           <AddMusic>{data ? 'Add Music' : 'Loading...'}</AddMusic>
-        </CustomLink>
+        </CustomLink> */}
       </Slider>
     </CustomDiv>
   );
