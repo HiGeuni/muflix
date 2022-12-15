@@ -5,6 +5,8 @@ import SliderSettings from 'config/SliderSettings';
 import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { api } from 'config/api';
+import { playlistState } from 'atoms/playlist';
+import { useRecoilState } from 'recoil';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -49,15 +51,16 @@ const CustomDiv = styled.div`
 
 function UserPlaylist() {
   const [playlistData, setplaylistData] = useState([]);
+  const [curPlaylistState, setPlaylistState] = useRecoilState(playlistState);
   // const [primaryMusic, setPrimaryMusic] = useState({});
   const fetchData = async () => {
     const token = localStorage.getItem('loging-token');
     await Axios.get(`${api.url}/musics/getUserplaylist`, {
-        headers: {
-            Authorization: token,
-            withCredentials: true,
-            'Content-Type': 'application/json',
-          },
+      headers: {
+        Authorization: token,
+        withCredentials: true,
+        'Content-Type': 'application/json',
+      },
     }).then((data) => {
       setplaylistData(data.data);
       // for(let i=0; i<data.data.length; i++){
@@ -77,7 +80,7 @@ function UserPlaylist() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [curPlaylistState.isChange]);
 
   return (
     <CustomDiv>

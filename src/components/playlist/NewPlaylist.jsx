@@ -8,6 +8,10 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import Background from 'layouts/Background';
+import { toast } from 'react-toastify';
+
+import 'styles/slick-theme-for-background.css';
+import 'styles/slick.css';
 
 const UnMarkedli = styled.li`
   display: block;
@@ -110,7 +114,7 @@ function NewPlayListForm() {
   const [musicData, setData] = useState(null);
   const [playlistData, setPlayListData] = useState();
   const [resList, setRes] = useState([]);
-  const [representativeSong, setRepSong] = useState(null);
+  const [repSong, setRepSong] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
   const isEdit = !!params.index;
@@ -124,8 +128,6 @@ function NewPlayListForm() {
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getPlaylist/${params.index}`).then(
       (d) => {
-        console.log(d.data.playlist_info);
-        console.log(d.data.musics);
         setPlayListData(d.data.playlist_info);
       },
     );
@@ -144,7 +146,6 @@ function NewPlayListForm() {
     } else {
       setRes((prev) => [...prev, id]);
     }
-    console.log(resList);
   };
 
   const onSubmit = async (data) => {
@@ -154,15 +155,21 @@ function NewPlayListForm() {
     if (data.information === '') {
       data.information = playlistData?.information;
     }
-    data.representative = representativeSong;
+    if (repSong === null) {
+      toast('대표곡을 지정해주세요.');
+      return;
+    }
+    data.representative = repSong;
     data.musics = resList;
+    if (!resList.includes(repSong)) {
+      data.musics.push(repSong);
+    }
     const token = localStorage.getItem('loging-token');
     const headers = {
       Authorization: token,
       withCredentials: true,
       'Content-Type': 'application/json',
     };
-    console.log(headers);
     isEdit
       ? await Axios.put(
           `${api.url}/musics/updatePlaylist/${params.index}`,
@@ -171,8 +178,7 @@ function NewPlayListForm() {
             headers,
           },
         )
-      : await Axios.post(`${api.url}/musics/addPlaylist`,
-        data, {
+      : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
           headers,
         }).then((res) => {
           console.log(res);
@@ -224,16 +230,16 @@ function NewPlayListForm() {
                     Title : {s.name} <br />
                     Singer : {s.singer}
                   </span>
-                  <div className='radio'>
+                  <div className="radio">
                     <input
-                    type="radio"
-                    value={s.name}
-                    name="represent"
-                    onChange ={() => {
-                      console.log(s.id);
-                      setRepSong(s.id);
-                    }}
-                    />대표 곡
+                      type="radio"
+                      value={s.name}
+                      name="represent"
+                      onChange={() => {
+                        setRepSong(s.id);
+                      }}
+                    />
+                    대표 곡
                   </div>
                 </CustomDiv>
               </UnMarkedli>

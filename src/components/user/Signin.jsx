@@ -17,7 +17,8 @@ function SignInForm() {
     const response = await Axios.post(`${api.url}/signin`, data, {
       withCredentials: true,
     });
-    if (response.data === 'Try Again!') alert('Email이나 Password를 확인해주세요.');
+    if (response.data === 'Try Again!')
+      alert('Email이나 Password를 확인해주세요.');
     else {
       setIsLogin(true);
       localStorage.setItem('loging-token', response.data.token);
@@ -35,7 +36,7 @@ function SignInForm() {
           name="email"
           {...register('email', {
             required: 'email error',
-            pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
+            // pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
           })}
           placeholder="E-mail"
           type="text"
@@ -45,11 +46,11 @@ function SignInForm() {
           name="password"
           type="password"
           {...register('password', {
-            required: 'password error',
-            minLength: {
-              value: 8,
-              message: 'too short',
-            },
+            // required: 'password error',
+            // minLength: {
+            //   value: 8,
+            //   message: 'too short',
+            // },
           })}
           placeholder="Password"
         />

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { IsLogin } from 'App';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as Like } from 'static/icon/like.svg';
+import { toast } from 'react-toastify';
 
 const Wrapper = styled.div`
   max-width: 1024px;
@@ -26,7 +27,7 @@ const CustomDiv = styled.div`
     margin: 1%;
   }
   .textField {
-    font-family: "NotoSansKR";
+    font-family: 'NotoSansKR';
     resize: none;
     font-size: 16px;
     height: 100px;
@@ -93,6 +94,7 @@ const CommentListArea = styled.div`
     border-bottom: solid black;
   }
   .content {
+    white-space: pre-wrap;
     padding-top: 1%;
   }
 `;
@@ -124,6 +126,7 @@ function CommentList() {
         'Content-Type': 'application/json',
       },
     });
+    toast('댓글 작성이 완료되었습니다.');
     reset();
     getComments();
   };
@@ -139,7 +142,6 @@ function CommentList() {
       if (response.status === 200) {
         getComments();
       }
-      alert(response.data);
     });
   };
 
@@ -198,9 +200,9 @@ function CommentList() {
                   <div className="write-time">{data.write_time}</div>
                 </div>
                 <div className="buttons">
-                  <button type="button" className="btn edit-button">
+                  {/* <button type="button" className="btn edit-button">
                     수정
-                  </button>
+                  </button> */}
                   <button
                     type="button"
                     className="btn delete-button"
@@ -214,6 +216,7 @@ function CommentList() {
                 <button
                   className="good-button"
                   onClick={() => {
+                    console.log(data.comments);
                     onClickLikeBtn(data.id);
                   }}
                 >

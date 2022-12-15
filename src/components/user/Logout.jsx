@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { api } from 'config/api';
 import { IsLogin } from 'App';
 import React, { useContext } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 
 const Logout = () => {
   const { setIsLogin } = useContext(IsLogin);
@@ -19,7 +18,6 @@ const Logout = () => {
       },
     }).then((res) => {
       if (res.status === 200) {
-        alert(res.data.message);
         localStorage.clear();
         setIsLogin(false);
         navigate('/');

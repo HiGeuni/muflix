@@ -1,7 +1,8 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import { musicState } from 'atoms/music';
 
@@ -36,11 +37,16 @@ function App() {
   const [username, setUsername] = useState('');
   const [isLogin, setIsLogin] = useState(false);
   const [curMusicState, setMusicState] = useRecoilState(musicState);
+  const didMount = useRef(false);
 
-  const fetchUsers = async () => {
+  const notify = (name) => {
+    toast(`${name} 님 환영합니다!`);
+  };
+
+  const fetchUsers = () => {
     const token = localStorage.getItem('loging-token');
     // token is validate?
-    await Axios.get(`${api.url}/users/profile`, {
+    Axios.get(`${api.url}/users/profile`, {
       headers: {
         Authorization: token,
         withCredentials: true,
@@ -48,12 +54,12 @@ function App() {
       },
     })
       .then((res) => {
-        const user = res.data[0]["이름"];
+        const user = res.data[0]['이름'];
         if (res.status === 401) {
           setIsLogin(false);
         } else {
-          setIsLogin(true);
           setUsername(user);
+          setIsLogin(true);
         }
       })
       .catch((e) => {
@@ -65,11 +71,24 @@ function App() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+    } else {
+      if (isLogin) {
+        notify(username);
+      } else {
+        toast('로그아웃!');
+      }
+    }
+  }, [isLogin]);
+
   return (
     <IsLogin.Provider value={{ isLogin, setIsLogin }}>
       <Header />
       <TopSizedBox />
       {/* <Background /> */}
+      <ToastContainer />
       <Routes>
         <Route
           path="/"
@@ -77,12 +96,12 @@ function App() {
             <>
               <Title name="Music List" />
               <MusicList />
-              {isLogin && 
+              {isLogin && (
                 <>
-                  <Title name={`${username?username:""}님의 Playlist`}/>
+                  <Title name={`${username ? username : ''}님의 Playlist`} />
                   <UserPlaylist />
                 </>
-              }
+              )}
               <Title name="Browse Playlist" />
               <Playlist />
             </>

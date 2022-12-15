@@ -5,6 +5,8 @@ import SliderSettings from 'config/SliderSettings';
 import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { api } from 'config/api';
+import { playlistState } from 'atoms/playlist';
+import { useRecoilState } from 'recoil';
 
 const AddPlaylist = styled.div`
   display: flex;
@@ -69,29 +71,18 @@ const CustomDiv = styled.div`
 
 function Playlist() {
   const [playlistData, setplaylistData] = useState([]);
+  const [curPlaylistState, setPlaylistState] = useRecoilState(playlistState);
+
   // const [primaryMusic, setPrimaryMusic] = useState({});
   const fetchData = async () => {
     await Axios.get(`${api.url}/musics/getAllPlaylist`).then((data) => {
-      console.log(data.data);
       setplaylistData(data.data);
-      // for(let i=0; i<data.data.length; i++){
-      //   if(data.data[i].primary_music){
-      //     Axios.get(`${api.url}/musics/getMusic/${data.data[i].primary_music}`)
-      //     .then((d) => {
-      //       console.log(d);
-      //       setPrimaryMusic((prev) => (
-      //         var obj = {...prev};
-      //         obj[data.data[i].id] = d.data[0];
-      //       ));
-      //     })
-      //   }
-      // }
     });
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [curPlaylistState.isChange]);
 
   return (
     <CustomDiv>

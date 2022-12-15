@@ -6,7 +6,7 @@ import { api } from 'config/api';
 import { useRecoilState } from 'recoil';
 // import ReactAudioPlayer from 'react-audio-player';
 import { musicState } from 'atoms/music';
-import {ToastContainer, toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const EntireArea = styled.div`
   max-width: 1024px;
@@ -66,6 +66,7 @@ const AddButton = styled.button`
   font-weight: 600;
   background-color: black;
   color: white;
+  padding: 5px;
 `;
 
 function MusicDetail() {
@@ -105,7 +106,11 @@ function MusicDetail() {
         <SingerName>{dataObj.singer}</SingerName>
         <ButtonArea>
           {/* <ReactAudioPlayer src={musicUrl} controls /> */}
-          <AddButton onClick={() => {AddMusicToPlaylist(dataObj.name)}}>
+          <AddButton
+            onClick={() => {
+              AddMusicToPlaylist(dataObj.name);
+            }}
+          >
             ✚ 현재 재생목록에 추가
           </AddButton>
         </ButtonArea>

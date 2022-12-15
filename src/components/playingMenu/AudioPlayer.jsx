@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { api } from 'config/api';
 import styled from 'styled-components';
 import Axios from 'axios';
+import { toast } from 'react-toastify';
 
 const StyledDiv = styled.div`
   display: block;
@@ -60,6 +61,14 @@ const StyledDiv = styled.div`
     text-align: center;
     z-index: 1;
     position: relative;
+  }
+
+  .remove-player {
+    position: absolute;
+    right: 20px;
+    color: white;
+    float: right;
+    z-index: 100;
   }
 
   .title {
@@ -192,7 +201,7 @@ function AudioPlayer() {
 
   const toPrevTrack = () => {
     if (curMusicState.curPlaying - 1 < 0) {
-      alert('첫 곡입니다.');
+      toast('첫 곡입니다.');
     } else {
       setAudioData(curMusicState.curPlaying - 1);
     }
@@ -202,8 +211,20 @@ function AudioPlayer() {
     if (curMusicState.curPlaying < curMusicState.playlist.length - 1) {
       setAudioData(curMusicState.curPlaying + 1);
     } else {
-      alert('마지막 곡입니다.');
+      toast('마지막 곡입니다.');
     }
+  };
+
+  const removePlayer = () => {
+    audioRef.current.pause();
+    setTrackProgress(0);
+    clearTimer();
+    setMusicState({
+      isPlaying: false,
+      playlist: [],
+      curPlaying: -1,
+      newPlaylist: false,
+    });
   };
 
   useEffect(() => {
@@ -239,6 +260,9 @@ function AudioPlayer() {
   return (
     <StyledDiv>
       <div className="audio-player">
+        <button className="remove-player" onClick={removePlayer}>
+          X
+        </button>
         <div className="track-info">
           <img
             className="artwork"
