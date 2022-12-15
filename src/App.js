@@ -29,6 +29,7 @@ import Title from 'components/Title';
 import { api } from './config/api';
 import AudioPlayer from 'components/playingMenu/AudioPlayer';
 import UserPlaylist from 'components/playlist/UserPlaylist';
+import UserEdit from 'components/user/UserEdit';
 
 // isLogin은 상태 관리하기
 export const IsLogin = React.createContext(false);
@@ -98,7 +99,7 @@ function App() {
               <MusicList />
               {isLogin && (
                 <>
-                  <Title name={`${username ? username : ''}님의 Playlist`} />
+                  <Title name={`${username}님의 Playlist`} />
                   <UserPlaylist />
                 </>
               )}
@@ -138,6 +139,7 @@ function App() {
         />
         <Route path="logout" element={<Logout />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="profile/:index" element={<UserEdit />} />
         <Route
           path="login"
           element={

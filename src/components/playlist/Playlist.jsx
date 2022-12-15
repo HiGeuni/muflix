@@ -82,6 +82,10 @@ function Playlist() {
 
   useEffect(() => {
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    fetchData();
   }, [curPlaylistState.isChange]);
 
   return (

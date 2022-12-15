@@ -126,7 +126,9 @@ function Profile() {
               ? key_list.map((s) => (
                   <div key={s.id} className="info_button">
                     <div className="account_info">{user[s]}</div>
-                    <BtStyle>{s} 변경</BtStyle>
+                    {/* <BtStyle to={{ pathname: `/userEdit/${user.id}` }}>
+                      {s} 변경
+                    </BtStyle> */}
                   </div>
                 ))
               : ''}

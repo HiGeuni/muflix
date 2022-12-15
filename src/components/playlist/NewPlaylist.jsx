@@ -180,8 +180,6 @@ function NewPlayListForm() {
         )
       : await Axios.post(`${api.url}/musics/addPlaylist`, data, {
           headers,
-        }).then((res) => {
-          console.log(res);
         });
     navigate('/');
   };
