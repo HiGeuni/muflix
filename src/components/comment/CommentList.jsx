@@ -7,6 +7,8 @@ import { IsLogin } from 'App';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as Like } from 'static/icon/like.svg';
 import { toast } from 'react-toastify';
+import { userState } from 'atoms/user';
+import { useRecoilState } from 'recoil';
 
 const Wrapper = styled.div`
   max-width: 1024px;
@@ -104,6 +106,7 @@ function CommentList() {
   const { isLogin } = useContext(IsLogin);
   const { register, handleSubmit, reset } = useForm();
   const [comments, setComments] = useState([]);
+  const [curUserState, setUserState] = useRecoilState(userState);
 
   const getComments = async () => {
     await Axios.get(`${api.url}/comments/getComment/${params.index}`).then(
@@ -163,6 +166,7 @@ function CommentList() {
 
   useEffect(() => {
     getComments();
+    console.log(curUserState.userneme);
   }, []);
 
   return (
@@ -202,14 +206,16 @@ function CommentList() {
                 <div className="buttons">
                   {/* <button type="button" className="btn edit-button">
                     수정
-                  </button> */}
-                  <button
-                    type="button"
-                    className="btn delete-button"
-                    onClick={() => onDeleteButtonClick(data.id)}
-                  >
-                    삭제
-                  </button>
+                    </button> */}
+                  {curUserState.username === data.writer && (
+                    <button
+                      type="button"
+                      className="btn delete-button"
+                      onClick={() => onDeleteButtonClick(data.id)}
+                    >
+                      삭제
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="good">

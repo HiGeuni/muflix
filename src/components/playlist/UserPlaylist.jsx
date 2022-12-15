@@ -63,18 +63,6 @@ function UserPlaylist() {
       },
     }).then((data) => {
       setplaylistData(data.data);
-      // for(let i=0; i<data.data.length; i++){
-      //   if(data.data[i].primary_music){
-      //     Axios.get(`${api.url}/musics/getMusic/${data.data[i].primary_music}`)
-      //     .then((d) => {
-      //       console.log(d);
-      //       setPrimaryMusic((prev) => (
-      //         var obj = {...prev};
-      //         obj[data.data[i].id] = d.data[0];
-      //       ));
-      //     })
-      //   }
-      // }
     });
   };
 

@@ -1,10 +1,11 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useRouteError } from 'react-router-dom';
 import Axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import { musicState } from 'atoms/music';
+import { userState } from 'atoms/user';
 
 import Header from 'layouts/Header';
 import Background from 'layouts/Background';
@@ -38,6 +39,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [isLogin, setIsLogin] = useState(false);
   const [curMusicState, setMusicState] = useRecoilState(musicState);
+  const [curUserState, setUserState] = useRecoilState(userState);
   const didMount = useRef(false);
 
   const notify = (name) => {
@@ -60,6 +62,8 @@ function App() {
           setIsLogin(false);
         } else {
           setUsername(user);
+          setUserState({ username: user });
+          console.log(curUserState);
           setIsLogin(true);
         }
       })
