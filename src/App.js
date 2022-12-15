@@ -63,7 +63,6 @@ function App() {
         } else {
           setUsername(user);
           setUserState({ username: user });
-          console.log(curUserState);
           setIsLogin(true);
         }
       })
@@ -81,7 +80,7 @@ function App() {
       didMount.current = true;
     } else {
       if (isLogin) {
-        notify(username);
+        if (username) notify(username);
       } else {
         toast('로그아웃!');
       }
