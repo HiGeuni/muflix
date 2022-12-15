@@ -102,7 +102,7 @@ function App() {
               <MusicList />
               {isLogin && (
                 <>
-                  <Title name={`${username}님의 Playlist`} />
+                  <Title name={`${curUserState?.username}님의 Playlist`} />
                   <UserPlaylist />
                 </>
               )}

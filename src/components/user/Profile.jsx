@@ -38,6 +38,9 @@ const CustomDiv = styled.div`
     width: 764px;
     display: flex;
     justify-content: space-between;
+    .account_info_name {
+      min-width: 200px;
+    }
   }
   button {
     display: inline-block;
@@ -142,8 +145,8 @@ function Profile() {
           <div>
             {playlist?.map((s) => (
               <div key={s.id} className="info_button">
-                <div className="account_info">{s.name}</div>
-                <div className="account_info">{s.information}</div>
+                <div className="account_info_name">{s.name}</div>
+                <div className="account_info_information">{s.information}</div>
                 <BtStyle to={{ pathname: `/playlistDetail/${s.id}` }}>
                   자세히 보기
                 </BtStyle>
